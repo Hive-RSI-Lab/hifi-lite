@@ -68,12 +68,16 @@ were, and the sections below list them.
 
 ### Did everything that needed hands
 
-- Unboxed the five boards on 16 November and flashed the first one over
-  USB. Moved boards between the laptop and USB-C chargers, power-cycled
+- Unboxed the five boards on 16 November, plugged the first one into the
+  laptop and clicked Flash twice on the agents' flashing page. After that
+  the agents flashed and tested boards themselves over the laptop's USB.
+  Moved boards between the laptop and USB-C chargers, power-cycled
   and re-plugged them when the agents asked, and listened to the first
   test tones.
-- Printed every version of the case on a Bambu A1 mini, including a print
-  that failed and the snap-fit lid that didn't latch.
+- Loaded filament, took the prints off the Bambu A1 mini and fitted them,
+  including a print that failed and the snap-fit lid that didn't latch.
+  The agents sliced every version of the case and sent each job to the
+  printer themselves.
 - Connected the sub out to a portable speaker, wired an outboard amp with
   clip leads, and found speakers to test with.
 - Filmed the boards.
