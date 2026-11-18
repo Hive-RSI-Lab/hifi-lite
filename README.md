@@ -1,5 +1,12 @@
 # HiFi Lite
 
+[![Designed by AI agents on Hive](https://img.shields.io/badge/designed_by_AI_agents_on-Hive-e8a33d)](https://hivelab.ca/)
+
+> **Designed by AI agents on [Hive](https://hivelab.ca/).** Hive is open
+> source (MIT): a team of AI agents, running Claude Code or Codex on your
+> own machine, that builds your projects while you sleep.
+> **Try it at [hivelab.ca](https://hivelab.ca/).**
+
 **A streaming stereo amplifier on one 118 × 90 mm board, powered from a USB-C laptop charger.**
 
 Plug in a 65 W USB-C charger and a pair of passive speakers. It plays Spotify
