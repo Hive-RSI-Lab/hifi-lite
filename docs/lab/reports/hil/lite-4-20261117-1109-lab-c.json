@@ -1,0 +1,94 @@
+{
+ "dev": "lite-4",
+ "plan": "tools/hil-lab.json",
+ "t": "2026-11-17T06:09:22",
+ "stopped": false,
+ "exit": 0,
+ "passed": 2,
+ "failed": 0,
+ "skipped": 0,
+ "summary": "2/2",
+ "results": [
+  {
+   "suite": "echo_start",
+   "name": "echo_start",
+   "line": "api lab \"{\\\"op\\\":\\\"start\\\",\\\"exp\\\":\\\"espnow\\\",\\\"role\\\":\\\"echo\\\",\\\"peer\\\":\\\"lite-1\\\",\\\"max_s\\\":60}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "name": "espnow",
+    "help": "ESP-NOW link beside Wi-Fi: role echo|ping|flood, peer, rate_hz, len, count, rate, ps, window",
+    "running": true,
+    "runs": 2,
+    "elapsed_s": 0.0,
+    "left_s": 60.0,
+    "result": {
+     "role": "echo",
+     "peer": "aa:bb:cc:dd:74:2c",
+     "self": "aa:bb:cc:dd:73:e0",
+     "channel": 6,
+     "ps": "min",
+     "rate": "1m",
+     "len": 64,
+     "queue_full": 0,
+     "other": 0,
+     "no_mem": 0,
+     "heap": {
+      "start": 14799,
+      "after_init": 14799,
+      "min": 14799
+     },
+     "tx": {
+      "session": 2398771254,
+      "sent": 0,
+      "send_fail": 0,
+      "acked": 0,
+      "nacked": 0,
+      "seconds": 0.0,
+      "kbps": 0.0
+     },
+     "rx": {
+      "session": 0,
+      "rx": 0,
+      "expected": 0,
+      "lost": 0,
+      "loss_pct": 0.0,
+      "dup": 0,
+      "reorder": 0,
+      "old": 0,
+      "bad": 0,
+      "stray": 0,
+      "pings": 0,
+      "bytes": 0,
+      "seconds": 0.0,
+      "kbps": 0.0
+     }
+    }
+   }
+  },
+  {
+   "suite": "after",
+   "name": "no_restart_heap_held",
+   "pass": true,
+   "why": "",
+   "answer": {
+    "before": {
+     "uptime": 416,
+     "boots": 15,
+     "resets": "restart,restart,restart,restart,restart,restart,restart,restart",
+     "heap_free": 16475,
+     "heap_min": 16123
+    },
+    "after": {
+     "uptime": 417,
+     "boots": 15,
+     "resets": "restart,restart,restart,restart,restart,restart,restart,restart",
+     "heap_free": 16471,
+     "heap_min": 16123
+    },
+    "heap_min_floor": null
+   }
+  }
+ ]
+}

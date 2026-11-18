@@ -1,0 +1,134 @@
+/*
+ * The core board's pins and parts (Plus and Ultra), from
+ * boards/core/architecture/blocks.md: its ESP32 GPIO map, the I/O expander
+ * map and the FFC to Ultra's front board.
+ *
+ * Squeezelite-esp32 owns I2S0 (the Sabre DAC's data, the line-in ADC's),
+ * IR and Ethernet through the Kconfig defaults in firmware/patches. This
+ * component owns the I2C bus's other parts: the PD sink, the expander (amp
+ * resets and faults, PVDD, the DAC's reset, the PHY's clock, DJ direct, the
+ * LED, the knob and buttons) and the current sense, and drives the sub DAC
+ * from I2S1.
+ */
+#pragma once
+
+#include "sdkconfig.h"
+
+#ifdef CONFIG_HIFI_ULTRA
+#define HIFI_MODEL "hifi-ultra"
+#define HIFI_ZONES 2
+#define HIFI_SPLIT 0
+#else
+#define HIFI_MODEL "hifi-plus"
+#define HIFI_ZONES 1
+/* Plus fits zone B too and splits the pair: L plays on zone A (J6), R on
+ * zone B (J11), one channel per TPA3220, so each chip carries half the heat
+ * (docs/review-2/heatsink-options.md). Both amps run whenever the amp is on */
+#define HIFI_SPLIT 1
+#endif
+/* bring-up: the API's LED test (the red LED, and Ultra's front LED) and
+ * Ultra's backlight modes (hifi_bsp_set_led, hifi_bsp_set_backlight) */
+#define HIFI_HAS_LED_TEST /* no value: the pinmap check reads "NAME <number>" as a GPIO */
+#ifdef CONFIG_HIFI_ULTRA
+#define HIFI_HAS_BACKLIGHT
+#endif
+#define HIFI_BOARD "core"
+#define HIFI_FW_VERSION "0.1.0"
+#define HIFI_UPSTREAM "squeezelite-esp32 master-v4.3 ee1720c"
+
+#define I2C_PORT 1 /* squeezelite's system I2C (I2C_CONFIG): the DAC has no driver of its own */
+#define I2C_SDA 13
+#define I2C_SCL 14
+
+/* I2S0 (squeezelite's DAC_CONFIG); I2S1 runs as a slave on the same clocks
+ * and sends the sub DAC its data, so the PCM5102A costs one pin */
+#define PIN_I2S_BCK 2
+#define PIN_I2S_LRCK 4
+#define PIN_I2S_DOUT_SUB 12 /* MTDI strap: the PCM5102A's DIN is high-Z at boot */
+#define SUB_I2S_NUM 1
+
+#define PIN_EXP_INT 39 /* the expander's INT, open drain, low = an input changed */
+#define ADC_ISENSE ADC1_CHANNEL_6 /* GPIO34: INA186A1, 25 V/V over 10 mOhm */
+#define ISENSE_V_PER_A 0.25f
+#define ISENSE_RAW_FLOOR 8 /* ADC counts: under this the ADC is in its dead zone */
+
+/* RMII and SMI: fixed by the ESP32's EMAC (and ETH_CONFIG in the patch);
+ * here so the pin check reads them against the board too */
+#define PIN_ETH_CLK 0    /* the 50 MHz oscillator in; it runs only while PHY_RST is high */
+#define PIN_RMII_TXD0 19
+#define PIN_RMII_TX_EN 21
+#define PIN_RMII_TXD1 22
+#define PIN_RMII_RXD0 25
+#define PIN_RMII_RXD1 26
+#define PIN_RMII_CRS_DV 27
+#define PIN_MDC 23
+#define PIN_MDIO 18
+/* what a LAN page's cfg-hw-* setting may not point squeezelite at (L8,
+ * hifi_gate.h): the Ethernet, the expander's INT and the current sense. The
+ * DAC's I2S and I2C pins stay allowed: the UI's DAC form sends them back. */
+#define HIFI_LAN_RESERVED_PINS                                                                    \
+	(1ULL << PIN_ETH_CLK | 1ULL << PIN_RMII_TXD0 | 1ULL << PIN_RMII_TX_EN | 1ULL << PIN_RMII_TXD1 | \
+	 1ULL << PIN_RMII_RXD0 | 1ULL << PIN_RMII_RXD1 | 1ULL << PIN_RMII_CRS_DV | 1ULL << PIN_MDC |     \
+	 1ULL << PIN_MDIO | 1ULL << PIN_EXP_INT | 1ULL << 34)
+
+/* the I2C parts */
+#define ES9018_ADDR 0x48 /* Sabre ES9018K2M, the mains DAC */
+#define ES7243_ADDR 0x10 /* ES7243E, the line-in ADC: 0010 AD2 AD1 AD0, AD0/AD1 low; */
+#define ES7243_ADDR_ALT 0x14 /* AD2 shares SDOUT, so the firmware tries both (known-unknowns parts:28) */
+/* TCA9555 at 0x20 on the board as drawn; the first-spin review swaps in a
+ * TCA9539 (same registers, a reset pin), whose address is 0x74-0x77.
+ * The firmware takes the first that answers. */
+#define EXP_ADDRS {0x20, 0x74, 0x75, 0x76, 0x77}
+#define EXP_REG_IN0 0x00
+#define EXP_REG_OUT0 0x02
+#define EXP_REG_CFG0 0x06 /* 1 = input */
+
+/* expander port 0: outputs, each with a 100k pull-down (off at reset) */
+#define EXP_AMP_A_RST 0   /* high runs zone A's TPA3221 */
+#define EXP_AMP_B_RST 1   /* zone B's (Ultra); release both in one write to sync them */
+#define EXP_DJ_DIRECT 2   /* high: the line in goes straight to the amps */
+#define EXP_PVDD_EN 3
+#define EXP_DAC_EN 4      /* ES9018K2M RESETB and PCM5102A XSMT */
+#define EXP_PHY_RST 5     /* the Ethernet clock's OE, and the LAN8720's nRST after it */
+#define EXP_LCD_BL 6      /* Ultra's front board backlight */
+#define EXP_LED 7         /* the red status LED */
+/* port 1: inputs, pulled up (bit n is P1(n-8) in hifi_exp's 16 bits) */
+#define EXP_AMP_FAULT 8   /* both amps' FAULT, wired-OR, low = fault */
+#define EXP_AMP_OTW 9     /* OTW_CLIP, wired-OR, low = too hot or clipping */
+#define EXP_ENC_A 10
+#define EXP_ENC_B 11
+#define EXP_ENC_SW 12     /* Plus: the knob's push */
+#define EXP_BTN_1 13      /* Plus: source */
+#define EXP_BTN_2 14      /* Plus: next */
+#define EXP_TAP_SEL 15    /* P17 (TAP_SEL_IO), an output: low (the default, as Q7's base
+                          * pull-down holds it) puts the ADC on the RCA line in, high on the
+                          * speaker taps (C6; review-3 R3-DIGITAL-4) */
+#define EXP_REG_OUT1 0x03
+#define EXP_CFG0 0x00
+#define EXP_CFG1 0x7F
+
+/* Ultra's front board (boards/ultra-front): a TCA9535 at 0x27 on the same
+ * I2C, its INT wired-OR onto EXP_INT, so every interrupt reads it too */
+#define FRONT_ADDR 0x27
+#define FRONT_ENC_SW 2    /* P02; P00/P01 are the knob, which core's own P12/P13 read */
+#define FRONT_BTN_1 3     /* P03..P05, low = pressed (10k pull-ups) */
+#define FRONT_LCD_RST 8   /* P10, high runs the panel (R8 pulls it up) */
+#define FRONT_LED_R 9     /* P11..P13, the RGB LED's cathodes, low = lit; red off is an */
+#define FRONT_LED_G 10    /* input, since 1.7 V could just light it (blocks.md B8) */
+#define FRONT_LED_B 11
+#define FRONT_DIM_MS 60000 /* the backlight goes off this long after a touch, when nothing plays */
+
+#define TONE_RATE 48000
+
+/* the line in: core's I2S0 runs 32-bit slots (DAC_CONFIG bits=32 in the
+ * patch), so BCLK is 64 fs, the least the ES7243E takes as its clock */
+#define LINE_SLOT_BITS 32
+#define SUB_DMA_LEN 256   /* frames per buffer: matches I2S0's, so the subs line up with the mains */
+#define SUB_DMA_COUNT 12
+#define SUB_DIRECT_DMA_LEN 64 /* DJ direct: ~5 ms of buffer, so the subs follow the analog mains */
+#define SUB_DIRECT_DMA_COUNT 4
+
+/* what this board's firmware does besides the shared parts */
+#define HIFI_HAS_CHANNEL 0 /* the DSP plays both sides to the amps */
+#define HIFI_HAS_BOOST 0   /* no Boost: the TPA3220 has no heatsink (hifi_gov_cfg_core) */
+#define HIFI_HAS_CAPTURE 0 /* the API's capture is the ES8388's; core's ADC plays the line in instead */

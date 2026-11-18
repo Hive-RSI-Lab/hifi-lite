@@ -1,0 +1,71 @@
+{
+ "dev": "lite-5",
+ "plan": "tools/hil-wifidrop.json",
+ "t": "2026-11-17T11:29:04",
+ "stopped": false,
+ "exit": 0,
+ "passed": 3,
+ "failed": 0,
+ "skipped": 0,
+ "summary": "3/3",
+ "results": [
+  {
+   "suite": "start",
+   "name": "wifidrop_idle",
+   "line": "api lab \"{\\\"op\\\":\\\"result\\\",\\\"exp\\\":\\\"wifidrop\\\"}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "name": "wifidrop",
+    "running": false,
+    "runs": 0
+   }
+  },
+  {
+   "suite": "start",
+   "name": "wifidrop_start",
+   "line": "api lab \"{\\\"op\\\":\\\"start\\\",\\\"exp\\\":\\\"wifidrop\\\",\\\"cycles\\\":30,\\\"heap_tol\\\":200,\\\"max_s\\\":1500}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "name": "wifidrop",
+    "running": true,
+    "runs": 1,
+    "elapsed_s": 0.0,
+    "left_s": 1500.0,
+    "result": {
+     "phase": "starting",
+     "cycles": 30,
+     "done": 0,
+     "back_ms": [],
+     "worst_ms": 0
+    }
+   }
+  },
+  {
+   "suite": "after",
+   "name": "no_restart_heap_held",
+   "pass": true,
+   "why": "",
+   "answer": {
+    "before": {
+     "uptime": 30,
+     "boots": 17,
+     "resets": "restart,restart,restart,restart,restart,restart,restart,restart",
+     "heap_free": 14227,
+     "heap_min": 13787
+    },
+    "after": {
+     "uptime": 32,
+     "boots": 17,
+     "resets": "restart,restart,restart,restart,restart,restart,restart,restart",
+     "heap_free": 14091,
+     "heap_min": 13787
+    },
+    "heap_min_floor": null
+   }
+  }
+ ]
+}

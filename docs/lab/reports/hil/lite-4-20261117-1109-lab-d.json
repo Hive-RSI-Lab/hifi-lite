@@ -1,0 +1,152 @@
+{
+ "dev": "lite-4",
+ "plan": "tools/hil-lab.json",
+ "t": "2026-11-17T06:09:36",
+ "stopped": false,
+ "exit": 0,
+ "passed": 3,
+ "failed": 0,
+ "skipped": 0,
+ "summary": "3/3",
+ "results": [
+  {
+   "suite": "echo_result",
+   "name": "echo_counters",
+   "line": "api lab \"{\\\"op\\\":\\\"result\\\",\\\"exp\\\":\\\"espnow\\\"}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.5,
+   "answer": {
+    "name": "espnow",
+    "help": "ESP-NOW link beside Wi-Fi: role echo|ping|flood, peer, rate_hz, len, count, rate, ps, window",
+    "running": true,
+    "runs": 2,
+    "elapsed_s": 13.5,
+    "left_s": 46.5,
+    "result": {
+     "role": "echo",
+     "peer": "aa:bb:cc:dd:74:2c",
+     "self": "aa:bb:cc:dd:73:e0",
+     "channel": 6,
+     "ps": "min",
+     "rate": "1m",
+     "len": 64,
+     "queue_full": 0,
+     "other": 0,
+     "no_mem": 0,
+     "heap": {
+      "start": 14799,
+      "after_init": 14799,
+      "min": 14699
+     },
+     "tx": {
+      "session": 2398771254,
+      "sent": 68,
+      "send_fail": 0,
+      "acked": 68,
+      "nacked": 0,
+      "seconds": 4.887,
+      "kbps": 7.1
+     },
+     "rx": {
+      "session": 0,
+      "rx": 0,
+      "expected": 0,
+      "lost": 0,
+      "loss_pct": 0.0,
+      "dup": 0,
+      "reorder": 0,
+      "old": 0,
+      "bad": 0,
+      "stray": 0,
+      "pings": 68,
+      "bytes": 0,
+      "seconds": 0.0,
+      "kbps": 0.0
+     }
+    }
+   }
+  },
+  {
+   "suite": "echo_result",
+   "name": "echo_stop",
+   "line": "api lab \"{\\\"op\\\":\\\"stop\\\",\\\"exp\\\":\\\"espnow\\\"}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.5,
+   "answer": {
+    "name": "espnow",
+    "help": "ESP-NOW link beside Wi-Fi: role echo|ping|flood, peer, rate_hz, len, count, rate, ps, window",
+    "running": false,
+    "runs": 2,
+    "elapsed_s": 14.0,
+    "stopped": "asked",
+    "result": {
+     "role": "echo",
+     "peer": "aa:bb:cc:dd:74:2c",
+     "self": "aa:bb:cc:dd:73:e0",
+     "channel": 6,
+     "ps": "min",
+     "rate": "1m",
+     "len": 64,
+     "queue_full": 0,
+     "other": 0,
+     "no_mem": 0,
+     "heap": {
+      "start": 14799,
+      "after_init": 14799,
+      "min": 14699
+     },
+     "tx": {
+      "session": 2398771254,
+      "sent": 68,
+      "send_fail": 0,
+      "acked": 68,
+      "nacked": 0,
+      "seconds": 4.887,
+      "kbps": 7.1
+     },
+     "rx": {
+      "session": 0,
+      "rx": 0,
+      "expected": 0,
+      "lost": 0,
+      "loss_pct": 0.0,
+      "dup": 0,
+      "reorder": 0,
+      "old": 0,
+      "bad": 0,
+      "stray": 0,
+      "pings": 68,
+      "bytes": 0,
+      "seconds": 0.0,
+      "kbps": 0.0
+     }
+    }
+   }
+  },
+  {
+   "suite": "after",
+   "name": "no_restart_heap_held",
+   "pass": true,
+   "why": "",
+   "answer": {
+    "before": {
+     "uptime": 429,
+     "boots": 15,
+     "resets": "restart,restart,restart,restart,restart,restart,restart,restart",
+     "heap_free": 16471,
+     "heap_min": 16123
+    },
+    "after": {
+     "uptime": 431,
+     "boots": 15,
+     "resets": "restart,restart,restart,restart,restart,restart,restart,restart",
+     "heap_free": 16471,
+     "heap_min": 16123
+    },
+    "heap_min_floor": null
+   }
+  }
+ ]
+}

@@ -1,0 +1,328 @@
+{
+ "dev": "lite-4",
+ "plan": "tools/hil-lab.json",
+ "t": "2026-11-17T06:08:42",
+ "stopped": false,
+ "exit": 0,
+ "passed": 13,
+ "failed": 0,
+ "skipped": 0,
+ "summary": "13/13",
+ "results": [
+  {
+   "suite": "read",
+   "name": "info",
+   "line": "api info",
+   "pass": true,
+   "why": "",
+   "secs": 0.5,
+   "answer": {
+    "model": "hifi-lite",
+    "board": "lite-main",
+    "fw": "0.1.0",
+    "upstream": "squeezelite-esp32 master-v4.3 ee1720c",
+    "api": 1,
+    "name": "Hi-Fi Lite 4",
+    "mac": "aa:bb:cc:dd:73:e0",
+    "hostname": "hifi-lite",
+    "flash_mb": 8,
+    "psram_mb": 8,
+    "caps": {
+     "line_modes": [
+      "dj_direct"
+     ],
+     "eq_bands": [
+      31,
+      62,
+      125,
+      250,
+      500,
+      1000,
+      2000,
+      4000,
+      8000,
+      16000
+     ],
+     "eq_min": -12,
+     "eq_max": 12,
+     "sub": {
+      "count": 2,
+      "crossover": false,
+      "per_sub": false
+     },
+     "zones": 1,
+     "eth": false,
+     "pdo_v_max": 20
+    }
+   }
+  },
+  {
+   "suite": "read",
+   "name": "diag",
+   "line": "api diag",
+   "pass": true,
+   "why": "",
+   "secs": 0.5,
+   "answer": {
+    "uptime_s": 377,
+    "boot_ms": {
+     "app": 1288,
+     "ip": 4706,
+     "link": 9114
+    },
+    "heap": {
+     "free": 16807,
+     "min": 16123,
+     "largest": 13824,
+     "total": 305115
+    },
+    "psram": {
+     "free": 1233799,
+     "min": 1223663,
+     "largest": 1212416,
+     "total": 4106875
+    },
+    "reset_reason": "restart",
+    "resets": "restart,restart,restart,restart,restart,restart,restart,restart",
+    "boots": 15,
+    "nvs": {
+     "nvs": {
+      "used": 112,
+      "free": 392,
+      "total": 504,
+      "namespaces": 8,
+      "used_pct": 22.2
+     },
+     "settings": {
+      "used": 155,
+      "free": 1861,
+      "total": 2016,
+      "namespaces": 1,
+      "used_pct": 7.7
+     }
+    },
+    "power": {
+     "state": "on",
+     "vbus_v": 19.79,
+     "vbus_i_a": null,
+     "pvdd_v": 19.73,
+     "pg": true,
+     "proto": "pd",
+     "contract_v": 20.0,
+     "contract_a": 3.0,
+     "amp_on": true,
+     "amp_fault": false,
+     "amp_faults": 0,
+     "amp_temp_c": null
+    }
+   }
+  },
+  {
+   "suite": "read",
+   "name": "lab_list",
+   "line": "api lab",
+   "pass": true,
+   "why": "",
+   "secs": 0.5,
+   "answer": {
+    "running": "",
+    "max_s": 3600,
+    "experiments": [
+     {
+      "name": "espnow",
+      "help": "ESP-NOW link beside Wi-Fi: role echo|ping|flood, peer, rate_hz, len, count, rate, ps, window",
+      "running": false,
+      "runs": 0
+     },
+     {
+      "name": "ble",
+      "help": "BLE GATT link beside Wi-Fi and A2DP: role echo|ping|flood, peer, rate_hz, len, count, interval_ms, scan_s",
+      "running": false,
+      "runs": 0
+     }
+    ]
+   }
+  },
+  {
+   "suite": "read",
+   "name": "espnow_slot",
+   "line": "api lab \"{\\\"op\\\":\\\"result\\\",\\\"exp\\\":\\\"espnow\\\"}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "name": "espnow",
+    "help": "ESP-NOW link beside Wi-Fi: role echo|ping|flood, peer, rate_hz, len, count, rate, ps, window",
+    "running": false,
+    "runs": 0
+   }
+  },
+  {
+   "suite": "bad",
+   "name": "no_op",
+   "line": "api lab \"{\\\"exp\\\":\\\"espnow\\\"}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "error": "op is required: start, stop or result",
+    "status": 400
+   }
+  },
+  {
+   "suite": "bad",
+   "name": "no_exp",
+   "line": "api lab \"{\\\"op\\\":\\\"result\\\"}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "error": "exp (an experiment's name, or all to stop) is required",
+    "status": 400
+   }
+  },
+  {
+   "suite": "bad",
+   "name": "unknown_exp",
+   "line": "api lab \"{\\\"op\\\":\\\"result\\\",\\\"exp\\\":\\\"nosuch\\\"}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "error": "no such experiment in this build",
+    "status": 404
+   }
+  },
+  {
+   "suite": "bad",
+   "name": "unknown_op",
+   "line": "api lab \"{\\\"op\\\":\\\"reboot\\\",\\\"exp\\\":\\\"espnow\\\"}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "error": "op must be start, stop or result",
+    "status": 400
+   }
+  },
+  {
+   "suite": "bad",
+   "name": "max_s_zero",
+   "line": "api lab \"{\\\"op\\\":\\\"start\\\",\\\"exp\\\":\\\"espnow\\\",\\\"role\\\":\\\"echo\\\",\\\"peer\\\":\\\"lite-1\\\",\\\"max_s\\\":0}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "error": "max_s must be 1 to 3600",
+    "status": 400
+   }
+  },
+  {
+   "suite": "bad",
+   "name": "max_s_over",
+   "line": "api lab \"{\\\"op\\\":\\\"start\\\",\\\"exp\\\":\\\"espnow\\\",\\\"role\\\":\\\"echo\\\",\\\"peer\\\":\\\"lite-1\\\",\\\"max_s\\\":3601}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "error": "max_s must be 1 to 3600",
+    "status": 400
+   }
+  },
+  {
+   "suite": "bad",
+   "name": "after_bad_not_running",
+   "line": "api lab \"{\\\"op\\\":\\\"result\\\",\\\"exp\\\":\\\"espnow\\\"}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "name": "espnow",
+    "help": "ESP-NOW link beside Wi-Fi: role echo|ping|flood, peer, rate_hz, len, count, rate, ps, window",
+    "running": false,
+    "runs": 0
+   }
+  },
+  {
+   "suite": "echo_start",
+   "name": "echo_start",
+   "line": "api lab \"{\\\"op\\\":\\\"start\\\",\\\"exp\\\":\\\"espnow\\\",\\\"role\\\":\\\"echo\\\",\\\"peer\\\":\\\"lite-1\\\",\\\"max_s\\\":60}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.5,
+   "answer": {
+    "name": "espnow",
+    "help": "ESP-NOW link beside Wi-Fi: role echo|ping|flood, peer, rate_hz, len, count, rate, ps, window",
+    "running": true,
+    "runs": 1,
+    "elapsed_s": 0.0,
+    "left_s": 60.0,
+    "result": {
+     "role": "echo",
+     "peer": "aa:bb:cc:dd:74:2c",
+     "self": "aa:bb:cc:dd:73:e0",
+     "channel": 6,
+     "ps": "min",
+     "rate": "1m",
+     "len": 64,
+     "queue_full": 0,
+     "other": 0,
+     "no_mem": 0,
+     "heap": {
+      "start": 15031,
+      "after_init": 14935,
+      "min": 14935
+     },
+     "tx": {
+      "session": 2274512782,
+      "sent": 0,
+      "send_fail": 0,
+      "acked": 0,
+      "nacked": 0,
+      "seconds": 0.0,
+      "kbps": 0.0
+     },
+     "rx": {
+      "session": 0,
+      "rx": 0,
+      "expected": 0,
+      "lost": 0,
+      "loss_pct": 0.0,
+      "dup": 0,
+      "reorder": 0,
+      "old": 0,
+      "bad": 0,
+      "stray": 0,
+      "pings": 0,
+      "bytes": 0,
+      "seconds": 0.0,
+      "kbps": 0.0
+     }
+    }
+   }
+  },
+  {
+   "suite": "after",
+   "name": "no_restart_heap_held",
+   "pass": true,
+   "why": "",
+   "answer": {
+    "before": {
+     "uptime": 376,
+     "boots": 15,
+     "resets": "restart,restart,restart,restart,restart,restart,restart,restart",
+     "heap_free": 16807,
+     "heap_min": 16123
+    },
+    "after": {
+     "uptime": 383,
+     "boots": 15,
+     "resets": "restart,restart,restart,restart,restart,restart,restart,restart",
+     "heap_free": 16615,
+     "heap_min": 16123
+    },
+    "heap_min_floor": null
+   }
+  }
+ ]
+}

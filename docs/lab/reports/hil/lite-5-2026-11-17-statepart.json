@@ -1,0 +1,1730 @@
+{
+ "dev": "lite-5",
+ "plan": "tools/hil-lite.json",
+ "t": "2026-11-17T05:49:19",
+ "results": [
+  {
+   "suite": "read",
+   "name": "info",
+   "line": "api info",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "model": "hifi-lite",
+    "board": "lite-main",
+    "fw": "0.1.0",
+    "upstream": "squeezelite-esp32 master-v4.3 ee1720c",
+    "api": 1,
+    "name": "Hi-Fi Lite 5",
+    "mac": "aa:bb:cc:dd:74:00",
+    "hostname": "hifi-lite",
+    "flash_mb": 8,
+    "psram_mb": 8,
+    "caps": {
+     "line_modes": [
+      "dj_direct"
+     ],
+     "eq_bands": [
+      31,
+      62,
+      125,
+      250,
+      500,
+      1000,
+      2000,
+      4000,
+      8000,
+      16000
+     ],
+     "eq_min": -12,
+     "eq_max": 12,
+     "sub": {
+      "count": 2,
+      "crossover": false,
+      "per_sub": false
+     },
+     "zones": 1,
+     "eth": false,
+     "pdo_v_max": 20
+    }
+   }
+  },
+  {
+   "suite": "read",
+   "name": "state",
+   "line": "api state",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "uptime_s": 295,
+    "power": {
+     "state": "on",
+     "vbus_v": 20.22,
+     "pg": true,
+     "contract": {
+      "protocol": "pd",
+      "epr": false,
+      "v": 20.0,
+      "i_max_a": 5.0,
+      "w": 100.0
+     },
+     "pvdd_on": true,
+     "pvdd_v": 20.31,
+     "vbus_i_a": null
+    },
+    "amp": {
+     "enabled": true,
+     "fault": false,
+     "faults": 0,
+     "latched": false,
+     "temp_c": null
+    },
+    "governor": {
+     "budget_w": 90.0,
+     "in_w": 2.5,
+     "out_w": 0.0,
+     "gain_db": 0.0,
+     "limiting": false,
+     "limit_events": 0
+    },
+    "audio": {
+     "source": "idle",
+     "input": "stream",
+     "tone": null,
+     "level_dbfs": -120.0,
+     "sub": {
+      "on": true,
+      "level_db": -9.0
+     },
+     "eq": [
+      6.0,
+      5.0,
+      3.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "volume": 42,
+     "mute": false,
+     "max_volume": 100,
+     "playing": null
+    },
+    "net": {
+     "mode": "sta",
+     "ssid": "***",
+     "hostname": "hifi-lite",
+     "ip": "192.168.2.223",
+     "rssi": -48
+    },
+    "sys": {
+     "heap_free": 13999,
+     "heap_min": 12679,
+     "psram_free": 1202743,
+     "reset_reason": "restart"
+    },
+    "ir": {
+     "learning": null,
+     "learned": [
+      "volup",
+      "voldown",
+      "mute",
+      "toggle",
+      "next",
+      "prev",
+      "input",
+      "power"
+     ],
+     "last_code": null
+    }
+   }
+  },
+  {
+   "suite": "read",
+   "name": "state_audio",
+   "line": "api state/audio",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "audio": {
+     "source": "idle",
+     "input": "stream",
+     "tone": null,
+     "level_dbfs": -120.0,
+     "sub": {
+      "on": true,
+      "level_db": -9.0
+     },
+     "eq": [
+      6.0,
+      5.0,
+      3.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "volume": 42,
+     "mute": false,
+     "max_volume": 100,
+     "playing": null
+    }
+   }
+  },
+  {
+   "suite": "read",
+   "name": "diag",
+   "line": "api diag",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "uptime_s": 296,
+    "boot_ms": {
+     "app": 1288,
+     "ip": 5610,
+     "link": 11154
+    },
+    "heap": {
+     "free": 13743,
+     "min": 12679,
+     "largest": 12288,
+     "total": 308687
+    },
+    "psram": {
+     "free": 1203471,
+     "min": 1193291,
+     "largest": 1179648,
+     "total": 4101227
+    },
+    "reset_reason": "restart",
+    "resets": "restart,restart",
+    "boots": 2,
+    "nvs": {
+     "nvs": {
+      "used": 104,
+      "free": 400,
+      "total": 504,
+      "namespaces": 8,
+      "used_pct": 20.6
+     },
+     "settings": {
+      "used": 150,
+      "free": 1866,
+      "total": 2016,
+      "namespaces": 1,
+      "used_pct": 7.4
+     }
+    },
+    "power": {
+     "state": "on",
+     "vbus_v": 20.13,
+     "vbus_i_a": null,
+     "pvdd_v": 20.25,
+     "pg": true,
+     "proto": "pd",
+     "contract_v": 20.0,
+     "contract_a": 5.0,
+     "amp_on": true,
+     "amp_fault": false,
+     "amp_faults": 0,
+     "amp_temp_c": null
+    }
+   }
+  },
+  {
+   "suite": "read",
+   "name": "diag_tasks",
+   "line": "api diag/tasks/0",
+   "pass": true,
+   "why": "",
+   "secs": 1.6,
+   "answer": {
+    "n": 32,
+    "from": 0,
+    "sample_ms": 1008,
+    "idle_pct": [
+     90.2,
+     98.9
+    ],
+    "cols": [
+     "name",
+     "stack_free",
+     "core",
+     "prio",
+     "cpu_pct"
+    ],
+    "rows": [
+     [
+      "IDLE1",
+      928,
+      1,
+      0,
+      98.9
+     ],
+     [
+      "IDLE0",
+      932,
+      0,
+      0,
+      90.2
+     ],
+     [
+      "hifi_power",
+      1004,
+      0,
+      3,
+      7.1
+     ],
+     [
+      "wifi",
+      3840,
+      0,
+      23,
+      1.8
+     ],
+     [
+      "hifi_cmd",
+      2052,
+      1,
+      2,
+      1.1
+     ],
+     [
+      "btController",
+      1980,
+      0,
+      23,
+      0.7
+     ],
+     [
+      "esp_timer",
+      3276,
+      0,
+      22,
+      0.2
+     ],
+     [
+      "tiT",
+      1860,
+      null,
+      18,
+      0.2
+     ],
+     [
+      "Tmr Svc",
+      2012,
+      0,
+      1,
+      0.1
+     ],
+     [
+      "hifi_ws",
+      1360,
+      null,
+      2,
+      0.1
+     ],
+     [
+      "output_i2s",
+      2320,
+      0,
+      15,
+      0.0
+     ],
+     [
+      "decode",
+      13980,
+      1,
+      5,
+      0.0
+     ],
+     [
+      "stream",
+      3692,
+      1,
+      5,
+      0.0
+     ],
+     [
+      "hifi_relay",
+      1936,
+      null,
+      1,
+      0.0
+     ],
+     [
+      "pseudo_idle",
+      5244,
+      null,
+      0,
+      0.0
+     ],
+     [
+      "BTC_TASK",
+      1392,
+      0,
+      19,
+      0.0
+     ],
+     [
+      "BTU_TASK",
+      3312,
+      0,
+      20,
+      0.0
+     ],
+     [
+      "BtAppT",
+      2000,
+      null,
+      22,
+      0.0
+     ],
+     [
+      "RTSP",
+      7380,
+      1,
+      2,
+      0.0
+     ],
+     [
+      "buttons",
+      2312,
+      null,
+      2,
+      0.0
+     ],
+     [
+      "console",
+      2000,
+      1,
+      5,
+      0.0
+     ],
+     [
+      "hciT",
+      1564,
+      0,
+      22,
+      0.0
+     ],
+     [
+      "hifi_tap",
+      3580,
+      null,
+      2,
+      0.0
+     ],
+     [
+      "hifi_tone",
+      3568,
+      1,
+      2,
+      0.0
+     ],
+     [
+      "httpd",
+      3264,
+      null,
+      0,
+      0.0
+     ],
+     [
+      "ipc0",
+      448,
+      0,
+      24,
+      0.0
+     ],
+     [
+      "ipc1",
+      460,
+      1,
+      24,
+      0.0
+     ],
+     [
+      "mdns",
+      2340,
+      0,
+      1,
+      0.0
+     ],
+     [
+      "network",
+      1480,
+      0,
+      5,
+      0.0
+     ]
+    ],
+    "next": 29
+   }
+  },
+  {
+   "suite": "read",
+   "name": "diag_net",
+   "line": "api diag/net",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "wifi": {
+     "rssi": -49,
+     "channel": 6,
+     "bssid": "***",
+     "phy": "11n",
+     "connects": 1,
+     "disconnects": 0,
+     "last_reason": null,
+     "up_s": 293
+    },
+    "link": {
+     "up": true,
+     "drops": 0,
+     "up_s": 287,
+     "tx_bytes": 8055,
+     "rx_bytes": 4032
+    }
+   }
+  },
+  {
+   "suite": "read",
+   "name": "diag_audio",
+   "line": "api diag/audio",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "underruns": 0,
+    "rate": 44100,
+    "buffer_ms": 0,
+    "dma_ms": 139,
+    "latency_ms": 139,
+    "played_s": 0
+   }
+  },
+  {
+   "suite": "read",
+   "name": "diag_ota",
+   "line": "api diag/ota",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "version": "local.500.cmake-master",
+    "bytes": 3009944,
+    "total_ms": 171305,
+    "write_ms": 19021,
+    "kbps": 140.6,
+    "write_kbps": 1265.9,
+    "boot": 1
+   }
+  },
+  {
+   "suite": "read",
+   "name": "ota",
+   "line": "api ota",
+   "pass": null,
+   "why": "skip: the bench refused to send it (`api ota` goes over USB only: over Wi-Fi it could strand the board)",
+   "secs": 0.0,
+   "answer": {
+    "error": "`api ota` goes over USB only: over Wi-Fi it could strand the board",
+    "status": -1
+   },
+   "skip": true
+  },
+  {
+   "suite": "read",
+   "name": "remote",
+   "line": "api remote",
+   "pass": null,
+   "why": "skip: the bench refused to send it (`api remote` goes over USB only: over Wi-Fi it could strand the board)",
+   "secs": 0.0,
+   "answer": {
+    "error": "`api remote` goes over USB only: over Wi-Fi it could strand the board",
+    "status": -1
+   },
+   "skip": true
+  },
+  {
+   "suite": "read",
+   "name": "unknown_path",
+   "line": "api no/such/op",
+   "pass": true,
+   "why": "",
+   "secs": 0.5,
+   "answer": {
+    "error": "no such path",
+    "status": 404
+   }
+  },
+  {
+   "suite": "bad",
+   "name": "bad_save_state",
+   "line": "api state/audio",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "audio": {
+     "source": "idle",
+     "input": "stream",
+     "tone": null,
+     "level_dbfs": -120.0,
+     "sub": {
+      "on": true,
+      "level_db": -9.0
+     },
+     "eq": [
+      6.0,
+      5.0,
+      3.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "volume": 42,
+     "mute": false,
+     "max_volume": 100,
+     "playing": null
+    }
+   }
+  },
+  {
+   "suite": "bad",
+   "name": "volume_inf",
+   "line": "api volume \"{\\\"volume\\\":1e999}\"",
+   "pass": null,
+   "why": "skip: the bench refused to send it (the body isn't JSON)",
+   "secs": 0.1,
+   "answer": {
+    "error": "the body isn't JSON",
+    "status": -1
+   },
+   "skip": true
+  },
+  {
+   "suite": "bad",
+   "name": "volume_neg_inf",
+   "line": "api volume \"{\\\"volume\\\":-1e999}\"",
+   "pass": null,
+   "why": "skip: the bench refused to send it (the body isn't JSON)",
+   "secs": 0.1,
+   "answer": {
+    "error": "the body isn't JSON",
+    "status": -1
+   },
+   "skip": true
+  },
+  {
+   "suite": "bad",
+   "name": "volume_huge",
+   "line": "api volume \"{\\\"volume\\\":1e+308}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.5,
+   "answer": {
+    "error": "volume must be a whole number 0 to 100",
+    "status": 400
+   }
+  },
+  {
+   "suite": "bad",
+   "name": "volume_101",
+   "line": "api volume \"{\\\"volume\\\":101}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "error": "volume must be a whole number 0 to 100",
+    "status": 400
+   }
+  },
+  {
+   "suite": "bad",
+   "name": "volume_neg",
+   "line": "api volume \"{\\\"volume\\\":-1}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "error": "volume must be a whole number 0 to 100",
+    "status": 400
+   }
+  },
+  {
+   "suite": "bad",
+   "name": "volume_frac",
+   "line": "api volume \"{\\\"volume\\\":40.5}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.5,
+   "answer": {
+    "error": "volume must be a whole number 0 to 100",
+    "status": 400
+   }
+  },
+  {
+   "suite": "bad",
+   "name": "volume_str",
+   "line": "api volume \"{\\\"volume\\\":\\\"40\\\"}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "error": "volume must be a whole number 0 to 100",
+    "status": 400
+   }
+  },
+  {
+   "suite": "bad",
+   "name": "volume_bool",
+   "line": "api volume \"{\\\"volume\\\":true}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "error": "volume must be a whole number 0 to 100",
+    "status": 400
+   }
+  },
+  {
+   "suite": "bad",
+   "name": "maxvol_29",
+   "line": "api volume \"{\\\"max_volume\\\":29}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "error": "max_volume must be a whole number 30 to 100",
+    "status": 400
+   }
+  },
+  {
+   "suite": "bad",
+   "name": "maxvol_inf",
+   "line": "api volume \"{\\\"max_volume\\\":1e999}\"",
+   "pass": null,
+   "why": "skip: the bench refused to send it (the body isn't JSON)",
+   "secs": 0.1,
+   "answer": {
+    "error": "the body isn't JSON",
+    "status": -1
+   },
+   "skip": true
+  },
+  {
+   "suite": "bad",
+   "name": "tone_level_inf",
+   "line": "api tone \"{\\\"type\\\":\\\"sine\\\",\\\"freq_hz\\\":1000,\\\"level_dbfs\\\":1e999}\"",
+   "pass": null,
+   "why": "skip: the bench refused to send it (the body isn't JSON)",
+   "secs": 0.0,
+   "answer": {
+    "error": "the body isn't JSON",
+    "status": -1
+   },
+   "skip": true
+  },
+  {
+   "suite": "bad",
+   "name": "tone_freq_inf",
+   "line": "api tone \"{\\\"type\\\":\\\"sine\\\",\\\"freq_hz\\\":1e999,\\\"level_dbfs\\\":-40}\"",
+   "pass": null,
+   "why": "skip: the bench refused to send it (the body isn't JSON)",
+   "secs": 0.1,
+   "answer": {
+    "error": "the body isn't JSON",
+    "status": -1
+   },
+   "skip": true
+  },
+  {
+   "suite": "bad",
+   "name": "tone_secs_inf",
+   "line": "api tone \"{\\\"type\\\":\\\"sine\\\",\\\"freq_hz\\\":1000,\\\"level_dbfs\\\":-40,\\\"duration_s\\\":1e999}\"",
+   "pass": null,
+   "why": "skip: the bench refused to send it (the body isn't JSON)",
+   "secs": 0.1,
+   "answer": {
+    "error": "the body isn't JSON",
+    "status": -1
+   },
+   "skip": true
+  },
+  {
+   "suite": "bad",
+   "name": "sub_inf",
+   "line": "api sub \"{\\\"level_db\\\":1e999}\"",
+   "pass": null,
+   "why": "skip: the bench refused to send it (the body isn't JSON)",
+   "secs": 0.1,
+   "answer": {
+    "error": "the body isn't JSON",
+    "status": -1
+   },
+   "skip": true
+  },
+  {
+   "suite": "bad",
+   "name": "eq_inf",
+   "line": "api eq \"{\\\"gains\\\":[1e999,0,0,0,0,0,0,0,0,0]}\"",
+   "pass": null,
+   "why": "skip: the bench refused to send it (the body isn't JSON)",
+   "secs": 0.1,
+   "answer": {
+    "error": "the body isn't JSON",
+    "status": -1
+   },
+   "skip": true
+  },
+  {
+   "suite": "bad",
+   "name": "eq_short",
+   "line": "api eq \"{\\\"gains\\\":[0]}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "error": "gains must be 10 numbers, 31 Hz to 16 kHz",
+    "status": 400
+   }
+  },
+  {
+   "suite": "bad",
+   "name": "ota_begin_huge",
+   "line": "api ota/begin \"{\\\"size\\\":1e30,\\\"sha256\\\":\\\"00\\\",\\\"version\\\":\\\"x\\\"}\"",
+   "pass": null,
+   "why": "skip: the bench refused to send it (`api ota/begin` goes over USB only: over Wi-Fi it could strand the board)",
+   "secs": 0.1,
+   "answer": {
+    "error": "`api ota/begin` goes over USB only: over Wi-Fi it could strand the board",
+    "status": -1
+   },
+   "skip": true
+  },
+  {
+   "suite": "bad",
+   "name": "ota_begin_neg",
+   "line": "api ota/begin \"{\\\"size\\\":-1,\\\"sha256\\\":\\\"00\\\",\\\"version\\\":\\\"x\\\"}\"",
+   "pass": null,
+   "why": "skip: the bench refused to send it (`api ota/begin` goes over USB only: over Wi-Fi it could strand the board)",
+   "secs": 0.1,
+   "answer": {
+    "error": "`api ota/begin` goes over USB only: over Wi-Fi it could strand the board",
+    "status": -1
+   },
+   "skip": true
+  },
+  {
+   "suite": "bad",
+   "name": "ota_chunk_idle",
+   "line": "api ota/chunk \"{\\\"off\\\":0,\\\"data\\\":\\\"AA==\\\"}\"",
+   "pass": null,
+   "why": "skip: the bench refused to send it (`api ota/chunk` goes over USB only: over Wi-Fi it could strand the board)",
+   "secs": 0.1,
+   "answer": {
+    "error": "`api ota/chunk` goes over USB only: over Wi-Fi it could strand the board",
+    "status": -1
+   },
+   "skip": true
+  },
+  {
+   "suite": "bad",
+   "name": "control_unknown",
+   "line": "api control \"{\\\"action\\\":\\\"selfdestruct\\\"}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "error": "unknown action",
+    "status": 400
+   }
+  },
+  {
+   "suite": "bad",
+   "name": "control_empty",
+   "line": "api control \"{}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "error": "action is required",
+    "status": 400
+   }
+  },
+  {
+   "suite": "bad",
+   "name": "ir_learn_unknown",
+   "line": "api ir/learn \"{\\\"action\\\":\\\"nope\\\"}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "error": "action must be volup, voldown, mute, toggle, next, prev, input or power",
+    "status": 400
+   }
+  },
+  {
+   "suite": "bad",
+   "name": "diag_tasks_past",
+   "line": "api diag/tasks \"{\\\"from\\\":49}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "error": "from: past the last task",
+    "status": 400
+   }
+  },
+  {
+   "suite": "bad",
+   "name": "diag_tasks_inf",
+   "line": "api diag/tasks \"{\\\"from\\\":1e999}\"",
+   "pass": null,
+   "why": "skip: the bench refused to send it (the body isn't JSON)",
+   "secs": 0.1,
+   "answer": {
+    "error": "the body isn't JSON",
+    "status": -1
+   },
+   "skip": true
+  },
+  {
+   "suite": "bad",
+   "name": "json_open",
+   "line": "api volume \"{\"",
+   "pass": null,
+   "why": "skip: the bench refused to send it (the body isn't JSON)",
+   "secs": 0.1,
+   "answer": {
+    "error": "the body isn't JSON",
+    "status": -1
+   },
+   "skip": true
+  },
+  {
+   "suite": "bad",
+   "name": "json_array",
+   "line": "api volume \"[1,2]\"",
+   "pass": null,
+   "why": "skip: the bench refused to send it (the body is a JSON object)",
+   "secs": 0.1,
+   "answer": {
+    "error": "the body is a JSON object",
+    "status": -1
+   },
+   "skip": true
+  },
+  {
+   "suite": "bad",
+   "name": "json_deep",
+   "line": "api volume \"[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]\"",
+   "pass": null,
+   "why": "skip: the bench refused to send it (the body is a JSON object)",
+   "secs": 0.1,
+   "answer": {
+    "error": "the body is a JSON object",
+    "status": -1
+   },
+   "skip": true
+  },
+  {
+   "suite": "bad",
+   "name": "bad_restore_volume",
+   "line": "api volume \"{\\\"volume\\\":42,\\\"mute\\\":false,\\\"max_volume\\\":100}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "uptime_s": 309,
+    "power": {
+     "state": "on",
+     "vbus_v": 20.24,
+     "pg": true,
+     "contract": {
+      "protocol": "pd",
+      "epr": false,
+      "v": 20.0,
+      "i_max_a": 5.0,
+      "w": 100.0
+     },
+     "pvdd_on": true,
+     "pvdd_v": 20.26,
+     "vbus_i_a": null
+    },
+    "amp": {
+     "enabled": true,
+     "fault": false,
+     "faults": 0,
+     "latched": false,
+     "temp_c": null
+    },
+    "governor": {
+     "budget_w": 90.0,
+     "in_w": 2.5,
+     "out_w": 0.0,
+     "gain_db": 0.0,
+     "limiting": false,
+     "limit_events": 0
+    },
+    "audio": {
+     "source": "idle",
+     "input": "stream",
+     "tone": null,
+     "level_dbfs": -120.0,
+     "sub": {
+      "on": true,
+      "level_db": -9.0
+     },
+     "eq": [
+      6.0,
+      5.0,
+      3.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "volume": 42,
+     "mute": false,
+     "max_volume": 100,
+     "playing": null
+    },
+    "net": {
+     "mode": "sta",
+     "ssid": "***",
+     "hostname": "hifi-lite",
+     "ip": "192.168.2.223",
+     "rssi": -49
+    },
+    "sys": {
+     "heap_free": 12675,
+     "heap_min": 12287,
+     "psram_free": 1200611,
+     "reset_reason": "restart"
+    },
+    "ir": {
+     "learning": null,
+     "learned": [
+      "volup",
+      "voldown",
+      "mute",
+      "toggle",
+      "next",
+      "prev",
+      "input",
+      "power"
+     ],
+     "last_code": null
+    }
+   }
+  },
+  {
+   "suite": "bad",
+   "name": "bad_restore_eq",
+   "line": "api eq \"{\\\"gains\\\":[6.0,5.0,3.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0]}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.5,
+   "answer": {
+    "uptime_s": 309,
+    "power": {
+     "state": "on",
+     "vbus_v": 20.18,
+     "pg": true,
+     "contract": {
+      "protocol": "pd",
+      "epr": false,
+      "v": 20.0,
+      "i_max_a": 5.0,
+      "w": 100.0
+     },
+     "pvdd_on": true,
+     "pvdd_v": 20.3,
+     "vbus_i_a": null
+    },
+    "amp": {
+     "enabled": true,
+     "fault": false,
+     "faults": 0,
+     "latched": false,
+     "temp_c": null
+    },
+    "governor": {
+     "budget_w": 90.0,
+     "in_w": 2.5,
+     "out_w": 0.0,
+     "gain_db": 0.0,
+     "limiting": false,
+     "limit_events": 0
+    },
+    "audio": {
+     "source": "idle",
+     "input": "stream",
+     "tone": null,
+     "level_dbfs": -120.0,
+     "sub": {
+      "on": true,
+      "level_db": -9.0
+     },
+     "eq": [
+      6.0,
+      5.0,
+      3.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "volume": 42,
+     "mute": false,
+     "max_volume": 100,
+     "playing": null
+    },
+    "net": {
+     "mode": "sta",
+     "ssid": "***",
+     "hostname": "hifi-lite",
+     "ip": "192.168.2.223",
+     "rssi": -49
+    },
+    "sys": {
+     "heap_free": 12615,
+     "heap_min": 12287,
+     "psram_free": 1200611,
+     "reset_reason": "restart"
+    },
+    "ir": {
+     "learning": null,
+     "learned": [
+      "volup",
+      "voldown",
+      "mute",
+      "toggle",
+      "next",
+      "prev",
+      "input",
+      "power"
+     ],
+     "last_code": null
+    }
+   }
+  },
+  {
+   "suite": "bad",
+   "name": "bad_restore_sub",
+   "line": "api sub \"{\\\"level_db\\\":-9.0}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "uptime_s": 310,
+    "power": {
+     "state": "on",
+     "vbus_v": 20.31,
+     "pg": true,
+     "contract": {
+      "protocol": "pd",
+      "epr": false,
+      "v": 20.0,
+      "i_max_a": 5.0,
+      "w": 100.0
+     },
+     "pvdd_on": true,
+     "pvdd_v": 20.27,
+     "vbus_i_a": null
+    },
+    "amp": {
+     "enabled": true,
+     "fault": false,
+     "faults": 0,
+     "latched": false,
+     "temp_c": null
+    },
+    "governor": {
+     "budget_w": 90.0,
+     "in_w": 2.5,
+     "out_w": 0.0,
+     "gain_db": 0.0,
+     "limiting": false,
+     "limit_events": 0
+    },
+    "audio": {
+     "source": "idle",
+     "input": "stream",
+     "tone": null,
+     "level_dbfs": -120.0,
+     "sub": {
+      "on": true,
+      "level_db": -9.0
+     },
+     "eq": [
+      6.0,
+      5.0,
+      3.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "volume": 42,
+     "mute": false,
+     "max_volume": 100,
+     "playing": null
+    },
+    "net": {
+     "mode": "sta",
+     "ssid": "***",
+     "hostname": "hifi-lite",
+     "ip": "192.168.2.223",
+     "rssi": -49
+    },
+    "sys": {
+     "heap_free": 12711,
+     "heap_min": 12287,
+     "psram_free": 1200611,
+     "reset_reason": "restart"
+    },
+    "ir": {
+     "learning": null,
+     "learned": [
+      "volup",
+      "voldown",
+      "mute",
+      "toggle",
+      "next",
+      "prev",
+      "input",
+      "power"
+     ],
+     "last_code": null
+    }
+   }
+  },
+  {
+   "suite": "controls",
+   "name": "controls_save_state",
+   "line": "api state/audio",
+   "pass": true,
+   "why": "",
+   "secs": 0.5,
+   "answer": {
+    "audio": {
+     "source": "idle",
+     "input": "stream",
+     "tone": null,
+     "level_dbfs": -120.0,
+     "sub": {
+      "on": true,
+      "level_db": -9.0
+     },
+     "eq": [
+      6.0,
+      5.0,
+      3.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "volume": 42,
+     "mute": false,
+     "max_volume": 100,
+     "playing": null
+    }
+   }
+  },
+  {
+   "suite": "controls",
+   "name": "volume_set_30",
+   "line": "api volume \"{\\\"volume\\\":30}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "uptime_s": 311,
+    "power": {
+     "state": "on",
+     "vbus_v": 20.02,
+     "pg": true,
+     "contract": {
+      "protocol": "pd",
+      "epr": false,
+      "v": 20.0,
+      "i_max_a": 5.0,
+      "w": 100.0
+     },
+     "pvdd_on": true,
+     "pvdd_v": 20.3,
+     "vbus_i_a": null
+    },
+    "amp": {
+     "enabled": true,
+     "fault": false,
+     "faults": 0,
+     "latched": false,
+     "temp_c": null
+    },
+    "governor": {
+     "budget_w": 90.0,
+     "in_w": 2.5,
+     "out_w": 0.0,
+     "gain_db": 0.0,
+     "limiting": false,
+     "limit_events": 0
+    },
+    "audio": {
+     "source": "idle",
+     "input": "stream",
+     "tone": null,
+     "level_dbfs": -120.0,
+     "sub": {
+      "on": true,
+      "level_db": -9.0
+     },
+     "eq": [
+      6.0,
+      5.0,
+      3.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "volume": 30,
+     "mute": false,
+     "max_volume": 100,
+     "playing": null
+    },
+    "net": {
+     "mode": "sta",
+     "ssid": "***",
+     "hostname": "hifi-lite",
+     "ip": "192.168.2.223",
+     "rssi": -49
+    },
+    "sys": {
+     "heap_free": 12711,
+     "heap_min": 12287,
+     "psram_free": 1200611,
+     "reset_reason": "restart"
+    },
+    "ir": {
+     "learning": null,
+     "learned": [
+      "volup",
+      "voldown",
+      "mute",
+      "toggle",
+      "next",
+      "prev",
+      "input",
+      "power"
+     ],
+     "last_code": null
+    }
+   }
+  },
+  {
+   "suite": "controls",
+   "name": "control_next_idle_1",
+   "line": "api control \"{\\\"action\\\":\\\"next\\\"}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "ok": true
+   }
+  },
+  {
+   "suite": "controls",
+   "name": "control_prev_idle_2",
+   "line": "api control \"{\\\"action\\\":\\\"prev\\\"}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "ok": true
+   }
+  },
+  {
+   "suite": "controls",
+   "name": "control_next_idle_3",
+   "line": "api control \"{\\\"action\\\":\\\"next\\\"}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "ok": true
+   }
+  },
+  {
+   "suite": "controls",
+   "name": "control_prev_idle_4",
+   "line": "api control \"{\\\"action\\\":\\\"prev\\\"}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.5,
+   "answer": {
+    "ok": true
+   }
+  },
+  {
+   "suite": "controls",
+   "name": "volstep_after_nextprev",
+   "line": "api control \"{\\\"action\\\":\\\"voldown\\\"}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "ok": true
+   }
+  },
+  {
+   "suite": "controls",
+   "name": "volstep_moved_volume",
+   "line": "api state/audio",
+   "pass": true,
+   "why": "",
+   "secs": 0.5,
+   "answer": {
+    "audio": {
+     "source": "idle",
+     "input": "stream",
+     "tone": null,
+     "level_dbfs": -120.0,
+     "sub": {
+      "on": true,
+      "level_db": -9.0
+     },
+     "eq": [
+      6.0,
+      5.0,
+      3.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "volume": 25,
+     "mute": false,
+     "max_volume": 100,
+     "playing": null
+    }
+   }
+  },
+  {
+   "suite": "controls",
+   "name": "mute_on",
+   "line": "api volume \"{\\\"mute\\\":true}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "uptime_s": 315,
+    "power": {
+     "state": "on",
+     "vbus_v": 20.14,
+     "pg": true,
+     "contract": {
+      "protocol": "pd",
+      "epr": false,
+      "v": 20.0,
+      "i_max_a": 5.0,
+      "w": 100.0
+     },
+     "pvdd_on": true,
+     "pvdd_v": 20.32,
+     "vbus_i_a": null
+    },
+    "amp": {
+     "enabled": true,
+     "fault": false,
+     "faults": 0,
+     "latched": false,
+     "temp_c": null
+    },
+    "governor": {
+     "budget_w": 90.0,
+     "in_w": 2.5,
+     "out_w": 0.0,
+     "gain_db": 0.0,
+     "limiting": false,
+     "limit_events": 0
+    },
+    "audio": {
+     "source": "idle",
+     "input": "stream",
+     "tone": null,
+     "level_dbfs": -120.0,
+     "sub": {
+      "on": true,
+      "level_db": -9.0
+     },
+     "eq": [
+      6.0,
+      5.0,
+      3.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "volume": 25,
+     "mute": true,
+     "max_volume": 100,
+     "playing": null
+    },
+    "net": {
+     "mode": "sta",
+     "ssid": "***",
+     "hostname": "hifi-lite",
+     "ip": "192.168.2.223",
+     "rssi": -49
+    },
+    "sys": {
+     "heap_free": 12711,
+     "heap_min": 12287,
+     "psram_free": 1200611,
+     "reset_reason": "restart"
+    },
+    "ir": {
+     "learning": null,
+     "learned": [
+      "volup",
+      "voldown",
+      "mute",
+      "toggle",
+      "next",
+      "prev",
+      "input",
+      "power"
+     ],
+     "last_code": null
+    }
+   }
+  },
+  {
+   "suite": "controls",
+   "name": "restore",
+   "line": "api volume \"{\\\"volume\\\":42,\\\"mute\\\":false}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "uptime_s": 315,
+    "power": {
+     "state": "on",
+     "vbus_v": 19.97,
+     "pg": true,
+     "contract": {
+      "protocol": "pd",
+      "epr": false,
+      "v": 20.0,
+      "i_max_a": 5.0,
+      "w": 100.0
+     },
+     "pvdd_on": true,
+     "pvdd_v": 20.26,
+     "vbus_i_a": null
+    },
+    "amp": {
+     "enabled": true,
+     "fault": false,
+     "faults": 0,
+     "latched": false,
+     "temp_c": null
+    },
+    "governor": {
+     "budget_w": 90.0,
+     "in_w": 2.5,
+     "out_w": 0.0,
+     "gain_db": 0.0,
+     "limiting": false,
+     "limit_events": 0
+    },
+    "audio": {
+     "source": "idle",
+     "input": "stream",
+     "tone": null,
+     "level_dbfs": -120.0,
+     "sub": {
+      "on": true,
+      "level_db": -9.0
+     },
+     "eq": [
+      6.0,
+      5.0,
+      3.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "volume": 42,
+     "mute": false,
+     "max_volume": 100,
+     "playing": null
+    },
+    "net": {
+     "mode": "sta",
+     "ssid": "***",
+     "hostname": "hifi-lite",
+     "ip": "192.168.2.223",
+     "rssi": -49
+    },
+    "sys": {
+     "heap_free": 12683,
+     "heap_min": 12271,
+     "psram_free": 1200611,
+     "reset_reason": "restart"
+    },
+    "ir": {
+     "learning": null,
+     "learned": [
+      "volup",
+      "voldown",
+      "mute",
+      "toggle",
+      "next",
+      "prev",
+      "input",
+      "power"
+     ],
+     "last_code": null
+    }
+   }
+  },
+  {
+   "suite": "selftest",
+   "name": "selftest",
+   "line": "api selftest \"{}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.5,
+   "answer": {
+    "pass": true,
+    "checks": [
+     {
+      "name": "pd_sink_i2c",
+      "pass": true,
+      "value": "0x22 acks"
+     },
+     {
+      "name": "pd_contract",
+      "pass": true,
+      "value": "pd 20.0 V 5.00 A"
+     },
+     {
+      "name": "vbus_matches",
+      "pass": true,
+      "value": "20.30 V"
+     },
+     {
+      "name": "codec_i2c",
+      "pass": true,
+      "value": "0x10 acks"
+     },
+     {
+      "name": "pvdd_on",
+      "pass": true,
+      "value": "on"
+     },
+     {
+      "name": "pvdd_sensed",
+      "pass": true,
+      "value": "PVDD 20.30 V of VBUS 20.05 V"
+     },
+     {
+      "name": "amp_no_fault",
+      "pass": true,
+      "value": "FAULTZ high after 200 ms enabled"
+     },
+     {
+      "name": "psram",
+      "pass": true,
+      "value": "4016 KB mapped"
+     },
+     {
+      "name": "heap",
+      "pass": true,
+      "value": "12715 B free"
+     },
+     {
+      "name": "network",
+      "pass": true,
+      "value": "192.168.2.223"
+     },
+     {
+      "name": "listeners",
+      "pass": true,
+      "value": "8 sockets, all allowed"
+     }
+    ]
+   }
+  },
+  {
+   "suite": "after",
+   "name": "no_restart_heap_held",
+   "pass": true,
+   "why": "",
+   "answer": {
+    "before": {
+     "uptime": 294,
+     "boots": 2,
+     "resets": "restart,restart",
+     "heap_free": 13743,
+     "heap_min": 12679
+    },
+    "after": {
+     "uptime": 316,
+     "boots": 2,
+     "resets": "restart,restart",
+     "heap_free": 12499,
+     "heap_min": 12263
+    },
+    "heap_min_floor": 10331
+   }
+  }
+ ]
+}

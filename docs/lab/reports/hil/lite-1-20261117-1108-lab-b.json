@@ -1,0 +1,99 @@
+{
+ "dev": "lite-1",
+ "plan": "tools/hil-lab.json",
+ "t": "2026-11-17T06:09:03",
+ "stopped": false,
+ "exit": 0,
+ "passed": 2,
+ "failed": 0,
+ "skipped": 0,
+ "summary": "2/2",
+ "results": [
+  {
+   "suite": "ping_result",
+   "name": "ping_counters",
+   "line": "api lab \"{\\\"op\\\":\\\"result\\\",\\\"exp\\\":\\\"espnow\\\"}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.6,
+   "answer": {
+    "name": "espnow",
+    "help": "ESP-NOW link beside Wi-Fi: role echo|ping|flood, peer, rate_hz, len, count, rate, ps, window",
+    "running": false,
+    "runs": 1,
+    "elapsed_s": 6.4,
+    "stopped": "done",
+    "result": {
+     "role": "ping",
+     "peer": "aa:bb:cc:dd:73:e0",
+     "self": "aa:bb:cc:dd:74:2c",
+     "channel": 6,
+     "ps": "min",
+     "rate": "1m",
+     "len": 64,
+     "rate_hz": 20,
+     "queue_full": 0,
+     "other": 0,
+     "no_mem": 0,
+     "heap": {
+      "start": 14159,
+      "after_init": 14063,
+      "min": 14063
+     },
+     "tx": {
+      "session": 1564099033,
+      "sent": 100,
+      "send_fail": 0,
+      "acked": 75,
+      "nacked": 25,
+      "seconds": 4.953,
+      "kbps": 10.3,
+      "pongs": 75,
+      "lost": 25,
+      "loss_pct": 25.0,
+      "dup": 0,
+      "stray": 0,
+      "bad": 0,
+      "rtt_ms": {
+       "min": 3.404,
+       "p50": 5.65,
+       "p95": 25.225,
+       "p99": 41.917,
+       "max": 41.917,
+       "mean": 8.191
+      },
+      "clock": {
+       "offset_us": -937879977,
+       "offset_delay_us": 3406,
+       "windows": 5,
+       "drift_ppm": -1105.415
+      }
+     }
+    }
+   }
+  },
+  {
+   "suite": "after",
+   "name": "no_restart_heap_held",
+   "pass": true,
+   "why": "",
+   "answer": {
+    "before": {
+     "uptime": 1334,
+     "boots": 15,
+     "resets": "restart,restart,restart,restart,restart,restart,restart,restart",
+     "heap_free": 15675,
+     "heap_min": 12775
+    },
+    "after": {
+     "uptime": 1335,
+     "boots": 15,
+     "resets": "restart,restart,restart,restart,restart,restart,restart,restart",
+     "heap_free": 15675,
+     "heap_min": 12775
+    },
+    "heap_min_floor": null
+   }
+  }
+ ]
+}

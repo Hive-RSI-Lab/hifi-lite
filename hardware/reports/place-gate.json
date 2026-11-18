@@ -1,0 +1,107 @@
+{
+  "script": "gate",
+  "gate": "place",
+  "phase": "P6",
+  "tool": "place",
+  "input": "kicad/lite-main.kicad_pcb",
+  "input_digest": "sexpr_no_uuid:0c80c6bb5b268b7c07addeb0029bab98d041d625e84ad5976003582567987b76",
+  "status": "pass",
+  "criteria": {
+    "fail_severities": [
+      "error"
+    ],
+    "max_count": 0
+  },
+  "counts": {
+    "total": 1,
+    "by_severity": {
+      "warning": 1
+    },
+    "by_source": {
+      "check_decoupling": 1
+    }
+  },
+  "failing_count": 0,
+  "failing": [],
+  "warnings_count": 1,
+  "warnings": [
+    {
+      "check": "check_decoupling",
+      "severity": "warning",
+      "pos": [
+        93.39,
+        100.523
+      ],
+      "layer": "F.Cu",
+      "net": "PVDD",
+      "refs": [
+        "C57",
+        "U8"
+      ],
+      "msg": "C57 (1nF) rail pad is 5.3 mm Manhattan (4.4 mm direct) from U8 pin 31 (hf class limit 5.0 mm)",
+      "source": "check_decoupling",
+      "items": [
+        {
+          "msg": "C57 (1nF) rail pad is 5.3 mm Manhattan (4.4 mm direct) from U8 pin 31 (hf class limit 5.0 mm)",
+          "pos": [
+            93.39,
+            100.523
+          ]
+        }
+      ],
+      "kind": "decoupler_distance",
+      "cap_class": "hf",
+      "manhattan_mm": 5.325,
+      "euclid_mm": 4.3802,
+      "loop_nh": 5.4113,
+      "vias_in_loop": 1,
+      "pin": "U8.31",
+      "limit_mm": 5.0
+    }
+  ],
+  "coverage": {
+    "strict": false,
+    "required": [
+      "courtyard",
+      "outline",
+      "edges",
+      "keepouts",
+      "decoupler_distance",
+      "mating"
+    ],
+    "ran": [
+      "courtyard",
+      "outline",
+      "edges",
+      "keepouts",
+      "decoupler_distance",
+      "mating"
+    ],
+    "passed": [
+      "courtyard",
+      "outline",
+      "edges",
+      "keepouts",
+      "decoupler_distance",
+      "mating"
+    ],
+    "failed": [],
+    "waived": [],
+    "not_applicable": {},
+    "skipped_error": {}
+  },
+  "record_result": {
+    "ok": true,
+    "recorded": true,
+    "workspace": ".",
+    "gate": "place",
+    "status": "pass",
+    "attempts": 22,
+    "inputs": {
+      "pcb": "sexpr_no_uuid:0c80c6bb5b268b7c07addeb0029bab98d041d625e84ad5976003582567987b76",
+      "constraints": "json_canonical:056b33ef68b6fde1fd761d6fdcc99b23ef455e62c36d7067e9e62f2ba134ec65",
+      "decoupling": "json_canonical:6e0abe76bc94c3adf63834a0af08af32a591dddde239022232419170e70162aa",
+      "place_waivers": null
+    }
+  }
+}

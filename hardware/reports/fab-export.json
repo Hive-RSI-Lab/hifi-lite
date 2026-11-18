@@ -1,0 +1,90 @@
+{
+ "script": "fab_export",
+ "status": "pass",
+ "board": "lite-main.kicad_pcb",
+ "name": "lite-main",
+ "layer_count": 2,
+ "copper_layers": [
+  "F.Cu",
+  "B.Cu"
+ ],
+ "layers_exported": [
+  "F.Cu",
+  "B.Cu",
+  "F.Silkscreen",
+  "B.Silkscreen",
+  "F.Mask",
+  "B.Mask",
+  "F.Paste",
+  "B.Paste",
+  "Edge.Cuts"
+ ],
+ "out_dir": "fab",
+ "gerber_dir": "fab/gerbers",
+ "pos_file": "fab/lite-main-pos.csv",
+ "ipc_netlist": "fab/gerbers/lite-main.ipc",
+ "files": [
+  {
+   "name": "lite-main-B_Cu.gbl",
+   "sha256": "97e194f39b33b9be36d3399fcd51a4065a353b851a94e77565365342bcf7ed0d",
+   "bytes": 243323
+  },
+  {
+   "name": "lite-main-B_Mask.gbs",
+   "sha256": "f0a1c4892f8c5250aca9708076f888d9caf7155ba4e9e6bc344ab76aab9a3d0b",
+   "bytes": 2438
+  },
+  {
+   "name": "lite-main-B_Paste.gbp",
+   "sha256": "f02baddb910d999865208bc04647e4582a5e4a19732f82c2534c4c6d4acda011",
+   "bytes": 454
+  },
+  {
+   "name": "lite-main-B_Silkscreen.gbo",
+   "sha256": "ccbee309cda64d143e5a6feef0b21ec89d4fb5c7ac26604c4214090ea3a49779",
+   "bytes": 455
+  },
+  {
+   "name": "lite-main-Edge_Cuts.gm1",
+   "sha256": "3dfb2e244bf6fb53ff79bbb6569823c0a9c554473b4c8d1375385a03d6ebcc5a",
+   "bytes": 986
+  },
+  {
+   "name": "lite-main-F_Cu.gtl",
+   "sha256": "cf2dda145fc19e07d0ac1d29c9083aa6a3863c87563eadcc862171f94290277c",
+   "bytes": 580905
+  },
+  {
+   "name": "lite-main-F_Mask.gts",
+   "sha256": "a5392793ebca2354733212886a6cffe22b06d5430d66611218214cb14d226c49",
+   "bytes": 20141
+  },
+  {
+   "name": "lite-main-F_Paste.gtp",
+   "sha256": "30aeec42a22b0e2f79cd79175413a2307ff982c5526355338d6abbfe0c861262",
+   "bytes": 18386
+  },
+  {
+   "name": "lite-main-F_Silkscreen.gto",
+   "sha256": "2451265739fa3655c04e51756877fe6889f905ea1ff0a807a7e8dda560b04645",
+   "bytes": 300523
+  },
+  {
+   "name": "lite-main-job.gbrjob",
+   "sha256": "73b9040c0ea990ca3f0ab2a42ba205199231c66fb711e911f123a58ab4227010",
+   "bytes": 2579
+  },
+  {
+   "name": "lite-main.drl",
+   "sha256": "c9be9be85503897f920acf1b0758e1378b5dc3a514922c8fb07710ab36481e2f",
+   "bytes": 11299
+  },
+  {
+   "name": "lite-main.ipc",
+   "sha256": "2acab351839c217576d25c5395665cbd34c729362fef2da6aa6bf4368eb4d60c",
+   "bytes": 81151
+  }
+ ],
+ "gerber_zip": "fab/lite-main_gerbers.zip",
+ "gerber_zip_sha256": "7c25990fbcb58ad024a29f1e121673e4dc220d441a0cbc937711e1d14dea3f7a"
+}

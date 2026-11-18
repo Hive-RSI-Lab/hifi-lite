@@ -1,0 +1,6532 @@
+{
+ "script": "bom_cpl",
+ "status": "pass",
+ "board": "lite-main.kicad_pcb",
+ "n_parts": 164,
+ "n_placed": 164,
+ "bom": "fab/BOM.csv",
+ "bom_full": "fab/BOM-full.csv",
+ "cpl": "fab/CPL.csv",
+ "prebuy": "fab/prebuy.csv",
+ "build_qty": 5,
+ "distributor_boms": {
+  "digikey": "fab/lite-main_BOM_digikey.csv",
+  "mouser": "fab/lite-main_BOM_mouser.csv",
+  "cost": null,
+  "boards": 1,
+  "lines": 57,
+  "priced": {
+   "digikey": false,
+   "mouser": false
+  },
+  "missing_mpn": [],
+  "warnings": [
+   "digikey: prices not looked up (no HWDE_DIGIKEY_CLIENT_ID, HWDE_DIGIKEY_CLIENT_SECRET)",
+   "mouser: prices not looked up (no HWDE_MOUSER_API_KEY)"
+  ]
+ },
+ "stock": {
+  "status": "pass",
+  "boards": 5,
+  "checked_at": "2026-11-05T18:37:49+00:00",
+  "counts": {
+   "ok": 57
+  },
+  "rows": [
+   {
+    "lcsc": "C15849",
+    "need": 65,
+    "mpn": "CL10A105KB8NNNC",
+    "value": "1uF",
+    "checked_at": "2026-11-05T18:37:40+00:00",
+    "notes": [
+     "LCSC shows 0 in stock; JLC's own stock covers the build (8302668)"
+    ],
+    "jlc": {
+     "code": "C15849",
+     "model": "CL10A105KB8NNNC",
+     "brand": "Samsung Electro-Mechanics",
+     "library": "basic",
+     "stock": 11494702,
+     "can_sell": 8302668,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "1uF 50V X5R \u00b110% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C15849",
+     "model": "CL10A105KB8NNNC",
+     "brand": "Samsung Electro-Mechanics",
+     "stock": 0
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN CL10A105KB8NNNC vs JLC model CL10A105KB8NNNC"
+    },
+    "available": 8302668,
+    "status": "ok",
+    "why": "8302668 available at JLC, need 65; BOM MPN CL10A105KB8NNNC vs JLC model CL10A105KB8NNNC",
+    "refs": [
+     "C1",
+     "C15",
+     "C16",
+     "C22",
+     "C41",
+     "C44",
+     "C50",
+     "C60",
+     "C61",
+     "C62",
+     "C63",
+     "C82",
+     "C84"
+    ],
+    "comment": "1uF"
+   },
+   {
+    "lcsc": "C14663",
+    "need": 90,
+    "mpn": "CC0603KRX7R9BB104",
+    "value": "100nF",
+    "checked_at": "2026-11-05T18:37:40+00:00",
+    "notes": [
+     "LCSC shows 50 in stock; JLC's own stock covers the build (18337199)"
+    ],
+    "jlc": {
+     "code": "C14663",
+     "model": "CC0603KRX7R9BB104",
+     "brand": "YAGEO",
+     "library": "basic",
+     "stock": 36135946,
+     "can_sell": 18337199,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "100nF 50V X7R \u00b110% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C14663",
+     "model": "CC0603KRX7R9BB104",
+     "brand": "YAGEO",
+     "stock": 50
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN CC0603KRX7R9BB104 vs JLC model CC0603KRX7R9BB104"
+    },
+    "available": 18337199,
+    "status": "ok",
+    "why": "18337199 available at JLC, need 90; BOM MPN CC0603KRX7R9BB104 vs JLC model CC0603KRX7R9BB104",
+    "refs": [
+     "C2",
+     "C5",
+     "C6",
+     "C11",
+     "C17",
+     "C18",
+     "C21",
+     "C23",
+     "C24",
+     "C30",
+     "C31",
+     "C33",
+     "C34",
+     "C36",
+     "C38",
+     "C40",
+     "C53",
+     "C56"
+    ],
+    "comment": "100nF"
+   },
+   {
+    "lcsc": "C13585",
+    "need": 5,
+    "mpn": "CL31A106KBHNNNE",
+    "value": "10uF",
+    "checked_at": "2026-11-05T18:37:40+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C13585",
+     "model": "CL31A106KBHNNNE",
+     "brand": "Samsung Electro-Mechanics",
+     "library": "basic",
+     "stock": 3896577,
+     "can_sell": 2981403,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "10uF 50V X5R \u00b110% 1206 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+     "package": "1206"
+    },
+    "lcsc_record": {
+     "code": "C13585",
+     "model": "CL31A106KBHNNNE",
+     "brand": "Samsung Electro-Mechanics",
+     "stock": 457910
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN CL31A106KBHNNNE vs JLC model CL31A106KBHNNNE"
+    },
+    "available": 2981403,
+    "status": "ok",
+    "why": "2981403 available at JLC, need 5; BOM MPN CL31A106KBHNNNE vs JLC model CL31A106KBHNNNE",
+    "refs": [
+     "C3"
+    ],
+    "comment": "10uF"
+   },
+   {
+    "lcsc": "C29823",
+    "need": 5,
+    "mpn": "1206B475K500NT",
+    "value": "4.7uF",
+    "checked_at": "2026-11-05T18:37:40+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C29823",
+     "model": "1206B475K500NT",
+     "brand": "FH (Guangdong Fenghua Advanced Tech)",
+     "library": "basic",
+     "stock": 679857,
+     "can_sell": 530686,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "4.7uF 50V X7R \u00b110% 1206 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+     "package": "1206"
+    },
+    "lcsc_record": {
+     "code": "C29823",
+     "model": "1206B475K500NT",
+     "brand": "FH",
+     "stock": 103470
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN 1206B475K500NT vs JLC model 1206B475K500NT"
+    },
+    "available": 530686,
+    "status": "ok",
+    "why": "530686 available at JLC, need 5; BOM MPN 1206B475K500NT vs JLC model 1206B475K500NT",
+    "refs": [
+     "C4"
+    ],
+    "comment": "4.7uF"
+   },
+   {
+    "lcsc": "C45783",
+    "need": 25,
+    "mpn": "CL21A226MAQNNNE",
+    "value": "22uF",
+    "checked_at": "2026-11-05T18:37:40+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C45783",
+     "model": "CL21A226MAQNNNE",
+     "brand": "Samsung Electro-Mechanics",
+     "library": "basic",
+     "stock": 3486047,
+     "can_sell": 2591577,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "22uF 25V X5R \u00b120% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+     "package": "0805"
+    },
+    "lcsc_record": {
+     "code": "C45783",
+     "model": "CL21A226MAQNNNE",
+     "brand": "Samsung Electro-Mechanics",
+     "stock": 133500
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN CL21A226MAQNNNE vs JLC model CL21A226MAQNNNE"
+    },
+    "available": 2591577,
+    "status": "ok",
+    "why": "2591577 available at JLC, need 25; BOM MPN CL21A226MAQNNNE vs JLC model CL21A226MAQNNNE",
+    "refs": [
+     "C7",
+     "C8",
+     "C12",
+     "C25",
+     "C90"
+    ],
+    "comment": "22uF"
+   },
+   {
+    "lcsc": "C1671",
+    "need": 5,
+    "mpn": "CL10C470JB8NNNC",
+    "value": "47pF",
+    "checked_at": "2026-11-05T18:37:40+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C1671",
+     "model": "CL10C470JB8NNNC",
+     "brand": "Samsung Electro-Mechanics",
+     "library": "basic",
+     "stock": 950148,
+     "can_sell": 799281,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "47pF 50V C0G \u00b15% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C1671",
+     "model": "CL10C470JB8NNNC",
+     "brand": "Samsung Electro-Mechanics",
+     "stock": 389500
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN CL10C470JB8NNNC vs JLC model CL10C470JB8NNNC"
+    },
+    "available": 799281,
+    "status": "ok",
+    "why": "799281 available at JLC, need 5; BOM MPN CL10C470JB8NNNC vs JLC model CL10C470JB8NNNC",
+    "refs": [
+     "C9"
+    ],
+    "comment": "47pF"
+   },
+   {
+    "lcsc": "C19702",
+    "need": 40,
+    "mpn": "CL10A106KP8NNNC",
+    "value": "10uF",
+    "checked_at": "2026-11-05T18:37:41+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C19702",
+     "model": "CL10A106KP8NNNC",
+     "brand": "Samsung Electro-Mechanics",
+     "library": "basic",
+     "stock": 10379370,
+     "can_sell": 7973699,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "10V 10uF X5R \u00b110% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C19702",
+     "model": "CL10A106KP8NNNC",
+     "brand": "Samsung Electro-Mechanics",
+     "stock": 1459580
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN CL10A106KP8NNNC vs JLC model CL10A106KP8NNNC"
+    },
+    "available": 7973699,
+    "status": "ok",
+    "why": "7973699 available at JLC, need 40; BOM MPN CL10A106KP8NNNC vs JLC model CL10A106KP8NNNC",
+    "refs": [
+     "C10",
+     "C13",
+     "C20",
+     "C35",
+     "C37",
+     "C39",
+     "C47",
+     "C48"
+    ],
+    "comment": "10uF"
+   },
+   {
+    "lcsc": "C1653",
+    "need": 5,
+    "mpn": "CL10C220JB8NNNC",
+    "value": "22pF",
+    "checked_at": "2026-11-05T18:37:41+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C1653",
+     "model": "CL10C220JB8NNNC",
+     "brand": "Samsung Electro-Mechanics",
+     "library": "basic",
+     "stock": 2585168,
+     "can_sell": 2095789,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "22pF 50V C0G \u00b15% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C1653",
+     "model": "CL10C220JB8NNNC",
+     "brand": "Samsung Electro-Mechanics",
+     "stock": 761700
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN CL10C220JB8NNNC vs JLC model CL10C220JB8NNNC"
+    },
+    "available": 2095789,
+    "status": "ok",
+    "why": "2095789 available at JLC, need 5; BOM MPN CL10C220JB8NNNC vs JLC model CL10C220JB8NNNC",
+    "refs": [
+     "C14"
+    ],
+    "comment": "22pF"
+   },
+   {
+    "lcsc": "C19666",
+    "need": 15,
+    "mpn": "CL10A475KO8NNNC",
+    "value": "4.7uF",
+    "checked_at": "2026-11-05T18:37:41+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C19666",
+     "model": "CL10A475KO8NNNC",
+     "brand": "Samsung Electro-Mechanics",
+     "library": "basic",
+     "stock": 4047925,
+     "can_sell": 3278829,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "16V 4.7uF X5R \u00b110% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C19666",
+     "model": "CL10A475KO8NNNC",
+     "brand": "Samsung Electro-Mechanics",
+     "stock": 1239510
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN CL10A475KO8NNNC vs JLC model CL10A475KO8NNNC"
+    },
+    "available": 3278829,
+    "status": "ok",
+    "why": "3278829 available at JLC, need 15; BOM MPN CL10A475KO8NNNC vs JLC model CL10A475KO8NNNC",
+    "refs": [
+     "C19",
+     "C32",
+     "C80"
+    ],
+    "comment": "4.7uF"
+   },
+   {
+    "lcsc": "C1622",
+    "need": 5,
+    "mpn": "CL10B473KB8NNNC",
+    "value": "47nF",
+    "checked_at": "2026-11-05T18:37:41+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C1622",
+     "model": "CL10B473KB8NNNC",
+     "brand": "Samsung Electro-Mechanics",
+     "library": "basic",
+     "stock": 2034801,
+     "can_sell": 1715939,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "47nF 50V X7R \u00b110% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C1622",
+     "model": "CL10B473KB8NNNC",
+     "brand": "Samsung Electro-Mechanics",
+     "stock": 791100
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN CL10B473KB8NNNC vs JLC model CL10B473KB8NNNC"
+    },
+    "available": 1715939,
+    "status": "ok",
+    "why": "1715939 available at JLC, need 5; BOM MPN CL10B473KB8NNNC vs JLC model CL10B473KB8NNNC",
+    "refs": [
+     "C26"
+    ],
+    "comment": "47nF"
+   },
+   {
+    "lcsc": "C14858",
+    "need": 10,
+    "mpn": "CL10C101JB8NNNC",
+    "value": "100pF",
+    "checked_at": "2026-11-05T18:37:41+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C14858",
+     "model": "CL10C101JB8NNNC",
+     "brand": "Samsung Electro-Mechanics",
+     "library": "basic",
+     "stock": 4228932,
+     "can_sell": 3377179,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "100pF 50V C0G \u00b15% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C14858",
+     "model": "CL10C101JB8NNNC",
+     "brand": "Samsung Electro-Mechanics",
+     "stock": 1006950
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN CL10C101JB8NNNC vs JLC model CL10C101JB8NNNC"
+    },
+    "available": 3377179,
+    "status": "ok",
+    "why": "3377179 available at JLC, need 10; BOM MPN CL10C101JB8NNNC vs JLC model CL10C101JB8NNNC",
+    "refs": [
+     "C42",
+     "C45"
+    ],
+    "comment": "100pF"
+   },
+   {
+    "lcsc": "C28323",
+    "need": 15,
+    "mpn": "CL21B105KBFNNNE",
+    "value": "1uF",
+    "checked_at": "2026-11-05T18:37:41+00:00",
+    "notes": [
+     "LCSC shows 0 in stock; JLC's own stock covers the build (2568072)"
+    ],
+    "jlc": {
+     "code": "C28323",
+     "model": "CL21B105KBFNNNE",
+     "brand": "Samsung Electro-Mechanics",
+     "library": "basic",
+     "stock": 3506249,
+     "can_sell": 2568072,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "1uF 50V X7R \u00b110% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+     "package": "0805"
+    },
+    "lcsc_record": {
+     "code": "C28323",
+     "model": "CL21B105KBFNNNE",
+     "brand": "Samsung Electro-Mechanics",
+     "stock": 0
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN CL21B105KBFNNNE vs JLC model CL21B105KBFNNNE"
+    },
+    "available": 2568072,
+    "status": "ok",
+    "why": "2568072 available at JLC, need 15; BOM MPN CL21B105KBFNNNE vs JLC model CL21B105KBFNNNE",
+    "refs": [
+     "C51",
+     "C52",
+     "C55"
+    ],
+    "comment": "1uF"
+   },
+   {
+    "lcsc": "C1588",
+    "need": 10,
+    "mpn": "CL10B102KB8NNNC",
+    "value": "1nF",
+    "checked_at": "2026-11-05T18:37:42+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C1588",
+     "model": "CL10B102KB8NNNC",
+     "brand": "Samsung Electro-Mechanics",
+     "library": "basic",
+     "stock": 5489162,
+     "can_sell": 4206979,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-55\u2103~+125\u2103 1nF 50V X7R \u00b110% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C1588",
+     "model": "CL10B102KB8NNNC",
+     "brand": "Samsung Electro-Mechanics",
+     "stock": 570500
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN CL10B102KB8NNNC vs JLC model CL10B102KB8NNNC"
+    },
+    "available": 4206979,
+    "status": "ok",
+    "why": "4206979 available at JLC, need 10; BOM MPN CL10B102KB8NNNC vs JLC model CL10B102KB8NNNC",
+    "refs": [
+     "C54",
+     "C57"
+    ],
+    "comment": "1nF"
+   },
+   {
+    "lcsc": "C46550472",
+    "need": 5,
+    "mpn": "MA35V470M10X13",
+    "value": "470uF 35V polymer",
+    "checked_at": "2026-11-05T18:37:42+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C46550472",
+     "model": "MA35V470M10X13",
+     "brand": "jieerrui",
+     "library": "extended",
+     "stock": 72031,
+     "can_sell": 71833,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-55\u2103~+105\u2103 10mm 12.5mm 16m\u03a9@100kHz 2000hrs@105\u2103 3.8A@100kHz 35V 470uF Polarized Polymer \u00b120% SMD,D10xL13mm Polymer Aluminum Capacitors ROHS",
+     "package": "SMD,D10xL13mm"
+    },
+    "lcsc_record": {
+     "code": "C46550472",
+     "model": "MA35V470M10X13",
+     "brand": "JIERR",
+     "stock": 72031
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN MA35V470M10X13 vs JLC model MA35V470M10X13"
+    },
+    "available": 71833,
+    "status": "ok",
+    "why": "71833 available at JLC, need 5; BOM MPN MA35V470M10X13 vs JLC model MA35V470M10X13",
+    "refs": [
+     "C58"
+    ],
+    "comment": "470uF 35V polymer"
+   },
+   {
+    "lcsc": "C2836441",
+    "need": 5,
+    "mpn": "RVT220UF35V67RV0024",
+    "value": "220uF 35V",
+    "checked_at": "2026-11-05T18:37:42+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C2836441",
+     "model": "RVT220UF35V67RV0024",
+     "brand": "KNSCHA",
+     "library": "extended",
+     "stock": 106698,
+     "can_sell": 94908,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-55\u2103~+105\u2103 10.2mm 195mA@120Hz 2000hrs@105\u2103 220uF 35V 8mm \u00b120% SMD,D8xL10.2mm Aluminum Electrolytic Capacitors - SMD ROHS",
+     "package": "SMD,D8xL10.2mm"
+    },
+    "lcsc_record": {
+     "code": "C2836441",
+     "model": "RVT220UF35V67RV0024",
+     "brand": "KNSCHA",
+     "stock": 85170
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN RVT220UF35V67RV0024 vs JLC model RVT220UF35V67RV0024"
+    },
+    "available": 94908,
+    "status": "ok",
+    "why": "94908 available at JLC, need 5; BOM MPN RVT220UF35V67RV0024 vs JLC model RVT220UF35V67RV0024",
+    "refs": [
+     "C59"
+    ],
+    "comment": "220uF 35V"
+   },
+   {
+    "lcsc": "C21120",
+    "need": 20,
+    "mpn": "CL10B224KA8NNNC",
+    "value": "220nF",
+    "checked_at": "2026-11-05T18:37:42+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C21120",
+     "model": "CL10B224KA8NNNC",
+     "brand": "Samsung Electro-Mechanics",
+     "library": "basic",
+     "stock": 908509,
+     "can_sell": 738821,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "220nF 25V X7R \u00b110% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C21120",
+     "model": "CL10B224KA8NNNC",
+     "brand": "Samsung Electro-Mechanics",
+     "stock": 257050
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN CL10B224KA8NNNC vs JLC model CL10B224KA8NNNC"
+    },
+    "available": 738821,
+    "status": "ok",
+    "why": "738821 available at JLC, need 20; BOM MPN CL10B224KA8NNNC vs JLC model CL10B224KA8NNNC",
+    "refs": [
+     "C64",
+     "C65",
+     "C66",
+     "C67"
+    ],
+    "comment": "220nF"
+   },
+   {
+    "lcsc": "C1848",
+    "need": 20,
+    "mpn": "CL31B105KBHNNNE",
+    "value": "1uF",
+    "checked_at": "2026-11-05T18:37:42+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C1848",
+     "model": "CL31B105KBHNNNE",
+     "brand": "Samsung Electro-Mechanics",
+     "library": "basic",
+     "stock": 706324,
+     "can_sell": 550473,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "1uF 50V X7R \u00b110% 1206 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+     "package": "1206"
+    },
+    "lcsc_record": {
+     "code": "C1848",
+     "model": "CL31B105KBHNNNE",
+     "brand": "Samsung Electro-Mechanics",
+     "stock": 142690
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN CL31B105KBHNNNE vs JLC model CL31B105KBHNNNE"
+    },
+    "available": 550473,
+    "status": "ok",
+    "why": "550473 available at JLC, need 20; BOM MPN CL31B105KBHNNNE vs JLC model CL31B105KBHNNNE",
+    "refs": [
+     "C68",
+     "C69",
+     "C70",
+     "C71"
+    ],
+    "comment": "1uF"
+   },
+   {
+    "lcsc": "C1620",
+    "need": 10,
+    "mpn": "0603B471K500NT",
+    "value": "470pF",
+    "checked_at": "2026-11-05T18:37:42+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C1620",
+     "model": "0603B471K500NT",
+     "brand": "FH (Guangdong Fenghua Advanced Tech)",
+     "library": "basic",
+     "stock": 688164,
+     "can_sell": 530203,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "470pF 50V X7R \u00b110% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C1620",
+     "model": "0603B471K500NT",
+     "brand": "FH",
+     "stock": 80300
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN 0603B471K500NT vs JLC model 0603B471K500NT"
+    },
+    "available": 530203,
+    "status": "ok",
+    "why": "530203 available at JLC, need 10; BOM MPN 0603B471K500NT vs JLC model 0603B471K500NT",
+    "refs": [
+     "C81",
+     "C83"
+    ],
+    "comment": "470pF"
+   },
+   {
+    "lcsc": "C151920",
+    "need": 5,
+    "mpn": "SMBJ22A",
+    "value": "SMBJ22A",
+    "checked_at": "2026-11-05T18:37:42+00:00",
+    "notes": [
+     "JLC also lists C10214, C113993, C224015, C284010, C294874, C2989896, C3012514, C3019970, C353375, C362087, C3720133, C484347, C501381, C5119554, C5161380, C713670, C726829, C908800 as SMBJ22A: its BOM review may match by MPN, so check it shows C151920"
+    ],
+    "jlc": {
+     "code": "C151920",
+     "model": "SMBJ22A",
+     "brand": "BORN",
+     "library": "extended",
+     "stock": 8186,
+     "can_sell": 7861,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "16.9A@10/1000us 1uA 22V 26.9V 35.5V 600W@10/1000us TVS Unidirectional DO-214AA(SMB) ESD and Surge Protection (TVS/ESD) ROHS",
+     "package": "DO-214AA(SMB)"
+    },
+    "lcsc_record": {
+     "code": "C151920",
+     "model": "SMBJ22A",
+     "brand": "BORN",
+     "stock": 8180
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM value SMBJ22A in JLC model SMBJ22A"
+    },
+    "available": 7861,
+    "status": "ok",
+    "why": "7861 available at JLC, need 5; BOM value SMBJ22A in JLC model SMBJ22A",
+    "refs": [
+     "D1"
+    ],
+    "comment": "SMBJ22A"
+   },
+   {
+    "lcsc": "C2286",
+    "need": 5,
+    "mpn": "KT-0603R",
+    "value": "red",
+    "checked_at": "2026-11-05T18:37:43+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C2286",
+     "model": "KT-0603R",
+     "brand": "Hubei KENTO Elec",
+     "library": "basic",
+     "stock": 6683737,
+     "can_sell": 6012763,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-40\u2103~+85\u2103 1.6mm x 0.8mm square LED 1.8V~2.4V 120\u00b0 20mA 300mcd 40mW 615nm~630nm 645nm Discrete Diode Red Water Clear 0603 LED Indication - Discrete ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C2286",
+     "model": "KT-0603R",
+     "brand": "Hubei KENTO Elec",
+     "stock": 4189000
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN KT-0603R vs JLC model KT-0603R"
+    },
+    "available": 6012763,
+    "status": "ok",
+    "why": "6012763 available at JLC, need 5; BOM MPN KT-0603R vs JLC model KT-0603R",
+    "refs": [
+     "D2"
+    ],
+    "comment": "red"
+   },
+   {
+    "lcsc": "C110694",
+    "need": 30,
+    "mpn": "PESDNC2FD5VB",
+    "value": "PESDNC2FD5VB",
+    "checked_at": "2026-11-05T18:37:43+00:00",
+    "notes": [
+     "JLC also lists C22389964, C2931144, C5144833, C5451651 as PESDNC2FD5VB: its BOM review may match by MPN, so check it shows C110694"
+    ],
+    "jlc": {
+     "code": "C110694",
+     "model": "PESDNC2FD5VB",
+     "brand": "Shanghai Prisemi Elec",
+     "library": "extended",
+     "stock": 4089038,
+     "can_sell": 4083940,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "1 10V\u300113V\u300115V 15pF 1uA 5.5A@8/20us 5V 6.7V 80W@8/20us Bidirectional ESD IEC 61000-4-2\u3001IEC 61000-4-4 DFN1006-2L ESD and Surge Protection (TVS/ESD) ROHS",
+     "package": "DFN1006-2L"
+    },
+    "lcsc_record": {
+     "code": "C110694",
+     "model": "PESDNC2FD5VB",
+     "brand": "Shanghai Prisemi Elec",
+     "stock": 4083700
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM value PESDNC2FD5VB in JLC model PESDNC2FD5VB"
+    },
+    "available": 4083940,
+    "status": "ok",
+    "why": "4083940 available at JLC, need 30; BOM value PESDNC2FD5VB in JLC model PESDNC2FD5VB",
+    "refs": [
+     "D3",
+     "D4",
+     "D5",
+     "D6",
+     "D7",
+     "D8"
+    ],
+    "comment": "PESDNC2FD5VB"
+   },
+   {
+    "lcsc": "C165948",
+    "need": 5,
+    "mpn": "TYPE-C-31-M-12",
+    "value": "TYPE-C-31-M-12",
+    "checked_at": "2026-11-05T18:37:43+00:00",
+    "notes": [
+     "JLC also lists C9900091786 as TYPE-C-31-M-12: its BOM review may match by MPN, so check it shows C165948"
+    ],
+    "jlc": {
+     "code": "C165948",
+     "model": "TYPE-C-31-M-12",
+     "brand": "Korean Hroparts Elec",
+     "library": "extended",
+     "stock": 150432,
+     "can_sell": 137730,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-30\u2103~+80\u2103 1 10,000 cycles 16P 20V 5A 7.35mm Female Surface Mount, Right Angle Type-C SMD USB Connectors ROHS",
+     "package": "SMD"
+    },
+    "lcsc_record": {
+     "code": "C165948",
+     "model": "TYPE-C-31-M-12",
+     "brand": "Korean Hroparts Elec",
+     "stock": 137250
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM value TYPE-C-31-M-12 is JLC model TYPE-C-31-M-12"
+    },
+    "available": 137730,
+    "status": "ok",
+    "why": "137730 available at JLC, need 5; BOM value TYPE-C-31-M-12 is JLC model TYPE-C-31-M-12",
+    "refs": [
+     "J1"
+    ],
+    "comment": "TYPE-C-31-M-12"
+   },
+   {
+    "lcsc": "C7527522",
+    "need": 10,
+    "mpn": "XDJK-0271-1650",
+    "value": "RCA line in",
+    "checked_at": "2026-11-05T18:37:43+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C7527522",
+     "model": "XDJK-0271-1650",
+     "brand": "Lian Xin Technology",
+     "library": "extended",
+     "stock": 4287,
+     "can_sell": 4169,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-40\u2103~+70\u2103 2 200mA 50V Black RCA Jack Right Angle \u63d2\u4ef6 RCA Connector ROHS",
+     "package": "Plugin"
+    },
+    "lcsc_record": {
+     "code": "C7527522",
+     "model": "XDJK-0271-1650",
+     "brand": "Lian Xin Technology",
+     "stock": 4285
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN XDJK-0271-1650 vs JLC model XDJK-0271-1650"
+    },
+    "available": 4169,
+    "status": "ok",
+    "why": "4169 available at JLC, need 10; BOM MPN XDJK-0271-1650 vs JLC model XDJK-0271-1650",
+    "refs": [
+     "J2",
+     "J3"
+    ],
+    "comment": "RCA line in"
+   },
+   {
+    "lcsc": "C7437321",
+    "need": 10,
+    "mpn": "24.243.1",
+    "value": "24.243 red",
+    "checked_at": "2026-11-05T18:37:43+00:00",
+    "notes": [
+     "JLC also lists C17701754 as 24.243.1: its BOM review may match by MPN, so check it shows C7437321"
+    ],
+    "jlc": {
+     "code": "C7437321",
+     "model": "24.243.1",
+     "brand": "Changzhou Amass Elec",
+     "library": "extended",
+     "stock": 5077,
+     "can_sell": 4821,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "24A 60V Terminal \u63d2\u4ef6 Banana Connectors / Alligator Clips ROHS",
+     "package": "Plugin"
+    },
+    "lcsc_record": {
+     "code": "C7437321",
+     "model": "24.243.1",
+     "brand": "Changzhou Amass Elec",
+     "stock": 4643
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN 24.243.1 vs JLC model 24.243.1"
+    },
+    "available": 4821,
+    "status": "ok",
+    "why": "4821 available at JLC, need 10; BOM MPN 24.243.1 vs JLC model 24.243.1",
+    "refs": [
+     "J4",
+     "J6"
+    ],
+    "comment": "24.243 red"
+   },
+   {
+    "lcsc": "C7437322",
+    "need": 10,
+    "mpn": "24.243.2",
+    "value": "24.243 black",
+    "checked_at": "2026-11-05T18:37:43+00:00",
+    "notes": [
+     "JLC also lists C17701807 as 24.243.2: its BOM review may match by MPN, so check it shows C7437322"
+    ],
+    "jlc": {
+     "code": "C7437322",
+     "model": "24.243.2",
+     "brand": "Changzhou Amass Elec",
+     "library": "extended",
+     "stock": 2607,
+     "can_sell": 2451,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "24A 60V Terminal \u63d2\u4ef6 Banana Connectors / Alligator Clips ROHS",
+     "package": "Plugin"
+    },
+    "lcsc_record": {
+     "code": "C7437322",
+     "model": "24.243.2",
+     "brand": "Changzhou Amass Elec",
+     "stock": 2607
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN 24.243.2 vs JLC model 24.243.2"
+    },
+    "available": 2451,
+    "status": "ok",
+    "why": "2451 available at JLC, need 10; BOM MPN 24.243.2 vs JLC model 24.243.2",
+    "refs": [
+     "J5",
+     "J7"
+    ],
+    "comment": "24.243 black"
+   },
+   {
+    "lcsc": "C2883765",
+    "need": 5,
+    "mpn": "X6511WVS-08H-C60D48R2",
+    "value": "ESP32 spare header",
+    "checked_at": "2026-11-05T18:37:44+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C2883765",
+     "model": "X6511WVS-08H-C60D48R2",
+     "brand": "XKB Connection",
+     "library": "extended",
+     "stock": 2695,
+     "can_sell": 2691,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-40\u2103~+105\u2103 1 1x8P 2.54mm 2.54mm 2.5mm 250V 3A 8P Black Brass Gold Pin Header SMD,P=2.54mm(\u4ea4\u9519\u811a) Pin Headers ROHS",
+     "package": "SMD,P=2.54mm(Staggered pins)"
+    },
+    "lcsc_record": {
+     "code": "C2883765",
+     "model": "X6511WVS-08H-C60D48R2",
+     "brand": "XKB Connection",
+     "stock": 2685
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN X6511WVS-08H-C60D48R2 vs JLC model X6511WVS-08H-C60D48R2"
+    },
+    "available": 2691,
+    "status": "ok",
+    "why": "2691 available at JLC, need 5; BOM MPN X6511WVS-08H-C60D48R2 vs JLC model X6511WVS-08H-C60D48R2",
+    "refs": [
+     "J8"
+    ],
+    "comment": "ESP32 spare header"
+   },
+   {
+    "lcsc": "C48391614",
+    "need": 20,
+    "mpn": "XR0850-100M",
+    "value": "10uH 8A",
+    "checked_at": "2026-11-05T18:37:44+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C48391614",
+     "model": "XR0850-100M",
+     "brand": "XR",
+     "library": "extended",
+     "stock": 1575,
+     "can_sell": 1490,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "10uH 30m\u03a9 6.5A 8A \u00b120% SMD,8x8mm Power Inductors ROHS",
+     "package": "SMD,8x8mm"
+    },
+    "lcsc_record": {
+     "code": "C48391614",
+     "model": "XR0850-100M",
+     "brand": "XR",
+     "stock": 1575
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN XR0850-100M vs JLC model XR0850-100M"
+    },
+    "available": 1490,
+    "status": "ok",
+    "why": "1490 available at JLC, need 20; BOM MPN XR0850-100M vs JLC model XR0850-100M",
+    "refs": [
+     "L1",
+     "L2",
+     "L3",
+     "L4"
+    ],
+    "comment": "10uH 8A"
+   },
+   {
+    "lcsc": "C79272",
+    "need": 5,
+    "mpn": "SWPA6045S100MT",
+    "value": "10uH",
+    "checked_at": "2026-11-05T18:37:44+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C79272",
+     "model": "SWPA6045S100MT",
+     "brand": "Sunlord",
+     "library": "extended",
+     "stock": 21659,
+     "can_sell": 21075,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "10uH 2.45A 3.5A 48m\u03a9 \u00b120% SMD,6x6mm Power Inductors ROHS",
+     "package": "SMD,6x6mm"
+    },
+    "lcsc_record": null,
+    "match": {
+     "ok": true,
+     "why": "BOM MPN SWPA6045S100MT vs JLC model SWPA6045S100MT"
+    },
+    "available": 21075,
+    "status": "ok",
+    "why": "21075 available at JLC, need 5; BOM MPN SWPA6045S100MT vs JLC model SWPA6045S100MT",
+    "refs": [
+     "L5"
+    ],
+    "comment": "10uH"
+   },
+   {
+    "lcsc": "C305171",
+    "need": 5,
+    "mpn": "SWPA4020S2R2NT",
+    "value": "2.2uH",
+    "checked_at": "2026-11-05T18:37:44+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C305171",
+     "model": "SWPA4020S2R2NT",
+     "brand": "Sunlord",
+     "library": "extended",
+     "stock": 4255,
+     "can_sell": 4218,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "1.85A 2.2uH 3.7A 40m\u03a9 \u00b130% SMD,4x4mm Power Inductors ROHS",
+     "package": "SMD,4x4mm"
+    },
+    "lcsc_record": null,
+    "match": {
+     "ok": true,
+     "why": "BOM MPN SWPA4020S2R2NT vs JLC model SWPA4020S2R2NT"
+    },
+    "available": 4218,
+    "status": "ok",
+    "why": "4218 available at JLC, need 5; BOM MPN SWPA4020S2R2NT vs JLC model SWPA4020S2R2NT",
+    "refs": [
+     "L6"
+    ],
+    "comment": "2.2uH"
+   },
+   {
+    "lcsc": "C5125949",
+    "need": 5,
+    "mpn": "AO4485",
+    "value": "AO4485",
+    "checked_at": "2026-11-05T18:37:44+00:00",
+    "notes": [
+     "JLC also lists C48580949, C51499, C5183843, C5197352, C5261057, C5334068, C55488499 as AO4485: its BOM review may match by MPN, so check it shows C5125949"
+    ],
+    "jlc": {
+     "code": "C5125949",
+     "model": "AO4485",
+     "brand": "UMW(Youtai Semiconductor Co., Ltd.)",
+     "library": "extended",
+     "stock": 12408,
+     "can_sell": 12272,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-55\u2103~+150\u2103 1 P-Channel 1.5V 12.5m\u03a9@10V\u300116m\u03a9@4.5V 12A 180pF 2.5nF 260pF 3.1W 40V 42nC@10V SOP-8 MOSFETs ROHS",
+     "package": "SOP-8"
+    },
+    "lcsc_record": {
+     "code": "C5125949",
+     "model": "AO4485",
+     "brand": "UMW",
+     "stock": 12405
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM value AO4485 in JLC model AO4485"
+    },
+    "available": 12272,
+    "status": "ok",
+    "why": "12272 available at JLC, need 5; BOM value AO4485 in JLC model AO4485",
+    "refs": [
+     "Q1"
+    ],
+    "comment": "AO4485"
+   },
+   {
+    "lcsc": "C20526",
+    "need": 25,
+    "mpn": "MMBT3904(RANGE:100-300)",
+    "value": "MMBT3904",
+    "checked_at": "2026-11-05T18:37:44+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C20526",
+     "model": "MMBT3904(RANGE:100-300)",
+     "brand": "Jiangsu Changjing Electronics Technology Co., Ltd.",
+     "library": "basic",
+     "stock": 2740896,
+     "can_sell": 2621000,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-55\u2103~+150\u2103 1 NPN 100 100nA 200mA 200mW 300MHz 300mV 40V 6V NPN SOT-23 Bipolar (BJT) ROHS",
+     "package": "SOT-23"
+    },
+    "lcsc_record": {
+     "code": "C20526",
+     "model": "MMBT3904(RANGE:100-300)",
+     "brand": "JSCJ",
+     "stock": 2298500
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN MMBT3904(RANGE:100-300) vs JLC model MMBT3904(RANGE:100-300)"
+    },
+    "available": 2621000,
+    "status": "ok",
+    "why": "2621000 available at JLC, need 25; BOM MPN MMBT3904(RANGE:100-300) vs JLC model MMBT3904(RANGE:100-300)",
+    "refs": [
+     "Q2",
+     "Q3",
+     "Q4",
+     "Q11",
+     "Q12"
+    ],
+    "comment": "MMBT3904"
+   },
+   {
+    "lcsc": "C8545",
+    "need": 15,
+    "mpn": "2N7002",
+    "value": "2N7002",
+    "checked_at": "2026-11-05T18:37:44+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C8545",
+     "model": "2N7002",
+     "brand": "Jiangsu Changjing Electronics Technology Co., Ltd.",
+     "library": "basic",
+     "stock": 3859078,
+     "can_sell": 3700178,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "1 N-channel 115mA 2.5V 225mW 25pF 50pF 5pF 5\u03a9@10V 60V N-Channel \u00b120V SOT-23 MOSFETs ROHS",
+     "package": "SOT-23"
+    },
+    "lcsc_record": {
+     "code": "C8545",
+     "model": "2N7002",
+     "brand": "JSCJ",
+     "stock": 3502300
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM value 2N7002 in JLC model 2N7002"
+    },
+    "available": 3700178,
+    "status": "ok",
+    "why": "3700178 available at JLC, need 15; BOM value 2N7002 in JLC model 2N7002",
+    "refs": [
+     "Q13",
+     "Q14",
+     "Q15"
+    ],
+    "comment": "2N7002"
+   },
+   {
+    "lcsc": "C25808",
+    "need": 10,
+    "mpn": "0603WAF1203T5E",
+    "value": "120k",
+    "checked_at": "2026-11-05T18:37:45+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C25808",
+     "model": "0603WAF1203T5E",
+     "brand": "UNI-ROYAL(Uniroyal Elec)",
+     "library": "basic",
+     "stock": 1204551,
+     "can_sell": 1100937,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-55\u2103~+155\u2103 100mW 120k\u03a9 75V Thick Film Resistor \u00b11% \u00b1100ppm/\u2103 0603 Chip Resistor - Surface Mount ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C25808",
+     "model": "0603WAF1203T5E",
+     "brand": "UNI-ROYAL",
+     "stock": 805700
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN 0603WAF1203T5E vs JLC model 0603WAF1203T5E"
+    },
+    "available": 1100937,
+    "status": "ok",
+    "why": "1100937 available at JLC, need 10; BOM MPN 0603WAF1203T5E vs JLC model 0603WAF1203T5E",
+    "refs": [
+     "R1",
+     "R80"
+    ],
+    "comment": "120k"
+   },
+   {
+    "lcsc": "C21189",
+    "need": 10,
+    "mpn": "0603WAF0000T5E",
+    "value": "0R",
+    "checked_at": "2026-11-05T18:37:45+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C21189",
+     "model": "0603WAF0000T5E",
+     "brand": "UNI-ROYAL(Uniroyal Elec)",
+     "library": "basic",
+     "stock": 19530133,
+     "can_sell": 17153735,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-55\u2103~+155\u2103 0\u03a9 100mW 75V Thick Film Resistor \u00b11% 0603 Chip Resistor - Surface Mount ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C21189",
+     "model": "0603WAF0000T5E",
+     "brand": "UNI-ROYAL",
+     "stock": 10494400
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN 0603WAF0000T5E vs JLC model 0603WAF0000T5E"
+    },
+    "available": 17153735,
+    "status": "ok",
+    "why": "17153735 available at JLC, need 10; BOM MPN 0603WAF0000T5E vs JLC model 0603WAF0000T5E",
+    "refs": [
+     "R2",
+     "R3"
+    ],
+    "comment": "0R"
+   },
+   {
+    "lcsc": "C25804",
+    "need": 90,
+    "mpn": "0603WAF1002T5E",
+    "value": "10k",
+    "checked_at": "2026-11-05T18:37:45+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C25804",
+     "model": "0603WAF1002T5E",
+     "brand": "UNI-ROYAL(Uniroyal Elec)",
+     "library": "basic",
+     "stock": 43747938,
+     "can_sell": 33453441,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-55\u2103~+155\u2103 100mW 10k\u03a9 75V Thick Film Resistor \u00b11% \u00b1100ppm/\u2103 0603 Chip Resistor - Surface Mount ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C25804",
+     "model": "0603WAF1002T5E",
+     "brand": "UNI-ROYAL",
+     "stock": 4635400
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN 0603WAF1002T5E vs JLC model 0603WAF1002T5E"
+    },
+    "available": 33453441,
+    "status": "ok",
+    "why": "33453441 available at JLC, need 90; BOM MPN 0603WAF1002T5E vs JLC model 0603WAF1002T5E",
+    "refs": [
+     "R4",
+     "R7",
+     "R14",
+     "R18",
+     "R20",
+     "R21",
+     "R24",
+     "R25",
+     "R31",
+     "R34",
+     "R53",
+     "R54",
+     "R60",
+     "R61",
+     "R62",
+     "R63",
+     "R67",
+     "R69"
+    ],
+    "comment": "10k"
+   },
+   {
+    "lcsc": "C25803",
+    "need": 45,
+    "mpn": "0603WAF1003T5E",
+    "value": "100k",
+    "checked_at": "2026-11-05T18:37:45+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C25803",
+     "model": "0603WAF1003T5E",
+     "brand": "UNI-ROYAL(Uniroyal Elec)",
+     "library": "basic",
+     "stock": 16438605,
+     "can_sell": 14097318,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-55\u2103~+155\u2103 100k\u03a9 100mW 75V Thick Film Resistor \u00b11% \u00b1100ppm/\u2103 0603 Chip Resistor - Surface Mount ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C25803",
+     "model": "0603WAF1003T5E",
+     "brand": "UNI-ROYAL",
+     "stock": 7604100
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN 0603WAF1003T5E vs JLC model 0603WAF1003T5E"
+    },
+    "available": 14097318,
+    "status": "ok",
+    "why": "14097318 available at JLC, need 45; BOM MPN 0603WAF1003T5E vs JLC model 0603WAF1003T5E",
+    "refs": [
+     "R5",
+     "R8",
+     "R9",
+     "R13",
+     "R17",
+     "R51",
+     "R52",
+     "R66",
+     "R68"
+    ],
+    "comment": "100k"
+   },
+   {
+    "lcsc": "C22961",
+    "need": 5,
+    "mpn": "0603WAF2203T5E",
+    "value": "220k",
+    "checked_at": "2026-11-05T18:37:45+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C22961",
+     "model": "0603WAF2203T5E",
+     "brand": "UNI-ROYAL(Uniroyal Elec)",
+     "library": "basic",
+     "stock": 1056467,
+     "can_sell": 964601,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-55\u2103~+155\u2103 100mW 220k\u03a9 75V Thick Film Resistor \u00b11% \u00b1100ppm/\u2103 0603 Chip Resistor - Surface Mount ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C22961",
+     "model": "0603WAF2203T5E",
+     "brand": "UNI-ROYAL",
+     "stock": 711100
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN 0603WAF2203T5E vs JLC model 0603WAF2203T5E"
+    },
+    "available": 964601,
+    "status": "ok",
+    "why": "964601 available at JLC, need 5; BOM MPN 0603WAF2203T5E vs JLC model 0603WAF2203T5E",
+    "refs": [
+     "R6"
+    ],
+    "comment": "220k"
+   },
+   {
+    "lcsc": "C22797",
+    "need": 5,
+    "mpn": "0603WAF1302T5E",
+    "value": "13k",
+    "checked_at": "2026-11-05T18:37:45+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C22797",
+     "model": "0603WAF1302T5E",
+     "brand": "UNI-ROYAL(Uniroyal Elec)",
+     "library": "basic",
+     "stock": 374991,
+     "can_sell": 311004,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-55\u2103~+155\u2103 100mW 13k\u03a9 75V Thick Film Resistor \u00b11% \u00b1100ppm/\u2103 0603 Chip Resistor - Surface Mount ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C22797",
+     "model": "0603WAF1302T5E",
+     "brand": "UNI-ROYAL",
+     "stock": 131400
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN 0603WAF1302T5E vs JLC model 0603WAF1302T5E"
+    },
+    "available": 311004,
+    "status": "ok",
+    "why": "311004 available at JLC, need 5; BOM MPN 0603WAF1302T5E vs JLC model 0603WAF1302T5E",
+    "refs": [
+     "R10"
+    ],
+    "comment": "13k"
+   },
+   {
+    "lcsc": "C22807",
+    "need": 5,
+    "mpn": "0603WAF1503T5E",
+    "value": "150k",
+    "checked_at": "2026-11-05T18:37:45+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C22807",
+     "model": "0603WAF1503T5E",
+     "brand": "UNI-ROYAL(Uniroyal Elec)",
+     "library": "basic",
+     "stock": 693333,
+     "can_sell": 556270,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-55\u2103~+155\u2103 100mW 150k\u03a9 75V Thick Film Resistor \u00b11% \u00b1100ppm/\u2103 0603 Chip Resistor - Surface Mount ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C22807",
+     "model": "0603WAF1503T5E",
+     "brand": "UNI-ROYAL",
+     "stock": 175800
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN 0603WAF1503T5E vs JLC model 0603WAF1503T5E"
+    },
+    "available": 556270,
+    "status": "ok",
+    "why": "556270 available at JLC, need 5; BOM MPN 0603WAF1503T5E vs JLC model 0603WAF1503T5E",
+    "refs": [
+     "R11"
+    ],
+    "comment": "150k"
+   },
+   {
+    "lcsc": "C4216",
+    "need": 5,
+    "mpn": "0603WAF3302T5E",
+    "value": "33k",
+    "checked_at": "2026-11-05T18:37:45+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C4216",
+     "model": "0603WAF3302T5E",
+     "brand": "UNI-ROYAL(Uniroyal Elec)",
+     "library": "basic",
+     "stock": 3051725,
+     "can_sell": 2839970,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-55\u2103~+155\u2103 100mW 33k\u03a9 75V Thick Film Resistor \u00b11% \u00b1100ppm/\u2103 0603 Chip Resistor - Surface Mount ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C4216",
+     "model": "0603WAF3302T5E",
+     "brand": "UNI-ROYAL",
+     "stock": 2253300
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN 0603WAF3302T5E vs JLC model 0603WAF3302T5E"
+    },
+    "available": 2839970,
+    "status": "ok",
+    "why": "2839970 available at JLC, need 5; BOM MPN 0603WAF3302T5E vs JLC model 0603WAF3302T5E",
+    "refs": [
+     "R12"
+    ],
+    "comment": "33k"
+   },
+   {
+    "lcsc": "C21190",
+    "need": 20,
+    "mpn": "0603WAF1001T5E",
+    "value": "1k",
+    "checked_at": "2026-11-05T18:37:45+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C21190",
+     "model": "0603WAF1001T5E",
+     "brand": "UNI-ROYAL(Uniroyal Elec)",
+     "library": "basic",
+     "stock": 27933725,
+     "can_sell": 21323039,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-55\u2103~+155\u2103 100mW 1k\u03a9 75V Thick Film Resistor \u00b11% \u00b1100ppm/\u2103 0603 Chip Resistor - Surface Mount ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C21190",
+     "model": "0603WAF1001T5E",
+     "brand": "UNI-ROYAL",
+     "stock": 2609100
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN 0603WAF1001T5E vs JLC model 0603WAF1001T5E"
+    },
+    "available": 21323039,
+    "status": "ok",
+    "why": "21323039 available at JLC, need 20; BOM MPN 0603WAF1001T5E vs JLC model 0603WAF1001T5E",
+    "refs": [
+     "R15",
+     "R36",
+     "R38",
+     "R64"
+    ],
+    "comment": "1k"
+   },
+   {
+    "lcsc": "C31850",
+    "need": 10,
+    "mpn": "0603WAF2202T5E",
+    "value": "22k",
+    "checked_at": "2026-11-05T18:37:46+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C31850",
+     "model": "0603WAF2202T5E",
+     "brand": "UNI-ROYAL(Uniroyal Elec)",
+     "library": "basic",
+     "stock": 2714350,
+     "can_sell": 2403621,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-55\u2103~+155\u2103 100mW 22k\u03a9 75V Thick Film Resistor \u00b11% \u00b1100ppm/\u2103 0603 Chip Resistor - Surface Mount ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C31850",
+     "model": "0603WAF2202T5E",
+     "brand": "UNI-ROYAL",
+     "stock": 1557600
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN 0603WAF2202T5E vs JLC model 0603WAF2202T5E"
+    },
+    "available": 2403621,
+    "status": "ok",
+    "why": "2403621 available at JLC, need 10; BOM MPN 0603WAF2202T5E vs JLC model 0603WAF2202T5E",
+    "refs": [
+     "R16",
+     "R81"
+    ],
+    "comment": "22k"
+   },
+   {
+    "lcsc": "C4190",
+    "need": 10,
+    "mpn": "0603WAF2201T5E",
+    "value": "2.2k",
+    "checked_at": "2026-11-05T18:37:46+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C4190",
+     "model": "0603WAF2201T5E",
+     "brand": "UNI-ROYAL(Uniroyal Elec)",
+     "library": "basic",
+     "stock": 5160559,
+     "can_sell": 4443695,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-55\u2103~+155\u2103 100mW 2.2k\u03a9 75V Thick Film Resistor \u00b11% \u00b1100ppm/\u2103 0603 Chip Resistor - Surface Mount ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C4190",
+     "model": "0603WAF2201T5E",
+     "brand": "UNI-ROYAL",
+     "stock": 2462700
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN 0603WAF2201T5E vs JLC model 0603WAF2201T5E"
+    },
+    "available": 4443695,
+    "status": "ok",
+    "why": "4443695 available at JLC, need 10; BOM MPN 0603WAF2201T5E vs JLC model 0603WAF2201T5E",
+    "refs": [
+     "R22",
+     "R23"
+    ],
+    "comment": "2.2k"
+   },
+   {
+    "lcsc": "C22809",
+    "need": 10,
+    "mpn": "0603WAF1502T5E",
+    "value": "15k",
+    "checked_at": "2026-11-05T18:37:46+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C22809",
+     "model": "0603WAF1502T5E",
+     "brand": "UNI-ROYAL(Uniroyal Elec)",
+     "library": "basic",
+     "stock": 3375214,
+     "can_sell": 2959608,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-55\u2103~+155\u2103 100mW 15k\u03a9 75V Thick Film Resistor \u00b11% \u00b1100ppm/\u2103 0603 Chip Resistor - Surface Mount ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C22809",
+     "model": "0603WAF1502T5E",
+     "brand": "UNI-ROYAL",
+     "stock": 1767300
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN 0603WAF1502T5E vs JLC model 0603WAF1502T5E"
+    },
+    "available": 2959608,
+    "status": "ok",
+    "why": "2959608 available at JLC, need 10; BOM MPN 0603WAF1502T5E vs JLC model 0603WAF1502T5E",
+    "refs": [
+     "R30",
+     "R33"
+    ],
+    "comment": "15k"
+   },
+   {
+    "lcsc": "C25819",
+    "need": 15,
+    "mpn": "0603WAF4702T5E",
+    "value": "47k",
+    "checked_at": "2026-11-05T18:37:46+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C25819",
+     "model": "0603WAF4702T5E",
+     "brand": "UNI-ROYAL(Uniroyal Elec)",
+     "library": "basic",
+     "stock": 3099678,
+     "can_sell": 2430994,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-55\u2103~+155\u2103 100mW 47k\u03a9 75V Thick Film Resistor \u00b11% \u00b1100ppm/\u2103 0603 Chip Resistor - Surface Mount ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C25819",
+     "model": "0603WAF4702T5E",
+     "brand": "UNI-ROYAL",
+     "stock": 535400
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN 0603WAF4702T5E vs JLC model 0603WAF4702T5E"
+    },
+    "available": 2430994,
+    "status": "ok",
+    "why": "2430994 available at JLC, need 15; BOM MPN 0603WAF4702T5E vs JLC model 0603WAF4702T5E",
+    "refs": [
+     "R37",
+     "R39",
+     "R82"
+    ],
+    "comment": "47k"
+   },
+   {
+    "lcsc": "C4184",
+    "need": 5,
+    "mpn": "0603WAF2002T5E",
+    "value": "20k",
+    "checked_at": "2026-11-05T18:37:46+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C4184",
+     "model": "0603WAF2002T5E",
+     "brand": "UNI-ROYAL(Uniroyal Elec)",
+     "library": "basic",
+     "stock": 5843253,
+     "can_sell": 4876451,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-55\u2103~+155\u2103 100mW 20k\u03a9 75V Thick Film Resistor \u00b11% \u00b1100ppm/\u2103 0603 Chip Resistor - Surface Mount ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C4184",
+     "model": "0603WAF2002T5E",
+     "brand": "UNI-ROYAL",
+     "stock": 2105600
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN 0603WAF2002T5E vs JLC model 0603WAF2002T5E"
+    },
+    "available": 4876451,
+    "status": "ok",
+    "why": "4876451 available at JLC, need 5; BOM MPN 0603WAF2002T5E vs JLC model 0603WAF2002T5E",
+    "refs": [
+     "R50"
+    ],
+    "comment": "20k"
+   },
+   {
+    "lcsc": "C22775",
+    "need": 5,
+    "mpn": "0603WAF1000T5E",
+    "value": "100R",
+    "checked_at": "2026-11-05T18:37:46+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C22775",
+     "model": "0603WAF1000T5E",
+     "brand": "UNI-ROYAL(Uniroyal Elec)",
+     "library": "basic",
+     "stock": 9394933,
+     "can_sell": 7228700,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-55\u2103~+155\u2103 100mW 100\u03a9 75V Thick Film Resistor \u00b11% \u00b1100ppm/\u2103 0603 Chip Resistor - Surface Mount ROHS",
+     "package": "0603"
+    },
+    "lcsc_record": {
+     "code": "C22775",
+     "model": "0603WAF1000T5E",
+     "brand": "UNI-ROYAL",
+     "stock": 1115200
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN 0603WAF1000T5E vs JLC model 0603WAF1000T5E"
+    },
+    "available": 7228700,
+    "status": "ok",
+    "why": "7228700 available at JLC, need 5; BOM MPN 0603WAF1000T5E vs JLC model 0603WAF1000T5E",
+    "refs": [
+     "R65"
+    ],
+    "comment": "100R"
+   },
+   {
+    "lcsc": "C318884",
+    "need": 15,
+    "mpn": "TS-1187A-B-A-B",
+    "value": "TS-1187A",
+    "checked_at": "2026-11-05T18:37:46+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C318884",
+     "model": "TS-1187A-B-A-B",
+     "brand": "XKB Connection",
+     "library": "basic",
+     "stock": 965000,
+     "can_sell": 892250,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-30\u2103~+85\u2103 1.5mm 1.6N 100,000 cycles 12V 5.1mm 5.1mm 50mA Gold No Round Button SPST Surface Mount,Vertical Without Bracket SMD-4P,5.1x5.1mm Tactile Switches ROHS",
+     "package": "SMD-4P,5.1x5.1mm"
+    },
+    "lcsc_record": {
+     "code": "C318884",
+     "model": "TS-1187A-B-A-B",
+     "brand": "XKB Connection",
+     "stock": 727560
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN TS-1187A-B-A-B vs JLC model TS-1187A-B-A-B"
+    },
+    "available": 892250,
+    "status": "ok",
+    "why": "892250 available at JLC, need 15; BOM MPN TS-1187A-B-A-B vs JLC model TS-1187A-B-A-B",
+    "refs": [
+     "SW1",
+     "SW2",
+     "SW3"
+    ],
+    "comment": "TS-1187A"
+   },
+   {
+    "lcsc": "C42459160",
+    "need": 5,
+    "mpn": "CH224A",
+    "value": "CH224A",
+    "checked_at": "2026-11-05T18:37:46+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C42459160",
+     "model": "CH224A",
+     "brand": "WCH(Jiangsu Qin Heng)",
+     "library": "extended",
+     "stock": 7146,
+     "can_sell": 6935,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-40\u2103~+105\u2103 140W 1C 4V~30V 5V\u30019V\u300112V\u300115V\u300120V\u300128V PD 3.2\u3001BC 1.2\u3001AVS\u3001PPS\u3001SPR Power Receiver Controller ESSOP-10 USB PD ROHS",
+     "package": "ESSOP-10"
+    },
+    "lcsc_record": {
+     "code": "C42459160",
+     "model": "CH224A",
+     "brand": "WCH",
+     "stock": 6810
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM value CH224A in JLC model CH224A"
+    },
+    "available": 6935,
+    "status": "ok",
+    "why": "6935 available at JLC, need 5; BOM value CH224A in JLC model CH224A",
+    "refs": [
+     "U1"
+    ],
+    "comment": "CH224A"
+   },
+   {
+    "lcsc": "C311983",
+    "need": 5,
+    "mpn": "TPS54302DDCR",
+    "value": "TPS54302",
+    "checked_at": "2026-11-05T18:37:46+00:00",
+    "notes": [
+     "JLC also lists C316459 as TPS54302DDCR: its BOM review may match by MPN, so check it shows C311983"
+    ],
+    "jlc": {
+     "code": "C311983",
+     "model": "TPS54302DDCR",
+     "brand": "Texas Instruments",
+     "library": "extended",
+     "stock": 61629,
+     "can_sell": 61677,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-40\u2103~+125\u2103@(TJ) 1 3A 4.5V~28V 400kHz 45uA Adjustable Buck Buck Built-in Yes TSOT-23-6 DC-DC Converters ROHS",
+     "package": "TSOT-23-6"
+    },
+    "lcsc_record": {
+     "code": "C311983",
+     "model": "TPS54302DDCR",
+     "brand": "TI",
+     "stock": 61675
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN TPS54302DDCR vs JLC model TPS54302DDCR"
+    },
+    "available": 61677,
+    "status": "ok",
+    "why": "61677 available at JLC, need 5; BOM MPN TPS54302DDCR vs JLC model TPS54302DDCR",
+    "refs": [
+     "U2"
+    ],
+    "comment": "TPS54302"
+   },
+   {
+    "lcsc": "C479074",
+    "need": 5,
+    "mpn": "SY8089A1AAC",
+    "value": "SY8089A1AAC",
+    "checked_at": "2026-11-05T18:37:47+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C479074",
+     "model": "SY8089A1AAC",
+     "brand": "Silergy Corp",
+     "library": "extended",
+     "stock": 62537,
+     "can_sell": 59808,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-40\u2103~+125\u2103@(TA/TJ) 1 1.5MHz 2.5V~5.5V 2A 50uA Adjustable Buck Buck Built-in Yes SOT-23-5 DC-DC Converters ROHS",
+     "package": "SOT-23-5"
+    },
+    "lcsc_record": {
+     "code": "C479074",
+     "model": "SY8089A1AAC",
+     "brand": "Silergy",
+     "stock": 60360
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM value SY8089A1AAC in JLC model SY8089A1AAC"
+    },
+    "available": 59808,
+    "status": "ok",
+    "why": "59808 available at JLC, need 5; BOM value SY8089A1AAC in JLC model SY8089A1AAC",
+    "refs": [
+     "U3"
+    ],
+    "comment": "SY8089A1AAC"
+   },
+   {
+    "lcsc": "C80670",
+    "need": 5,
+    "mpn": "LP5907MFX-3.3/NOPB",
+    "value": "LP5907-3.3",
+    "checked_at": "2026-11-05T18:37:47+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C80670",
+     "model": "LP5907MFX-3.3/NOPB",
+     "brand": "Texas Instruments",
+     "library": "extended",
+     "stock": 57643,
+     "can_sell": 54178,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-40\u2103~+125\u2103@(Tj) 1 10uVrms 12uA 250mA 250mV@(250mA) 3.3V 5.5V 82dB@(1kHz) Fixed Positive Short Circuit Protection\u3001Thermal shutdown\u3001Enable control\u3001Input under-voltage protection\u3001Output discharge SOT-23-5 Voltage Regulators - Linear, Low Drop Out (LDO) Regulators ROHS",
+     "package": "SOT-23-5"
+    },
+    "lcsc_record": {
+     "code": "C80670",
+     "model": "LP5907MFX-3.3/NOPB",
+     "brand": "TI",
+     "stock": 54130
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN LP5907MFX-3.3/NOPB vs JLC model LP5907MFX-3.3/NOPB"
+    },
+    "available": 54178,
+    "status": "ok",
+    "why": "54178 available at JLC, need 5; BOM MPN LP5907MFX-3.3/NOPB vs JLC model LP5907MFX-3.3/NOPB",
+    "refs": [
+     "U4"
+    ],
+    "comment": "LP5907-3.3"
+   },
+   {
+    "lcsc": "C2973667",
+    "need": 5,
+    "mpn": "ESP32-WROVER-E-N8R8",
+    "value": "ESP32-WROVER-E-N8R8",
+    "checked_at": "2026-11-05T18:37:47+00:00",
+    "notes": [
+     "JLC also lists C701348 as ESP32-WROVER-E-N8R8: its BOM review may match by MPN, so check it shows C2973667"
+    ],
+    "jlc": {
+     "code": "C2973667",
+     "model": "ESP32-WROVER-E-N8R8",
+     "brand": "Espressif Systems",
+     "library": "extended",
+     "stock": 4258,
+     "can_sell": 2995,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-40\u2103~+85\u2103 -97dBm 108mA 2.4GHz 20.5dBm 350mA 3V~3.6V Bluetooth4.2 ESP32-DOWD-V3 On-board PCB Antenna UART\u3001SDIO\u3001SPI\u3001I2C SMD,31.4x18mm WiFi Modules ROHS",
+     "package": "SMD,31.4x18mm"
+    },
+    "lcsc_record": {
+     "code": "C2973667",
+     "model": "ESP32-WROVER-E-N8R8",
+     "brand": "ESPRESSIF",
+     "stock": 1738
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM value ESP32-WROVER-E-N8R8 in JLC model ESP32-WROVER-E-N8R8"
+    },
+    "available": 2995,
+    "status": "ok",
+    "why": "2995 available at JLC, need 5; BOM value ESP32-WROVER-E-N8R8 in JLC model ESP32-WROVER-E-N8R8",
+    "refs": [
+     "U5"
+    ],
+    "comment": "ESP32-WROVER-E-N8R8"
+   },
+   {
+    "lcsc": "C81010",
+    "need": 5,
+    "mpn": "CH340B",
+    "value": "CH340B",
+    "checked_at": "2026-11-05T18:37:47+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C81010",
+     "model": "CH340B",
+     "brand": "WCH(Jiangsu Qin Heng)",
+     "library": "extended",
+     "stock": 4503,
+     "can_sell": 4158,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "15mA 200uA 2Mbps 3.3V\u30015V Transceiver USB 2.0 SOP-16 USB Converters ROHS",
+     "package": "SOP-16"
+    },
+    "lcsc_record": {
+     "code": "C81010",
+     "model": "CH340B",
+     "brand": "WCH",
+     "stock": 3924
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM value CH340B in JLC model CH340B"
+    },
+    "available": 4158,
+    "status": "ok",
+    "why": "4158 available at JLC, need 5; BOM value CH340B in JLC model CH340B",
+    "refs": [
+     "U6"
+    ],
+    "comment": "CH340B"
+   },
+   {
+    "lcsc": "C365736",
+    "need": 5,
+    "mpn": "ES8388",
+    "value": "ES8388",
+    "checked_at": "2026-11-05T18:37:47+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C365736",
+     "model": "ES8388",
+     "brand": "Everest-semi(Everest Semiconductor)",
+     "library": "extended",
+     "stock": 35602,
+     "can_sell": 35112,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-40\u2103~+85\u2103 1.7V~3.6V 10MHz 2 24 96000Hz Audio Analog-to-Digital Converter\u3001Audio Decoder SPI\u3001I2C QFN-28-EP(4x4) ADCs/DACs - Special Purpose ROHS",
+     "package": "QFN-28-EP(4x4)"
+    },
+    "lcsc_record": {
+     "code": "C365736",
+     "model": "ES8388",
+     "brand": "Everest-semi(Everest Semiconductor)",
+     "stock": 35057
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM value ES8388 in JLC model ES8388"
+    },
+    "available": 35112,
+    "status": "ok",
+    "why": "35112 available at JLC, need 5; BOM value ES8388 in JLC model ES8388",
+    "refs": [
+     "U7"
+    ],
+    "comment": "ES8388"
+   },
+   {
+    "lcsc": "C46497",
+    "need": 5,
+    "mpn": "TPA3118D2DAPR",
+    "value": "TPA3118D2",
+    "checked_at": "2026-11-05T18:37:48+00:00",
+    "notes": [],
+    "jlc": {
+     "code": "C46497",
+     "model": "TPA3118D2DAPR",
+     "brand": "Texas Instruments",
+     "library": "extended",
+     "stock": 32404,
+     "can_sell": 31844,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "-40\u2103~+85\u2103 -70dB 0.1% 102dB 2-Channel 30Wx2@8\u03a9 4.5V~26V 50mA 90% Class D Enable/shutdown function\u3001Filterless architecture\u3001ESD protection\u3001Overvoltage protection\u3001Analog voltage gain\u3001Integrated PLL HTSSOP-32-EP-6.1mm Audio Amplifiers ROHS",
+     "package": "HTSSOP-32-EP-6.1mm"
+    },
+    "lcsc_record": {
+     "code": "C46497",
+     "model": "TPA3118D2DAPR",
+     "brand": "TI",
+     "stock": 31485
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM MPN TPA3118D2DAPR vs JLC model TPA3118D2DAPR"
+    },
+    "available": 31844,
+    "status": "ok",
+    "why": "31844 available at JLC, need 5; BOM MPN TPA3118D2DAPR vs JLC model TPA3118D2DAPR",
+    "refs": [
+     "U8"
+    ],
+    "comment": "TPA3118D2"
+   },
+   {
+    "lcsc": "C42421366",
+    "need": 5,
+    "mpn": "IRM-3638T",
+    "value": "IRM-3638T",
+    "checked_at": "2026-11-05T18:37:48+00:00",
+    "notes": [
+     "JLC also lists C16216 as IRM-3638T: its BOM review may match by MPN, so check it shows C42421366"
+    ],
+    "jlc": {
+     "code": "C42421366",
+     "model": "IRM-3638T",
+     "brand": "Everlight Elec",
+     "library": "extended",
+     "stock": 94226,
+     "can_sell": 93982,
+     "for_sale": true,
+     "no_buy_reason": null,
+     "alternative": null,
+     "min_purchase": 1,
+     "description": "SIP-3-2.54mm Infrared Remote Receiver (IRM) ROHS",
+     "package": "SIP-3-2.54mm"
+    },
+    "lcsc_record": {
+     "code": "C42421366",
+     "model": "IRM-3638T",
+     "brand": "EVERLIGHT",
+     "stock": 94225
+    },
+    "match": {
+     "ok": true,
+     "why": "BOM value IRM-3638T in JLC model IRM-3638T"
+    },
+    "available": 93982,
+    "status": "ok",
+    "why": "93982 available at JLC, need 5; BOM value IRM-3638T in JLC model IRM-3638T",
+    "refs": [
+     "U9"
+    ],
+    "comment": "IRM-3638T"
+   }
+  ],
+  "blocking": [],
+  "ledger": "boards/lite-main/ledger.json"
+ },
+ "bom_rows": [
+  {
+   "Comment": "1uF",
+   "Designator": "C1,C15,C16,C22,C41,C44,C50,C60,C61,C62,C63,C82,C84",
+   "Footprint": "C_0603_1608Metric",
+   "LCSC": "C15849"
+  },
+  {
+   "Comment": "100nF",
+   "Designator": "C2,C5,C6,C11,C17,C18,C21,C23,C24,C30,C31,C33,C34,C36,C38,C40,C53,C56",
+   "Footprint": "C_0603_1608Metric",
+   "LCSC": "C14663"
+  },
+  {
+   "Comment": "10uF",
+   "Designator": "C3",
+   "Footprint": "C_1206_3216Metric",
+   "LCSC": "C13585"
+  },
+  {
+   "Comment": "4.7uF",
+   "Designator": "C4",
+   "Footprint": "C_1206_3216Metric",
+   "LCSC": "C29823"
+  },
+  {
+   "Comment": "22uF",
+   "Designator": "C7,C8,C12,C25,C90",
+   "Footprint": "C_0805_2012Metric",
+   "LCSC": "C45783"
+  },
+  {
+   "Comment": "47pF",
+   "Designator": "C9",
+   "Footprint": "C_0603_1608Metric",
+   "LCSC": "C1671"
+  },
+  {
+   "Comment": "10uF",
+   "Designator": "C10,C13,C20,C35,C37,C39,C47,C48",
+   "Footprint": "C_0603_1608Metric",
+   "LCSC": "C19702"
+  },
+  {
+   "Comment": "22pF",
+   "Designator": "C14",
+   "Footprint": "C_0603_1608Metric",
+   "LCSC": "C1653"
+  },
+  {
+   "Comment": "4.7uF",
+   "Designator": "C19,C32,C80",
+   "Footprint": "C_0603_1608Metric",
+   "LCSC": "C19666"
+  },
+  {
+   "Comment": "47nF",
+   "Designator": "C26",
+   "Footprint": "C_0603_1608Metric",
+   "LCSC": "C1622"
+  },
+  {
+   "Comment": "100pF",
+   "Designator": "C42,C45",
+   "Footprint": "C_0603_1608Metric",
+   "LCSC": "C14858"
+  },
+  {
+   "Comment": "1uF",
+   "Designator": "C51,C52,C55",
+   "Footprint": "C_0805_2012Metric",
+   "LCSC": "C28323"
+  },
+  {
+   "Comment": "1nF",
+   "Designator": "C54,C57",
+   "Footprint": "C_0603_1608Metric",
+   "LCSC": "C1588"
+  },
+  {
+   "Comment": "470uF 35V polymer",
+   "Designator": "C58",
+   "Footprint": "CAP-SMD_BD10.0-L10.3-W10.3-FD-LS11.0",
+   "LCSC": "C46550472"
+  },
+  {
+   "Comment": "220uF 35V",
+   "Designator": "C59",
+   "Footprint": "CAP-SMD_BD8.0-L8.3-W8.3-LS9.3-FD",
+   "LCSC": "C2836441"
+  },
+  {
+   "Comment": "220nF",
+   "Designator": "C64,C65,C66,C67",
+   "Footprint": "C_0603_1608Metric",
+   "LCSC": "C21120"
+  },
+  {
+   "Comment": "1uF",
+   "Designator": "C68,C69,C70,C71",
+   "Footprint": "C_1206_3216Metric",
+   "LCSC": "C1848"
+  },
+  {
+   "Comment": "470pF",
+   "Designator": "C81,C83",
+   "Footprint": "C_0603_1608Metric",
+   "LCSC": "C1620"
+  },
+  {
+   "Comment": "SMBJ22A",
+   "Designator": "D1",
+   "Footprint": "SMB_L4.6-W3.6-LS5.3-RD",
+   "LCSC": "C151920"
+  },
+  {
+   "Comment": "red",
+   "Designator": "D2",
+   "Footprint": "LED-SMD_L1.6-W0.8-R-RD",
+   "LCSC": "C2286"
+  },
+  {
+   "Comment": "PESDNC2FD5VB",
+   "Designator": "D3,D4,D5,D6,D7,D8",
+   "Footprint": "DFN1006-2L-BI",
+   "LCSC": "C110694"
+  },
+  {
+   "Comment": "TYPE-C-31-M-12",
+   "Designator": "J1",
+   "Footprint": "USB-C_SMD-TYPE-C-31-M-12_1",
+   "LCSC": "C165948"
+  },
+  {
+   "Comment": "RCA line in",
+   "Designator": "J2,J3",
+   "Footprint": "CONN-TH_XDJK-0271-1650",
+   "LCSC": "C7527522"
+  },
+  {
+   "Comment": "24.243 red",
+   "Designator": "J4,J6",
+   "Footprint": "CONN-TH_24.243.1_RED",
+   "LCSC": "C7437321"
+  },
+  {
+   "Comment": "24.243 black",
+   "Designator": "J5,J7",
+   "Footprint": "CONN-TH_24.243.2",
+   "LCSC": "C7437322"
+  },
+  {
+   "Comment": "ESP32 spare header",
+   "Designator": "J8",
+   "Footprint": "HDR-SMD_8P-P2.54-V-M-LS4.8_R2",
+   "LCSC": "C2883765"
+  },
+  {
+   "Comment": "10uH 8A",
+   "Designator": "L1,L2,L3,L4",
+   "Footprint": "IND-SMD_L8.0-W8.0_XR0850",
+   "LCSC": "C48391614"
+  },
+  {
+   "Comment": "10uH",
+   "Designator": "L5",
+   "Footprint": "IND-SMD_L6.0-W6.0_SWPA6045S",
+   "LCSC": "C79272"
+  },
+  {
+   "Comment": "2.2uH",
+   "Designator": "L6",
+   "Footprint": "IND-SMD_L4.0-W4.0_VLCF4020",
+   "LCSC": "C305171"
+  },
+  {
+   "Comment": "AO4485",
+   "Designator": "Q1",
+   "Footprint": "SOP-8_L4.9-W3.9-P1.27-LS6.0-BL",
+   "LCSC": "C5125949"
+  },
+  {
+   "Comment": "MMBT3904",
+   "Designator": "Q2,Q3,Q4,Q11,Q12",
+   "Footprint": "SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR",
+   "LCSC": "C20526"
+  },
+  {
+   "Comment": "2N7002",
+   "Designator": "Q13,Q14,Q15",
+   "Footprint": "SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR",
+   "LCSC": "C8545"
+  },
+  {
+   "Comment": "120k",
+   "Designator": "R1,R80",
+   "Footprint": "R_0603_1608Metric",
+   "LCSC": "C25808"
+  },
+  {
+   "Comment": "0R",
+   "Designator": "R2,R3",
+   "Footprint": "R_0603_1608Metric",
+   "LCSC": "C21189"
+  },
+  {
+   "Comment": "10k",
+   "Designator": "R4,R7,R14,R18,R20,R21,R24,R25,R31,R34,R53,R54,R60,R61,R62,R63,R67,R69",
+   "Footprint": "R_0603_1608Metric",
+   "LCSC": "C25804"
+  },
+  {
+   "Comment": "100k",
+   "Designator": "R5,R8,R9,R13,R17,R51,R52,R66,R68",
+   "Footprint": "R_0603_1608Metric",
+   "LCSC": "C25803"
+  },
+  {
+   "Comment": "220k",
+   "Designator": "R6",
+   "Footprint": "R_0603_1608Metric",
+   "LCSC": "C22961"
+  },
+  {
+   "Comment": "13k",
+   "Designator": "R10",
+   "Footprint": "R_0603_1608Metric",
+   "LCSC": "C22797"
+  },
+  {
+   "Comment": "150k",
+   "Designator": "R11",
+   "Footprint": "R_0603_1608Metric",
+   "LCSC": "C22807"
+  },
+  {
+   "Comment": "33k",
+   "Designator": "R12",
+   "Footprint": "R_0603_1608Metric",
+   "LCSC": "C4216"
+  },
+  {
+   "Comment": "1k",
+   "Designator": "R15,R36,R38,R64",
+   "Footprint": "R_0603_1608Metric",
+   "LCSC": "C21190"
+  },
+  {
+   "Comment": "22k",
+   "Designator": "R16,R81",
+   "Footprint": "R_0603_1608Metric",
+   "LCSC": "C31850"
+  },
+  {
+   "Comment": "2.2k",
+   "Designator": "R22,R23",
+   "Footprint": "R_0603_1608Metric",
+   "LCSC": "C4190"
+  },
+  {
+   "Comment": "15k",
+   "Designator": "R30,R33",
+   "Footprint": "R_0603_1608Metric",
+   "LCSC": "C22809"
+  },
+  {
+   "Comment": "47k",
+   "Designator": "R37,R39,R82",
+   "Footprint": "R_0603_1608Metric",
+   "LCSC": "C25819"
+  },
+  {
+   "Comment": "20k",
+   "Designator": "R50",
+   "Footprint": "R_0603_1608Metric",
+   "LCSC": "C4184"
+  },
+  {
+   "Comment": "100R",
+   "Designator": "R65",
+   "Footprint": "R_0603_1608Metric",
+   "LCSC": "C22775"
+  },
+  {
+   "Comment": "TS-1187A",
+   "Designator": "SW1,SW2,SW3",
+   "Footprint": "SW-SMD_4P-L5.1-W5.1-P3.70-LS6.5-TL_H1.5",
+   "LCSC": "C318884"
+  },
+  {
+   "Comment": "CH224A",
+   "Designator": "U1",
+   "Footprint": "ESSOP-10_L4.9-W3.9-P1.0-LS6.0-TL-EP",
+   "LCSC": "C42459160"
+  },
+  {
+   "Comment": "TPS54302",
+   "Designator": "U2",
+   "Footprint": "SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BL",
+   "LCSC": "C311983"
+  },
+  {
+   "Comment": "SY8089A1AAC",
+   "Designator": "U3",
+   "Footprint": "TSOT-23-5_L2.9-W1.6-P0.95-LS2.8-BR",
+   "LCSC": "C479074"
+  },
+  {
+   "Comment": "LP5907-3.3",
+   "Designator": "U4",
+   "Footprint": "SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR",
+   "LCSC": "C80670"
+  },
+  {
+   "Comment": "ESP32-WROVER-E-N8R8",
+   "Designator": "U5",
+   "Footprint": "WIFI-SMD_ESP32-WROVER-IE8MB",
+   "LCSC": "C2973667"
+  },
+  {
+   "Comment": "CH340B",
+   "Designator": "U6",
+   "Footprint": "SOP-16_L10.0-W3.9-P1.27-LS6.0-BL",
+   "LCSC": "C81010"
+  },
+  {
+   "Comment": "ES8388",
+   "Designator": "U7",
+   "Footprint": "QFN-28_L4.0-W4.0-P0.45-BL-EP",
+   "LCSC": "C365736"
+  },
+  {
+   "Comment": "TPA3118D2",
+   "Designator": "U8",
+   "Footprint": "HTSSOP-32_L11.0-W6.1-P0.65-LS8.1-BL-EP",
+   "LCSC": "C46497"
+  },
+  {
+   "Comment": "IRM-3638T",
+   "Designator": "U9",
+   "Footprint": "OPTO-TH_IRM-3638T",
+   "LCSC": "C42421366"
+  }
+ ],
+ "prebuy_rows": [
+  {
+   "LCSC": "C46550472",
+   "MPN": "MA35V470M10X13",
+   "Comment": "470uF 35V polymer",
+   "Designator": "C58",
+   "Qty Per Board": "1",
+   "Boards": "5",
+   "Qty To Buy": "5",
+   "Note": "Extended part: JLC's BOM review may show it as idle stock (unselected, qty 0) that has to be bought into your parts inventory before assembly."
+  },
+  {
+   "LCSC": "C2836441",
+   "MPN": "RVT220UF35V67RV0024",
+   "Comment": "220uF 35V",
+   "Designator": "C59",
+   "Qty Per Board": "1",
+   "Boards": "5",
+   "Qty To Buy": "5",
+   "Note": "Extended part: JLC's BOM review may show it as idle stock (unselected, qty 0) that has to be bought into your parts inventory before assembly."
+  },
+  {
+   "LCSC": "C151920",
+   "MPN": "SMBJ22A",
+   "Comment": "SMBJ22A",
+   "Designator": "D1",
+   "Qty Per Board": "1",
+   "Boards": "5",
+   "Qty To Buy": "5",
+   "Note": "Extended part: JLC's BOM review may show it as idle stock (unselected, qty 0) that has to be bought into your parts inventory before assembly."
+  },
+  {
+   "LCSC": "C110694",
+   "MPN": "PESDNC2FD5VB",
+   "Comment": "PESDNC2FD5VB",
+   "Designator": "D3,D4,D5,D6,D7,D8",
+   "Qty Per Board": "6",
+   "Boards": "5",
+   "Qty To Buy": "30",
+   "Note": "Extended part: JLC's BOM review may show it as idle stock (unselected, qty 0) that has to be bought into your parts inventory before assembly."
+  },
+  {
+   "LCSC": "C165948",
+   "MPN": "TYPE-C-31-M-12",
+   "Comment": "TYPE-C-31-M-12",
+   "Designator": "J1",
+   "Qty Per Board": "1",
+   "Boards": "5",
+   "Qty To Buy": "5",
+   "Note": "Extended part: JLC's BOM review may show it as idle stock (unselected, qty 0) that has to be bought into your parts inventory before assembly."
+  },
+  {
+   "LCSC": "C7527522",
+   "MPN": "XDJK-0271-1650",
+   "Comment": "RCA line in",
+   "Designator": "J2,J3",
+   "Qty Per Board": "2",
+   "Boards": "5",
+   "Qty To Buy": "10",
+   "Note": "Extended part: JLC's BOM review may show it as idle stock (unselected, qty 0) that has to be bought into your parts inventory before assembly."
+  },
+  {
+   "LCSC": "C7437321",
+   "MPN": "24.243.1",
+   "Comment": "24.243 red",
+   "Designator": "J4,J6",
+   "Qty Per Board": "2",
+   "Boards": "5",
+   "Qty To Buy": "10",
+   "Note": "Extended part: JLC's BOM review may show it as idle stock (unselected, qty 0) that has to be bought into your parts inventory before assembly."
+  },
+  {
+   "LCSC": "C7437322",
+   "MPN": "24.243.2",
+   "Comment": "24.243 black",
+   "Designator": "J5,J7",
+   "Qty Per Board": "2",
+   "Boards": "5",
+   "Qty To Buy": "10",
+   "Note": "Extended part: JLC's BOM review may show it as idle stock (unselected, qty 0) that has to be bought into your parts inventory before assembly."
+  },
+  {
+   "LCSC": "C2883765",
+   "MPN": "X6511WVS-08H-C60D48R2",
+   "Comment": "ESP32 spare header",
+   "Designator": "J8",
+   "Qty Per Board": "1",
+   "Boards": "5",
+   "Qty To Buy": "5",
+   "Note": "Extended part: JLC's BOM review may show it as idle stock (unselected, qty 0) that has to be bought into your parts inventory before assembly."
+  },
+  {
+   "LCSC": "C48391614",
+   "MPN": "XR0850-100M",
+   "Comment": "10uH 8A",
+   "Designator": "L1,L2,L3,L4",
+   "Qty Per Board": "4",
+   "Boards": "5",
+   "Qty To Buy": "20",
+   "Note": "Extended part: JLC's BOM review may show it as idle stock (unselected, qty 0) that has to be bought into your parts inventory before assembly."
+  },
+  {
+   "LCSC": "C79272",
+   "MPN": "SWPA6045S100MT",
+   "Comment": "10uH",
+   "Designator": "L5",
+   "Qty Per Board": "1",
+   "Boards": "5",
+   "Qty To Buy": "5",
+   "Note": "Extended part: JLC's BOM review may show it as idle stock (unselected, qty 0) that has to be bought into your parts inventory before assembly."
+  },
+  {
+   "LCSC": "C305171",
+   "MPN": "SWPA4020S2R2NT",
+   "Comment": "2.2uH",
+   "Designator": "L6",
+   "Qty Per Board": "1",
+   "Boards": "5",
+   "Qty To Buy": "5",
+   "Note": "Extended part: JLC's BOM review may show it as idle stock (unselected, qty 0) that has to be bought into your parts inventory before assembly."
+  },
+  {
+   "LCSC": "C5125949",
+   "MPN": "AO4485",
+   "Comment": "AO4485",
+   "Designator": "Q1",
+   "Qty Per Board": "1",
+   "Boards": "5",
+   "Qty To Buy": "5",
+   "Note": "Extended part: JLC's BOM review may show it as idle stock (unselected, qty 0) that has to be bought into your parts inventory before assembly."
+  },
+  {
+   "LCSC": "C42459160",
+   "MPN": "CH224A",
+   "Comment": "CH224A",
+   "Designator": "U1",
+   "Qty Per Board": "1",
+   "Boards": "5",
+   "Qty To Buy": "5",
+   "Note": "Extended part: JLC's BOM review may show it as idle stock (unselected, qty 0) that has to be bought into your parts inventory before assembly."
+  },
+  {
+   "LCSC": "C311983",
+   "MPN": "TPS54302DDCR",
+   "Comment": "TPS54302",
+   "Designator": "U2",
+   "Qty Per Board": "1",
+   "Boards": "5",
+   "Qty To Buy": "5",
+   "Note": "Extended part: JLC's BOM review may show it as idle stock (unselected, qty 0) that has to be bought into your parts inventory before assembly."
+  },
+  {
+   "LCSC": "C479074",
+   "MPN": "SY8089A1AAC",
+   "Comment": "SY8089A1AAC",
+   "Designator": "U3",
+   "Qty Per Board": "1",
+   "Boards": "5",
+   "Qty To Buy": "5",
+   "Note": "Extended part: JLC's BOM review may show it as idle stock (unselected, qty 0) that has to be bought into your parts inventory before assembly."
+  },
+  {
+   "LCSC": "C80670",
+   "MPN": "LP5907MFX-3.3/NOPB",
+   "Comment": "LP5907-3.3",
+   "Designator": "U4",
+   "Qty Per Board": "1",
+   "Boards": "5",
+   "Qty To Buy": "5",
+   "Note": "Extended part: JLC's BOM review may show it as idle stock (unselected, qty 0) that has to be bought into your parts inventory before assembly."
+  },
+  {
+   "LCSC": "C2973667",
+   "MPN": "ESP32-WROVER-E-N8R8",
+   "Comment": "ESP32-WROVER-E-N8R8",
+   "Designator": "U5",
+   "Qty Per Board": "1",
+   "Boards": "5",
+   "Qty To Buy": "5",
+   "Note": "Extended part: JLC's BOM review may show it as idle stock (unselected, qty 0) that has to be bought into your parts inventory before assembly."
+  },
+  {
+   "LCSC": "C81010",
+   "MPN": "CH340B",
+   "Comment": "CH340B",
+   "Designator": "U6",
+   "Qty Per Board": "1",
+   "Boards": "5",
+   "Qty To Buy": "5",
+   "Note": "Extended part: JLC's BOM review may show it as idle stock (unselected, qty 0) that has to be bought into your parts inventory before assembly."
+  },
+  {
+   "LCSC": "C365736",
+   "MPN": "ES8388",
+   "Comment": "ES8388",
+   "Designator": "U7",
+   "Qty Per Board": "1",
+   "Boards": "5",
+   "Qty To Buy": "5",
+   "Note": "Extended part: JLC's BOM review may show it as idle stock (unselected, qty 0) that has to be bought into your parts inventory before assembly."
+  },
+  {
+   "LCSC": "C46497",
+   "MPN": "TPA3118D2DAPR",
+   "Comment": "TPA3118D2",
+   "Designator": "U8",
+   "Qty Per Board": "1",
+   "Boards": "5",
+   "Qty To Buy": "5",
+   "Note": "Extended part: JLC's BOM review may show it as idle stock (unselected, qty 0) that has to be bought into your parts inventory before assembly."
+  },
+  {
+   "LCSC": "C42421366",
+   "MPN": "IRM-3638T",
+   "Comment": "IRM-3638T",
+   "Designator": "U9",
+   "Qty Per Board": "1",
+   "Boards": "5",
+   "Qty To Buy": "5",
+   "Note": "Extended part: JLC's BOM review may show it as idle stock (unselected, qty 0) that has to be bought into your parts inventory before assembly."
+  }
+ ],
+ "bom_full_rows": [
+  {
+   "Comment": "1uF",
+   "Designator": "C1,C15,C16,C22,C41,C44,C50,C60,C61,C62,C63,C82,C84",
+   "Qty Per Board": "13",
+   "Footprint": "C_0603_1608Metric",
+   "MPN": "CL10A105KB8NNNC",
+   "LCSC": "C15849",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "100nF",
+   "Designator": "C2,C5,C6,C11,C17,C18,C21,C23,C24,C30,C31,C33,C34,C36,C38,C40,C53,C56",
+   "Qty Per Board": "18",
+   "Footprint": "C_0603_1608Metric",
+   "MPN": "CC0603KRX7R9BB104",
+   "LCSC": "C14663",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "10uF",
+   "Designator": "C3",
+   "Qty Per Board": "1",
+   "Footprint": "C_1206_3216Metric",
+   "MPN": "CL31A106KBHNNNE",
+   "LCSC": "C13585",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "4.7uF",
+   "Designator": "C4",
+   "Qty Per Board": "1",
+   "Footprint": "C_1206_3216Metric",
+   "MPN": "1206B475K500NT",
+   "LCSC": "C29823",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "22uF",
+   "Designator": "C7,C8,C12,C25,C90",
+   "Qty Per Board": "5",
+   "Footprint": "C_0805_2012Metric",
+   "MPN": "CL21A226MAQNNNE",
+   "LCSC": "C45783",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "47pF",
+   "Designator": "C9",
+   "Qty Per Board": "1",
+   "Footprint": "C_0603_1608Metric",
+   "MPN": "CL10C470JB8NNNC",
+   "LCSC": "C1671",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "10uF",
+   "Designator": "C10,C13,C20,C35,C37,C39,C47,C48",
+   "Qty Per Board": "8",
+   "Footprint": "C_0603_1608Metric",
+   "MPN": "CL10A106KP8NNNC",
+   "LCSC": "C19702",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "22pF",
+   "Designator": "C14",
+   "Qty Per Board": "1",
+   "Footprint": "C_0603_1608Metric",
+   "MPN": "CL10C220JB8NNNC",
+   "LCSC": "C1653",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "4.7uF",
+   "Designator": "C19,C32,C80",
+   "Qty Per Board": "3",
+   "Footprint": "C_0603_1608Metric",
+   "MPN": "CL10A475KO8NNNC",
+   "LCSC": "C19666",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "47nF",
+   "Designator": "C26",
+   "Qty Per Board": "1",
+   "Footprint": "C_0603_1608Metric",
+   "MPN": "CL10B473KB8NNNC",
+   "LCSC": "C1622",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "100pF",
+   "Designator": "C42,C45",
+   "Qty Per Board": "2",
+   "Footprint": "C_0603_1608Metric",
+   "MPN": "CL10C101JB8NNNC",
+   "LCSC": "C14858",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "1uF",
+   "Designator": "C51,C52,C55",
+   "Qty Per Board": "3",
+   "Footprint": "C_0805_2012Metric",
+   "MPN": "CL21B105KBFNNNE",
+   "LCSC": "C28323",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "1nF",
+   "Designator": "C54,C57",
+   "Qty Per Board": "2",
+   "Footprint": "C_0603_1608Metric",
+   "MPN": "CL10B102KB8NNNC",
+   "LCSC": "C1588",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "470uF 35V polymer",
+   "Designator": "C58",
+   "Qty Per Board": "1",
+   "Footprint": "CAP-SMD_BD10.0-L10.3-W10.3-FD-LS11.0",
+   "MPN": "MA35V470M10X13",
+   "LCSC": "C46550472",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "220uF 35V",
+   "Designator": "C59",
+   "Qty Per Board": "1",
+   "Footprint": "CAP-SMD_BD8.0-L8.3-W8.3-LS9.3-FD",
+   "MPN": "RVT220UF35V67RV0024",
+   "LCSC": "C2836441",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "220nF",
+   "Designator": "C64,C65,C66,C67",
+   "Qty Per Board": "4",
+   "Footprint": "C_0603_1608Metric",
+   "MPN": "CL10B224KA8NNNC",
+   "LCSC": "C21120",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "1uF",
+   "Designator": "C68,C69,C70,C71",
+   "Qty Per Board": "4",
+   "Footprint": "C_1206_3216Metric",
+   "MPN": "CL31B105KBHNNNE",
+   "LCSC": "C1848",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "470pF",
+   "Designator": "C81,C83",
+   "Qty Per Board": "2",
+   "Footprint": "C_0603_1608Metric",
+   "MPN": "0603B471K500NT",
+   "LCSC": "C1620",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "SMBJ22A",
+   "Designator": "D1",
+   "Qty Per Board": "1",
+   "Footprint": "SMB_L4.6-W3.6-LS5.3-RD",
+   "MPN": "SMBJ22A",
+   "LCSC": "C151920",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "red",
+   "Designator": "D2",
+   "Qty Per Board": "1",
+   "Footprint": "LED-SMD_L1.6-W0.8-R-RD",
+   "MPN": "KT-0603R",
+   "LCSC": "C2286",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "PESDNC2FD5VB",
+   "Designator": "D3,D4,D5,D6,D7,D8",
+   "Qty Per Board": "6",
+   "Footprint": "DFN1006-2L-BI",
+   "MPN": "PESDNC2FD5VB",
+   "LCSC": "C110694",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "TYPE-C-31-M-12",
+   "Designator": "J1",
+   "Qty Per Board": "1",
+   "Footprint": "USB-C_SMD-TYPE-C-31-M-12_1",
+   "MPN": "TYPE-C-31-M-12",
+   "LCSC": "C165948",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "ESP32 spare header",
+   "Designator": "J8",
+   "Qty Per Board": "1",
+   "Footprint": "HDR-SMD_8P-P2.54-V-M-LS4.8_R2",
+   "MPN": "X6511WVS-08H-C60D48R2",
+   "LCSC": "C2883765",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "10uH 8A",
+   "Designator": "L1,L2,L3,L4",
+   "Qty Per Board": "4",
+   "Footprint": "IND-SMD_L8.0-W8.0_XR0850",
+   "MPN": "XR0850-100M",
+   "LCSC": "C48391614",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "10uH",
+   "Designator": "L5",
+   "Qty Per Board": "1",
+   "Footprint": "IND-SMD_L6.0-W6.0_SWPA6045S",
+   "MPN": "SWPA6045S100MT",
+   "LCSC": "C79272",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "2.2uH",
+   "Designator": "L6",
+   "Qty Per Board": "1",
+   "Footprint": "IND-SMD_L4.0-W4.0_VLCF4020",
+   "MPN": "SWPA4020S2R2NT",
+   "LCSC": "C305171",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "AO4485",
+   "Designator": "Q1",
+   "Qty Per Board": "1",
+   "Footprint": "SOP-8_L4.9-W3.9-P1.27-LS6.0-BL",
+   "MPN": "AO4485",
+   "LCSC": "C5125949",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "MMBT3904",
+   "Designator": "Q2,Q3,Q4,Q11,Q12",
+   "Qty Per Board": "5",
+   "Footprint": "SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR",
+   "MPN": "MMBT3904(RANGE:100-300)",
+   "LCSC": "C20526",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "2N7002",
+   "Designator": "Q13,Q14,Q15",
+   "Qty Per Board": "3",
+   "Footprint": "SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR",
+   "MPN": "2N7002",
+   "LCSC": "C8545",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "120k",
+   "Designator": "R1,R80",
+   "Qty Per Board": "2",
+   "Footprint": "R_0603_1608Metric",
+   "MPN": "0603WAF1203T5E",
+   "LCSC": "C25808",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "0R",
+   "Designator": "R2,R3",
+   "Qty Per Board": "2",
+   "Footprint": "R_0603_1608Metric",
+   "MPN": "0603WAF0000T5E",
+   "LCSC": "C21189",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "10k",
+   "Designator": "R4,R7,R14,R18,R20,R21,R24,R25,R31,R34,R53,R54,R60,R61,R62,R63,R67,R69",
+   "Qty Per Board": "18",
+   "Footprint": "R_0603_1608Metric",
+   "MPN": "0603WAF1002T5E",
+   "LCSC": "C25804",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "100k",
+   "Designator": "R5,R8,R9,R13,R17,R51,R52,R66,R68",
+   "Qty Per Board": "9",
+   "Footprint": "R_0603_1608Metric",
+   "MPN": "0603WAF1003T5E",
+   "LCSC": "C25803",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "220k",
+   "Designator": "R6",
+   "Qty Per Board": "1",
+   "Footprint": "R_0603_1608Metric",
+   "MPN": "0603WAF2203T5E",
+   "LCSC": "C22961",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "13k",
+   "Designator": "R10",
+   "Qty Per Board": "1",
+   "Footprint": "R_0603_1608Metric",
+   "MPN": "0603WAF1302T5E",
+   "LCSC": "C22797",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "150k",
+   "Designator": "R11",
+   "Qty Per Board": "1",
+   "Footprint": "R_0603_1608Metric",
+   "MPN": "0603WAF1503T5E",
+   "LCSC": "C22807",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "33k",
+   "Designator": "R12",
+   "Qty Per Board": "1",
+   "Footprint": "R_0603_1608Metric",
+   "MPN": "0603WAF3302T5E",
+   "LCSC": "C4216",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "1k",
+   "Designator": "R15,R36,R38,R64",
+   "Qty Per Board": "4",
+   "Footprint": "R_0603_1608Metric",
+   "MPN": "0603WAF1001T5E",
+   "LCSC": "C21190",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "22k",
+   "Designator": "R16,R81",
+   "Qty Per Board": "2",
+   "Footprint": "R_0603_1608Metric",
+   "MPN": "0603WAF2202T5E",
+   "LCSC": "C31850",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "2.2k",
+   "Designator": "R22,R23",
+   "Qty Per Board": "2",
+   "Footprint": "R_0603_1608Metric",
+   "MPN": "0603WAF2201T5E",
+   "LCSC": "C4190",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "15k",
+   "Designator": "R30,R33",
+   "Qty Per Board": "2",
+   "Footprint": "R_0603_1608Metric",
+   "MPN": "0603WAF1502T5E",
+   "LCSC": "C22809",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "47k",
+   "Designator": "R37,R39,R82",
+   "Qty Per Board": "3",
+   "Footprint": "R_0603_1608Metric",
+   "MPN": "0603WAF4702T5E",
+   "LCSC": "C25819",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "20k",
+   "Designator": "R50",
+   "Qty Per Board": "1",
+   "Footprint": "R_0603_1608Metric",
+   "MPN": "0603WAF2002T5E",
+   "LCSC": "C4184",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "100R",
+   "Designator": "R65",
+   "Qty Per Board": "1",
+   "Footprint": "R_0603_1608Metric",
+   "MPN": "0603WAF1000T5E",
+   "LCSC": "C22775",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "TS-1187A",
+   "Designator": "SW1,SW2,SW3",
+   "Qty Per Board": "3",
+   "Footprint": "SW-SMD_4P-L5.1-W5.1-P3.70-LS6.5-TL_H1.5",
+   "MPN": "TS-1187A-B-A-B",
+   "LCSC": "C318884",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "CH224A",
+   "Designator": "U1",
+   "Qty Per Board": "1",
+   "Footprint": "ESSOP-10_L4.9-W3.9-P1.0-LS6.0-TL-EP",
+   "MPN": "CH224A",
+   "LCSC": "C42459160",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "TPS54302",
+   "Designator": "U2",
+   "Qty Per Board": "1",
+   "Footprint": "SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BL",
+   "MPN": "TPS54302DDCR",
+   "LCSC": "C311983",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "SY8089A1AAC",
+   "Designator": "U3",
+   "Qty Per Board": "1",
+   "Footprint": "TSOT-23-5_L2.9-W1.6-P0.95-LS2.8-BR",
+   "MPN": "SY8089A1AAC",
+   "LCSC": "C479074",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "LP5907-3.3",
+   "Designator": "U4",
+   "Qty Per Board": "1",
+   "Footprint": "SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR",
+   "MPN": "LP5907MFX-3.3/NOPB",
+   "LCSC": "C80670",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "ESP32-WROVER-E-N8R8",
+   "Designator": "U5",
+   "Qty Per Board": "1",
+   "Footprint": "WIFI-SMD_ESP32-WROVER-IE8MB",
+   "MPN": "ESP32-WROVER-E-N8R8",
+   "LCSC": "C2973667",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "CH340B",
+   "Designator": "U6",
+   "Qty Per Board": "1",
+   "Footprint": "SOP-16_L10.0-W3.9-P1.27-LS6.0-BL",
+   "MPN": "CH340B",
+   "LCSC": "C81010",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "ES8388",
+   "Designator": "U7",
+   "Qty Per Board": "1",
+   "Footprint": "QFN-28_L4.0-W4.0-P0.45-BL-EP",
+   "MPN": "ES8388",
+   "LCSC": "C365736",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "TPA3118D2",
+   "Designator": "U8",
+   "Qty Per Board": "1",
+   "Footprint": "HTSSOP-32_L11.0-W6.1-P0.65-LS8.1-BL-EP",
+   "MPN": "TPA3118D2DAPR",
+   "LCSC": "C46497",
+   "Assembly Class": "smt_placed",
+   "Instructions": ""
+  },
+  {
+   "Comment": "RCA line in",
+   "Designator": "J2",
+   "Qty Per Board": "1",
+   "Footprint": "CONN-TH_XDJK-0271-1650",
+   "MPN": "XDJK-0271-1650",
+   "LCSC": "C7527522",
+   "Assembly Class": "tht",
+   "Instructions": "Through-hole - JLC THT assembly (or hand-solder after reflow); not on the SMT line."
+  },
+  {
+   "Comment": "RCA sub out",
+   "Designator": "J3",
+   "Qty Per Board": "1",
+   "Footprint": "CONN-TH_XDJK-0271-1650",
+   "MPN": "XDJK-0271-1650",
+   "LCSC": "C7527522",
+   "Assembly Class": "tht",
+   "Instructions": "Through-hole - JLC THT assembly (or hand-solder after reflow); not on the SMT line."
+  },
+  {
+   "Comment": "24.243 red",
+   "Designator": "J4,J6",
+   "Qty Per Board": "2",
+   "Footprint": "CONN-TH_24.243.1_RED",
+   "MPN": "24.243.1",
+   "LCSC": "C7437321",
+   "Assembly Class": "tht",
+   "Instructions": "Through-hole - JLC THT assembly (or hand-solder after reflow); not on the SMT line."
+  },
+  {
+   "Comment": "24.243 black",
+   "Designator": "J5,J7",
+   "Qty Per Board": "2",
+   "Footprint": "CONN-TH_24.243.2",
+   "MPN": "24.243.2",
+   "LCSC": "C7437322",
+   "Assembly Class": "tht",
+   "Instructions": "Through-hole - JLC THT assembly (or hand-solder after reflow); not on the SMT line."
+  },
+  {
+   "Comment": "IRM-3638T",
+   "Designator": "U9",
+   "Qty Per Board": "1",
+   "Footprint": "OPTO-TH_IRM-3638T",
+   "MPN": "IRM-3638T",
+   "LCSC": "C42421366",
+   "Assembly Class": "tht",
+   "Instructions": "Through-hole - JLC THT assembly (or hand-solder after reflow); not on the SMT line."
+  },
+  {
+   "Comment": "",
+   "Designator": "H1,H2,H3,H4",
+   "Qty Per Board": "4",
+   "Footprint": "",
+   "MPN": "",
+   "LCSC": "",
+   "Assembly Class": "board_feature",
+   "Instructions": "Realised in copper - nothing to buy or place."
+  }
+ ],
+ "cpl_rows": [
+  {
+   "Designator": "C1",
+   "Mid X": "74.6650",
+   "Mid Y": "-77.3230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "C2",
+   "Mid X": "91.7650",
+   "Mid Y": "-72.8230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "C3",
+   "Mid X": "78.3650",
+   "Mid Y": "-82.3230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C4",
+   "Mid X": "73.1650",
+   "Mid Y": "-82.9230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C5",
+   "Mid X": "79.2650",
+   "Mid Y": "-84.6230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C6",
+   "Mid X": "75.8650",
+   "Mid Y": "-89.7230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C7",
+   "Mid X": "81.3650",
+   "Mid Y": "-94.8230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C8",
+   "Mid X": "81.3650",
+   "Mid Y": "-96.9230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C9",
+   "Mid X": "69.8650",
+   "Mid Y": "-85.8230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "C10",
+   "Mid X": "74.8650",
+   "Mid Y": "-97.9230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C11",
+   "Mid X": "74.8650",
+   "Mid Y": "-99.7230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C12",
+   "Mid X": "79.3650",
+   "Mid Y": "-107.3230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C13",
+   "Mid X": "75.3650",
+   "Mid Y": "-107.3230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C14",
+   "Mid X": "71.3650",
+   "Mid Y": "-110.6230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C15",
+   "Mid X": "64.3650",
+   "Mid Y": "-100.3230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C16",
+   "Mid X": "60.3650",
+   "Mid Y": "-104.3230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C17",
+   "Mid X": "63.8650",
+   "Mid Y": "-111.4230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C18",
+   "Mid X": "89.2650",
+   "Mid Y": "-118.9230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C19",
+   "Mid X": "85.6000",
+   "Mid Y": "-79.1300",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C20",
+   "Mid X": "33.3650",
+   "Mid Y": "-140.8230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C21",
+   "Mid X": "36.3650",
+   "Mid Y": "-140.8230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C22",
+   "Mid X": "42.3650",
+   "Mid Y": "-140.8230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C23",
+   "Mid X": "69.3650",
+   "Mid Y": "-129.1230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C24",
+   "Mid X": "75.3650",
+   "Mid Y": "-122.8230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C25",
+   "Mid X": "86.9000",
+   "Mid Y": "-99.0000",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "C26",
+   "Mid X": "97.9900",
+   "Mid Y": "-116.5300",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C30",
+   "Mid X": "49.8650",
+   "Mid Y": "-100.3230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C31",
+   "Mid X": "49.8650",
+   "Mid Y": "-102.1230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C32",
+   "Mid X": "56.8650",
+   "Mid Y": "-89.8230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C33",
+   "Mid X": "56.8650",
+   "Mid Y": "-91.6230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C34",
+   "Mid X": "56.8650",
+   "Mid Y": "-93.4230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C35",
+   "Mid X": "59.3650",
+   "Mid Y": "-95.3230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C36",
+   "Mid X": "59.3650",
+   "Mid Y": "-97.1230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C37",
+   "Mid X": "52.8650",
+   "Mid Y": "-89.8230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C38",
+   "Mid X": "52.8650",
+   "Mid Y": "-91.6230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C39",
+   "Mid X": "49.3650",
+   "Mid Y": "-89.8230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C40",
+   "Mid X": "49.3650",
+   "Mid Y": "-91.6230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C41",
+   "Mid X": "38.3650",
+   "Mid Y": "-86.4230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C42",
+   "Mid X": "38.3650",
+   "Mid Y": "-88.2230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C44",
+   "Mid X": "44.3650",
+   "Mid Y": "-86.4230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C45",
+   "Mid X": "44.3650",
+   "Mid Y": "-88.2230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C47",
+   "Mid X": "61.3650",
+   "Mid Y": "-82.3230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C48",
+   "Mid X": "66.8650",
+   "Mid Y": "-82.3230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C50",
+   "Mid X": "101.0650",
+   "Mid Y": "-113.3230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "C51",
+   "Mid X": "110.3650",
+   "Mid Y": "-106.5230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C52",
+   "Mid X": "110.3650",
+   "Mid Y": "-104.3230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C53",
+   "Mid X": "110.3650",
+   "Mid Y": "-102.3230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C54",
+   "Mid X": "110.3650",
+   "Mid Y": "-100.5230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C55",
+   "Mid X": "94.1650",
+   "Mid Y": "-104.3230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C56",
+   "Mid X": "94.1650",
+   "Mid Y": "-102.3230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C57",
+   "Mid X": "94.1650",
+   "Mid Y": "-100.5230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C58",
+   "Mid X": "87.0650",
+   "Mid Y": "-108.3230",
+   "Layer": "Top",
+   "Rotation": "270.0000"
+  },
+  {
+   "Designator": "C59",
+   "Mid X": "117.3650",
+   "Mid Y": "-108.3230",
+   "Layer": "Top",
+   "Rotation": "270.0000"
+  },
+  {
+   "Designator": "C60",
+   "Mid X": "98.3650",
+   "Mid Y": "-112.8230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C61",
+   "Mid X": "98.3650",
+   "Mid Y": "-114.7230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C62",
+   "Mid X": "108.3650",
+   "Mid Y": "-113.3230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C63",
+   "Mid X": "108.3650",
+   "Mid Y": "-115.2230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C64",
+   "Mid X": "95.8650",
+   "Mid Y": "-97.3230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "C65",
+   "Mid X": "100.4650",
+   "Mid Y": "-97.3230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "C66",
+   "Mid X": "103.2650",
+   "Mid Y": "-97.3230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "C67",
+   "Mid X": "107.8650",
+   "Mid Y": "-97.3230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "C68",
+   "Mid X": "89.8650",
+   "Mid Y": "-82.8730",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C69",
+   "Mid X": "98.3650",
+   "Mid Y": "-82.8730",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C70",
+   "Mid X": "106.8650",
+   "Mid Y": "-82.8730",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C71",
+   "Mid X": "115.3650",
+   "Mid Y": "-82.8730",
+   "Layer": "Top",
+   "Rotation": "180.0000"
+  },
+  {
+   "Designator": "C80",
+   "Mid X": "111.8650",
+   "Mid Y": "-142.3230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C81",
+   "Mid X": "49.0000",
+   "Mid Y": "-83.9000",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C82",
+   "Mid X": "49.0000",
+   "Mid Y": "-85.5000",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C83",
+   "Mid X": "52.6000",
+   "Mid Y": "-83.9000",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C84",
+   "Mid X": "52.6000",
+   "Mid Y": "-85.5000",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "C90",
+   "Mid X": "72.6000",
+   "Mid Y": "-93.0000",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "D1",
+   "Mid X": "84.8650",
+   "Mid Y": "-72.2230",
+   "Layer": "Top",
+   "Rotation": "180.0000"
+  },
+  {
+   "Designator": "D2",
+   "Mid X": "70.8650",
+   "Mid Y": "-148.3230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "D3",
+   "Mid X": "46.8850",
+   "Mid Y": "-80.7100",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "D4",
+   "Mid X": "38.8850",
+   "Mid Y": "-80.7100",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "D5",
+   "Mid X": "68.2450",
+   "Mid Y": "-80.7100",
+   "Layer": "Top",
+   "Rotation": "180.0000"
+  },
+  {
+   "Designator": "D6",
+   "Mid X": "61.0850",
+   "Mid Y": "-80.7100",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "D7",
+   "Mid X": "75.1140",
+   "Mid Y": "-64.6000",
+   "Layer": "Top",
+   "Rotation": "180.0000"
+  },
+  {
+   "Designator": "D8",
+   "Mid X": "74.6000",
+   "Mid Y": "-68.4500",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "J1",
+   "Mid X": "81.3650",
+   "Mid Y": "-65.3930",
+   "Layer": "Top",
+   "Rotation": "180.0000"
+  },
+  {
+   "Designator": "J2",
+   "Mid X": "42.4650",
+   "Mid Y": "-75.5230",
+   "Layer": "Top",
+   "Rotation": "180.0000"
+  },
+  {
+   "Designator": "J3",
+   "Mid X": "64.6650",
+   "Mid Y": "-75.5230",
+   "Layer": "Top",
+   "Rotation": "180.0000"
+  },
+  {
+   "Designator": "J4",
+   "Mid X": "100.2650",
+   "Mid Y": "-70.3230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "J5",
+   "Mid X": "111.2650",
+   "Mid Y": "-70.3230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "J6",
+   "Mid X": "122.2650",
+   "Mid Y": "-70.3230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "J7",
+   "Mid X": "133.2650",
+   "Mid Y": "-70.3230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "J8",
+   "Mid X": "42.5650",
+   "Mid Y": "-111.0230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "L1",
+   "Mid X": "89.8650",
+   "Mid Y": "-89.5230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "L2",
+   "Mid X": "98.3650",
+   "Mid Y": "-89.5230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "L3",
+   "Mid X": "106.8650",
+   "Mid Y": "-89.5230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "L4",
+   "Mid X": "115.3650",
+   "Mid Y": "-89.5230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "L5",
+   "Mid X": "82.0650",
+   "Mid Y": "-89.5230",
+   "Layer": "Top",
+   "Rotation": "270.0000"
+  },
+  {
+   "Designator": "L6",
+   "Mid X": "79.3650",
+   "Mid Y": "-102.3230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "Q1",
+   "Mid X": "90.5650",
+   "Mid Y": "-66.3230",
+   "Layer": "Top",
+   "Rotation": "270.0000"
+  },
+  {
+   "Designator": "Q2",
+   "Mid X": "62.8650",
+   "Mid Y": "-130.3230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "Q3",
+   "Mid X": "62.8650",
+   "Mid Y": "-134.3230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "Q4",
+   "Mid X": "86.8650",
+   "Mid Y": "-75.9230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "Q11",
+   "Mid X": "68.9000",
+   "Mid Y": "-92.1000",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "Q12",
+   "Mid X": "65.3500",
+   "Mid Y": "-92.1000",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "Q13",
+   "Mid X": "63.9000",
+   "Mid Y": "-89.0000",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "Q14",
+   "Mid X": "61.8000",
+   "Mid Y": "-92.1000",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "Q15",
+   "Mid X": "67.4500",
+   "Mid Y": "-89.0000",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R1",
+   "Mid X": "74.6650",
+   "Mid Y": "-70.9230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "R2",
+   "Mid X": "77.0650",
+   "Mid Y": "-79.7230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R3",
+   "Mid X": "80.3650",
+   "Mid Y": "-79.7230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R4",
+   "Mid X": "74.6650",
+   "Mid Y": "-74.1230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "R5",
+   "Mid X": "90.2650",
+   "Mid Y": "-71.3230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "R6",
+   "Mid X": "90.2650",
+   "Mid Y": "-74.9230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "R7",
+   "Mid X": "83.3650",
+   "Mid Y": "-77.0230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R8",
+   "Mid X": "43.8650",
+   "Mid Y": "-115.8230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "R9",
+   "Mid X": "71.6650",
+   "Mid Y": "-85.8230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "R10",
+   "Mid X": "71.6650",
+   "Mid Y": "-89.0230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "R11",
+   "Mid X": "74.8650",
+   "Mid Y": "-105.3230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R12",
+   "Mid X": "71.3650",
+   "Mid Y": "-108.8230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R13",
+   "Mid X": "63.8650",
+   "Mid Y": "-107.8230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R14",
+   "Mid X": "63.8650",
+   "Mid Y": "-109.6230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R15",
+   "Mid X": "83.3650",
+   "Mid Y": "-75.1230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R16",
+   "Mid X": "82.8650",
+   "Mid Y": "-120.7230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R17",
+   "Mid X": "82.8650",
+   "Mid Y": "-118.9230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R18",
+   "Mid X": "86.0650",
+   "Mid Y": "-118.9230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R20",
+   "Mid X": "39.3650",
+   "Mid Y": "-140.8230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R21",
+   "Mid X": "47.3650",
+   "Mid Y": "-115.8230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "R22",
+   "Mid X": "58.8650",
+   "Mid Y": "-111.3230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R23",
+   "Mid X": "58.8650",
+   "Mid Y": "-113.1230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R24",
+   "Mid X": "66.3650",
+   "Mid Y": "-130.3230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "R25",
+   "Mid X": "66.3650",
+   "Mid Y": "-134.3230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "R30",
+   "Mid X": "38.3650",
+   "Mid Y": "-82.8230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R31",
+   "Mid X": "38.3650",
+   "Mid Y": "-84.6230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R33",
+   "Mid X": "44.3650",
+   "Mid Y": "-82.8230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R34",
+   "Mid X": "44.3650",
+   "Mid Y": "-84.6230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R36",
+   "Mid X": "61.3650",
+   "Mid Y": "-84.1230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R37",
+   "Mid X": "61.3650",
+   "Mid Y": "-85.9230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R38",
+   "Mid X": "66.8650",
+   "Mid Y": "-84.1230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R39",
+   "Mid X": "66.8650",
+   "Mid Y": "-85.9230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R50",
+   "Mid X": "103.0650",
+   "Mid Y": "-113.3230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "R51",
+   "Mid X": "105.0650",
+   "Mid Y": "-113.3230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "R52",
+   "Mid X": "95.3650",
+   "Mid Y": "-112.8230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "R53",
+   "Mid X": "93.3650",
+   "Mid Y": "-116.8230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "R54",
+   "Mid X": "95.3650",
+   "Mid Y": "-116.8230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "R60",
+   "Mid X": "80.8650",
+   "Mid Y": "-141.8230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R61",
+   "Mid X": "91.8650",
+   "Mid Y": "-141.8230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R62",
+   "Mid X": "102.8650",
+   "Mid Y": "-141.8230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R63",
+   "Mid X": "108.3650",
+   "Mid Y": "-141.8230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "R64",
+   "Mid X": "70.8650",
+   "Mid Y": "-145.8230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R65",
+   "Mid X": "114.8650",
+   "Mid Y": "-140.3230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R66",
+   "Mid X": "84.6700",
+   "Mid Y": "-82.3100",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "R67",
+   "Mid X": "49.0000",
+   "Mid Y": "-82.3000",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R68",
+   "Mid X": "102.6150",
+   "Mid Y": "-82.8730",
+   "Layer": "Top",
+   "Rotation": "180.0000"
+  },
+  {
+   "Designator": "R69",
+   "Mid X": "52.6000",
+   "Mid Y": "-82.3000",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R80",
+   "Mid X": "73.5000",
+   "Mid Y": "-91.2500",
+   "Layer": "Top",
+   "Rotation": "180.0000"
+  },
+  {
+   "Designator": "R81",
+   "Mid X": "56.4000",
+   "Mid Y": "-87.9000",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "R82",
+   "Mid X": "59.4000",
+   "Mid Y": "-87.9000",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "SW1",
+   "Mid X": "80.8650",
+   "Mid Y": "-146.8230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "SW2",
+   "Mid X": "91.8650",
+   "Mid Y": "-146.8230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "SW3",
+   "Mid X": "102.8650",
+   "Mid Y": "-146.8230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "U1",
+   "Mid X": "78.6150",
+   "Mid Y": "-73.9230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "U2",
+   "Mid X": "75.8650",
+   "Mid Y": "-86.8230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "U3",
+   "Mid X": "74.8650",
+   "Mid Y": "-102.3230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "U4",
+   "Mid X": "60.3650",
+   "Mid Y": "-101.3230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "U5",
+   "Mid X": "42.3650",
+   "Mid Y": "-128.3230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "U6",
+   "Mid X": "68.8650",
+   "Mid Y": "-122.3230",
+   "Layer": "Top",
+   "Rotation": "90.0000"
+  },
+  {
+   "Designator": "U7",
+   "Mid X": "52.8650",
+   "Mid Y": "-95.3230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "U8",
+   "Mid X": "101.8650",
+   "Mid Y": "-105.3230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  },
+  {
+   "Designator": "U9",
+   "Mid X": "111.8650",
+   "Mid Y": "-147.3230",
+   "Layer": "Top",
+   "Rotation": "0.0000"
+  }
+ ],
+ "assembly_classes": {
+  "C1": "smt_placed",
+  "C2": "smt_placed",
+  "C3": "smt_placed",
+  "C4": "smt_placed",
+  "C5": "smt_placed",
+  "C6": "smt_placed",
+  "C7": "smt_placed",
+  "C8": "smt_placed",
+  "C9": "smt_placed",
+  "C10": "smt_placed",
+  "C11": "smt_placed",
+  "C12": "smt_placed",
+  "C13": "smt_placed",
+  "C14": "smt_placed",
+  "C15": "smt_placed",
+  "C16": "smt_placed",
+  "C17": "smt_placed",
+  "C18": "smt_placed",
+  "C19": "smt_placed",
+  "C20": "smt_placed",
+  "C21": "smt_placed",
+  "C22": "smt_placed",
+  "C23": "smt_placed",
+  "C24": "smt_placed",
+  "C25": "smt_placed",
+  "C26": "smt_placed",
+  "C30": "smt_placed",
+  "C31": "smt_placed",
+  "C32": "smt_placed",
+  "C33": "smt_placed",
+  "C34": "smt_placed",
+  "C35": "smt_placed",
+  "C36": "smt_placed",
+  "C37": "smt_placed",
+  "C38": "smt_placed",
+  "C39": "smt_placed",
+  "C40": "smt_placed",
+  "C41": "smt_placed",
+  "C42": "smt_placed",
+  "C44": "smt_placed",
+  "C45": "smt_placed",
+  "C47": "smt_placed",
+  "C48": "smt_placed",
+  "C50": "smt_placed",
+  "C51": "smt_placed",
+  "C52": "smt_placed",
+  "C53": "smt_placed",
+  "C54": "smt_placed",
+  "C55": "smt_placed",
+  "C56": "smt_placed",
+  "C57": "smt_placed",
+  "C58": "smt_placed",
+  "C59": "smt_placed",
+  "C60": "smt_placed",
+  "C61": "smt_placed",
+  "C62": "smt_placed",
+  "C63": "smt_placed",
+  "C64": "smt_placed",
+  "C65": "smt_placed",
+  "C66": "smt_placed",
+  "C67": "smt_placed",
+  "C68": "smt_placed",
+  "C69": "smt_placed",
+  "C70": "smt_placed",
+  "C71": "smt_placed",
+  "C80": "smt_placed",
+  "C81": "smt_placed",
+  "C82": "smt_placed",
+  "C83": "smt_placed",
+  "C84": "smt_placed",
+  "C90": "smt_placed",
+  "D1": "smt_placed",
+  "D2": "smt_placed",
+  "D3": "smt_placed",
+  "D4": "smt_placed",
+  "D5": "smt_placed",
+  "D6": "smt_placed",
+  "D7": "smt_placed",
+  "D8": "smt_placed",
+  "H1": "board_feature",
+  "H2": "board_feature",
+  "H3": "board_feature",
+  "H4": "board_feature",
+  "J1": "smt_placed",
+  "J2": "tht",
+  "J3": "tht",
+  "J4": "tht",
+  "J5": "tht",
+  "J6": "tht",
+  "J7": "tht",
+  "J8": "smt_placed",
+  "L1": "smt_placed",
+  "L2": "smt_placed",
+  "L3": "smt_placed",
+  "L4": "smt_placed",
+  "L5": "smt_placed",
+  "L6": "smt_placed",
+  "Q1": "smt_placed",
+  "Q2": "smt_placed",
+  "Q3": "smt_placed",
+  "Q4": "smt_placed",
+  "Q11": "smt_placed",
+  "Q12": "smt_placed",
+  "Q13": "smt_placed",
+  "Q14": "smt_placed",
+  "Q15": "smt_placed",
+  "R1": "smt_placed",
+  "R2": "smt_placed",
+  "R3": "smt_placed",
+  "R4": "smt_placed",
+  "R5": "smt_placed",
+  "R6": "smt_placed",
+  "R7": "smt_placed",
+  "R8": "smt_placed",
+  "R9": "smt_placed",
+  "R10": "smt_placed",
+  "R11": "smt_placed",
+  "R12": "smt_placed",
+  "R13": "smt_placed",
+  "R14": "smt_placed",
+  "R15": "smt_placed",
+  "R16": "smt_placed",
+  "R17": "smt_placed",
+  "R18": "smt_placed",
+  "R20": "smt_placed",
+  "R21": "smt_placed",
+  "R22": "smt_placed",
+  "R23": "smt_placed",
+  "R24": "smt_placed",
+  "R25": "smt_placed",
+  "R30": "smt_placed",
+  "R31": "smt_placed",
+  "R33": "smt_placed",
+  "R34": "smt_placed",
+  "R36": "smt_placed",
+  "R37": "smt_placed",
+  "R38": "smt_placed",
+  "R39": "smt_placed",
+  "R50": "smt_placed",
+  "R51": "smt_placed",
+  "R52": "smt_placed",
+  "R53": "smt_placed",
+  "R54": "smt_placed",
+  "R60": "smt_placed",
+  "R61": "smt_placed",
+  "R62": "smt_placed",
+  "R63": "smt_placed",
+  "R64": "smt_placed",
+  "R65": "smt_placed",
+  "R66": "smt_placed",
+  "R67": "smt_placed",
+  "R68": "smt_placed",
+  "R69": "smt_placed",
+  "R80": "smt_placed",
+  "R81": "smt_placed",
+  "R82": "smt_placed",
+  "SW1": "smt_placed",
+  "SW2": "smt_placed",
+  "SW3": "smt_placed",
+  "U1": "smt_placed",
+  "U2": "smt_placed",
+  "U3": "smt_placed",
+  "U4": "smt_placed",
+  "U5": "smt_placed",
+  "U6": "smt_placed",
+  "U7": "smt_placed",
+  "U8": "smt_placed",
+  "U9": "tht"
+ },
+ "class_counts": {
+  "smt_placed": 157,
+  "tht": 7,
+  "board_feature": 4
+ },
+ "not_placed": [],
+ "rotation_audit": [
+  {
+   "ref": "C1",
+   "package": "C_0603_1608Metric",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C2",
+   "package": "C_0603_1608Metric",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C3",
+   "package": "C_1206_3216Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C4",
+   "package": "C_1206_3216Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C5",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C6",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C7",
+   "package": "C_0805_2012Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C8",
+   "package": "C_0805_2012Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C9",
+   "package": "C_0603_1608Metric",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C10",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C11",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C12",
+   "package": "C_0805_2012Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C13",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C14",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C15",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C16",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C17",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C18",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C19",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C20",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C21",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C22",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C23",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C24",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C25",
+   "package": "C_0805_2012Metric",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C26",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C30",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C31",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C32",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C33",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C34",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C35",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C36",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C37",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C38",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C39",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C40",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C41",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C42",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C44",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C45",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C47",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C48",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C50",
+   "package": "C_0603_1608Metric",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C51",
+   "package": "C_0805_2012Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C52",
+   "package": "C_0805_2012Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C53",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C54",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C55",
+   "package": "C_0805_2012Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C56",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C57",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C58",
+   "package": "CAP-SMD_BD10.0-L10.3-W10.3-FD-LS11.0",
+   "base_rot": -90.0,
+   "correction": 0.0,
+   "final_rot": 270.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C59",
+   "package": "CAP-SMD_BD8.0-L8.3-W8.3-LS9.3-FD",
+   "base_rot": -90.0,
+   "correction": 0.0,
+   "final_rot": 270.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C60",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C61",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C62",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C63",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C64",
+   "package": "C_0603_1608Metric",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C65",
+   "package": "C_0603_1608Metric",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C66",
+   "package": "C_0603_1608Metric",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C67",
+   "package": "C_0603_1608Metric",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C68",
+   "package": "C_1206_3216Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C69",
+   "package": "C_1206_3216Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C70",
+   "package": "C_1206_3216Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C71",
+   "package": "C_1206_3216Metric",
+   "base_rot": 180.0,
+   "correction": 0.0,
+   "final_rot": 180.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C80",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C81",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C82",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C83",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C84",
+   "package": "C_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "C90",
+   "package": "C_0805_2012Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "D1",
+   "package": "SMB_L4.6-W3.6-LS5.3-RD",
+   "base_rot": 180.0,
+   "correction": 0.0,
+   "final_rot": 180.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "D2",
+   "package": "LED-SMD_L1.6-W0.8-R-RD",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "D3",
+   "package": "DFN1006-2L-BI",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "D4",
+   "package": "DFN1006-2L-BI",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "D5",
+   "package": "DFN1006-2L-BI",
+   "base_rot": 180.0,
+   "correction": 0.0,
+   "final_rot": 180.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "D6",
+   "package": "DFN1006-2L-BI",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "D7",
+   "package": "DFN1006-2L-BI",
+   "base_rot": 180.0,
+   "correction": 0.0,
+   "final_rot": 180.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "D8",
+   "package": "DFN1006-2L-BI",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "J1",
+   "package": "USB-C_SMD-TYPE-C-31-M-12_1",
+   "base_rot": 180.0,
+   "correction": 0.0,
+   "final_rot": 180.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "J2",
+   "package": "CONN-TH_XDJK-0271-1650",
+   "base_rot": 180.0,
+   "correction": 0.0,
+   "final_rot": 180.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "J3",
+   "package": "CONN-TH_XDJK-0271-1650",
+   "base_rot": 180.0,
+   "correction": 0.0,
+   "final_rot": 180.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "J4",
+   "package": "CONN-TH_24.243.1_RED",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "J5",
+   "package": "CONN-TH_24.243.2",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "J6",
+   "package": "CONN-TH_24.243.1_RED",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "J7",
+   "package": "CONN-TH_24.243.2",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "J8",
+   "package": "HDR-SMD_8P-P2.54-V-M-LS4.8_R2",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "L1",
+   "package": "IND-SMD_L8.0-W8.0_XR0850",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "L2",
+   "package": "IND-SMD_L8.0-W8.0_XR0850",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "L3",
+   "package": "IND-SMD_L8.0-W8.0_XR0850",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "L4",
+   "package": "IND-SMD_L8.0-W8.0_XR0850",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "L5",
+   "package": "IND-SMD_L6.0-W6.0_SWPA6045S",
+   "base_rot": -90.0,
+   "correction": 0.0,
+   "final_rot": 270.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "L6",
+   "package": "IND-SMD_L4.0-W4.0_VLCF4020",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "Q1",
+   "package": "SOP-8_L4.9-W3.9-P1.27-LS6.0-BL",
+   "base_rot": -90.0,
+   "correction": 0.0,
+   "final_rot": 270.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "Q2",
+   "package": "SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "Q3",
+   "package": "SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "Q4",
+   "package": "SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "Q11",
+   "package": "SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "Q12",
+   "package": "SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "Q13",
+   "package": "SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "Q14",
+   "package": "SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "Q15",
+   "package": "SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R1",
+   "package": "R_0603_1608Metric",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R2",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R3",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R4",
+   "package": "R_0603_1608Metric",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R5",
+   "package": "R_0603_1608Metric",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R6",
+   "package": "R_0603_1608Metric",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R7",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R8",
+   "package": "R_0603_1608Metric",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R9",
+   "package": "R_0603_1608Metric",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R10",
+   "package": "R_0603_1608Metric",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R11",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R12",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R13",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R14",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R15",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R16",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R17",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R18",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R20",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R21",
+   "package": "R_0603_1608Metric",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R22",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R23",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R24",
+   "package": "R_0603_1608Metric",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R25",
+   "package": "R_0603_1608Metric",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R30",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R31",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R33",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R34",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R36",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R37",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R38",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R39",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R50",
+   "package": "R_0603_1608Metric",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R51",
+   "package": "R_0603_1608Metric",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R52",
+   "package": "R_0603_1608Metric",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R53",
+   "package": "R_0603_1608Metric",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R54",
+   "package": "R_0603_1608Metric",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R60",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R61",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R62",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R63",
+   "package": "R_0603_1608Metric",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R64",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R65",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R66",
+   "package": "R_0603_1608Metric",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R67",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R68",
+   "package": "R_0603_1608Metric",
+   "base_rot": 180.0,
+   "correction": 0.0,
+   "final_rot": 180.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R69",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R80",
+   "package": "R_0603_1608Metric",
+   "base_rot": 180.0,
+   "correction": 0.0,
+   "final_rot": 180.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R81",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "R82",
+   "package": "R_0603_1608Metric",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "SW1",
+   "package": "SW-SMD_4P-L5.1-W5.1-P3.70-LS6.5-TL_H1.5",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "SW2",
+   "package": "SW-SMD_4P-L5.1-W5.1-P3.70-LS6.5-TL_H1.5",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "SW3",
+   "package": "SW-SMD_4P-L5.1-W5.1-P3.70-LS6.5-TL_H1.5",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "U1",
+   "package": "ESSOP-10_L4.9-W3.9-P1.0-LS6.0-TL-EP",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "U2",
+   "package": "SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BL",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "U3",
+   "package": "TSOT-23-5_L2.9-W1.6-P0.95-LS2.8-BR",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "U4",
+   "package": "SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "U5",
+   "package": "WIFI-SMD_ESP32-WROVER-IE8MB",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "U6",
+   "package": "SOP-16_L10.0-W3.9-P1.27-LS6.0-BL",
+   "base_rot": 90.0,
+   "correction": 0.0,
+   "final_rot": 90.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "U7",
+   "package": "QFN-28_L4.0-W4.0-P0.45-BL-EP",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "U8",
+   "package": "HTSSOP-32_L11.0-W6.1-P0.65-LS8.1-BL-EP",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  },
+  {
+   "ref": "U9",
+   "package": "OPTO-TH_IRM-3638T",
+   "base_rot": 0.0,
+   "correction": 0.0,
+   "final_rot": 0.0,
+   "matched": null,
+   "source": "lcsc_model",
+   "layer": "Top"
+  }
+ ],
+ "bottom_preview": null,
+ "n_rotation_corrections": 0,
+ "rotation_from_table": [],
+ "easyeda_cache": "parts/easyeda",
+ "model_fetch_failed": [],
+ "easyeda_rate_limited": null,
+ "missing_lcsc": [],
+ "missing_lcsc_unplaced": [
+  "H1",
+  "H2",
+  "H3",
+  "H4"
+ ],
+ "unsourced": [],
+ "off_lcsc": [],
+ "unplaced_smt": [],
+ "qty_mismatch": [],
+ "attr_mismatch": [],
+ "violations": [],
+ "bom_complete": true,
+ "castellated_pads": 0,
+ "castellated_refs": []
+}

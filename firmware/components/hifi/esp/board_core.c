@@ -1,0 +1,745 @@
+/*
+ * The core board, Plus and Ultra (hifi_board_core.h). The ESP32 has no pins
+ * left, so the power path and the front controls sit on the I2C I/O
+ * expander: PVDD_EN, both amps' resets and their wired-OR FAULT and OTW,
+ * the DAC's reset, the Ethernet clock, the DJ-direct switch, the LED, and
+ * the knob and buttons. The CH224Q's contract is what this code asks it
+ * for (there is no VBUS divider to read), the INA186 gives the input
+ * current, and the PCM5102A sub DAC gets the sum of the mains from I2S1.
+ * The ES7243E hears the RCA line in for the governed line in and, in DJ
+ * direct, the subs. On Ultra it also runs the front board: its buttons,
+ * RGB LED and the LCD's reset (the LCD itself is squeezelite's display).
+ */
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "driver/adc.h"
+#include "driver/gpio.h"
+#include "driver/i2c.h"
+#include "driver/i2s.h"
+#include "esp_adc_cal.h"
+#include "esp_heap_caps.h"
+#include "esp_log.h"
+#include "esp_system.h"
+#include "esp_netif.h"
+#include "esp_timer.h"
+#include "esp_rom_gpio.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/semphr.h"
+#include "freertos/task.h"
+#include "soc/gpio_periph.h"
+#include "soc/gpio_reg.h"
+#include "soc/gpio_sig_map.h"
+#include "soc/io_mux_reg.h"
+
+#include "platform_config.h"
+
+#include "hifi_board.h"
+#include "hifi_bsp.h"
+#include "hifi_esp.h"
+#include "hifi_exp.h"
+#include "hifi_ir.h"
+#include "hifi_line.h"
+#include "hifi_pd.h"
+
+static const char TAG[] = "hifi_core";
+
+static SemaphoreHandle_t exp_lock;  /* the expander's output shadow */
+static uint8_t exp_addr;            /* 0: none answered */
+static uint8_t out0;                /* port 0 as last written */
+static volatile uint16_t in_pins = 0xFFFF; /* both input ports, as last read */
+static TaskHandle_t ctrl_task;
+
+static esp_adc_cal_characteristics_t adc_chars;
+static uint32_t last_pd;
+static uint8_t vreq_sent = 0xFF;
+static float vreq_v;                 /* the voltage asked for, 0 before */
+static uint32_t t_pd;                /* when this PD contract came in */
+static bool pd_was;
+static float cap_v[7], cap_i[7];     /* the source's fixed PDOs */
+static int cap_n = -1;               /* -1 not read for this contract */
+
+static volatile bool zone_b;        /* Ultra: zone B's amp on with zone A's */
+static bool amps_a, amps_b, resync;
+
+static volatile float sub_gain = 1.0f; /* 0 when the sub is off */
+static volatile bool sub_ready, sub_direct;
+static SemaphoreHandle_t sub_lock;  /* I2S1's driver, which DJ direct reinstalls */
+static uint8_t adc_addr;            /* the ES7243E's, once set up */
+
+#ifdef CONFIG_HIFI_ULTRA
+static bool front;                  /* the front board's expander answered */
+static uint8_t front_out1, front_cfg1; /* its port 1 as last written */
+static volatile uint8_t front_in = 0xFF; /* its port 0 as last read */
+#endif
+
+/* bring-up (the API's led and backlight): the LED test runs until this
+ * (ms, 0: off); the backlight on or off, else its own timer */
+#define LED_TEST_MS 30000
+static volatile uint32_t led_test_until;
+#ifdef CONFIG_HIFI_ULTRA
+static volatile enum { BL_AUTO, BL_ON, BL_OFF } bl_mode;
+#endif
+
+/* ------------------------------------------------------------------ expander */
+
+static esp_err_t exp_out(uint8_t v) {
+	if (!exp_addr) return ESP_ERR_NOT_FOUND;
+	esp_err_t err = hifi_i2c_write(exp_addr, EXP_REG_OUT0, v);
+	if (err == ESP_OK) out0 = v;
+	return err;
+}
+
+/* sets one port-0 output; the I2C write only when it changes */
+static esp_err_t exp_set(int bit, bool on) {
+	xSemaphoreTake(exp_lock, portMAX_DELAY);
+	uint8_t v = hifi_exp_bit(out0, bit, on);
+	esp_err_t err = v == out0 ? ESP_OK : exp_out(v);
+	xSemaphoreGive(exp_lock);
+	return err;
+}
+
+static bool exp_read(uint16_t *pins) {
+	uint8_t p0, p1;
+	if (!exp_addr || hifi_i2c_read(exp_addr, EXP_REG_IN0, &p0) != ESP_OK ||
+	    hifi_i2c_read(exp_addr, EXP_REG_IN0 + 1, &p1) != ESP_OK)
+		return false;
+	*pins = (uint16_t) (p1 << 8 | p0);
+	return true;
+}
+
+static void exp_init(void) {
+	static const uint8_t addrs[] = EXP_ADDRS;
+	uint8_t v;
+	for (int i = 0; i < sizeof(addrs) && !exp_addr; i++)
+		if (hifi_i2c_read(addrs[i], EXP_REG_CFG0, &v) == ESP_OK) exp_addr = addrs[i];
+	if (!exp_addr) {
+		ESP_LOGE(TAG, "no I/O expander answers: no PVDD, amps, DAC or Ethernet");
+		return;
+	}
+	/* the outputs' levels first, then make them outputs: the DAC out of reset
+	 * and the Ethernet clock on (the network starts after us), PVDD and the
+	 * amps off; on Ultra the front board's backlight on. Port 1: TAP_SEL low,
+	 * the ADC on the line in */
+	uint8_t v0 = hifi_exp_bit(hifi_exp_bit(0, EXP_DAC_EN, true), EXP_PHY_RST, true);
+#ifdef CONFIG_HIFI_ULTRA
+	v0 = hifi_exp_bit(v0, EXP_LCD_BL, true);
+#endif
+	esp_err_t err = exp_out(v0);
+	err |= hifi_i2c_write(exp_addr, EXP_REG_OUT1, 0x00);
+	err |= hifi_i2c_write(exp_addr, EXP_REG_CFG0, EXP_CFG0);
+	err |= hifi_i2c_write(exp_addr, EXP_REG_CFG0 + 1, EXP_CFG1);
+	ESP_LOGI(TAG, "I/O expander at 0x%02x%s", exp_addr, err ? ", but it didn't take its setup" : "");
+}
+
+/* ------------------------------------------------------------------ the Sabre */
+
+/* Squeezelite sends its 16-bit samples in 32-bit I2S slots here (BCLK 64
+ * fs, for the ES7243E), which is the word length the ES9018K2M comes out of
+ * reset with. Register 1 bits 7:6 are the word length (10: 32 bit); set it
+ * anyway, so a DAC left at 16 bit by older firmware across a restart
+ * follows; the rest stays as reset left it. */
+#define DAC_R1_LEN_32 0x80
+static esp_err_t dac_init(void) {
+	uint8_t r1;
+	esp_err_t err = hifi_i2c_read(ES9018_ADDR, 0x01, &r1);
+	if (err == ESP_OK) err = hifi_i2c_write(ES9018_ADDR, 0x01, (r1 & 0x3F) | DAC_R1_LEN_32);
+	if (err != ESP_OK) ESP_LOGE(TAG, "ES9018K2M didn't take its I2S word length");
+	return err;
+}
+
+/* ------------------------------------------------------------------ the line-in ADC */
+
+/*
+ * The ES7243E as an I2S slave in standard I2S with 32-bit words, its master
+ * clock from BCLK (U13's MCLK pin is grounded): reg 0x02 bit 7. BCLK is 64
+ * fs, which x8 (reg 0x04 premulti 3) makes the 512 fs its 32x oversampling
+ * runs at; there is no setting for 32 fs (review-3 R3-AUDIO-3). AVDD 3.3 V,
+ * PGA on at 0 dB: the board halves the line to ~1 Vrms, the ADC's full
+ * scale. The sequence and the 64 fs clock row are Everest's own Linux
+ * driver's (es7243e.c, es7243e_usr_cfg.h: RATIO_64, FROM_INTERNAL_BCLK,
+ * NORMAL_I2S, VDDA_3V3), with Espressif's esp_codec_dev reset prologue.
+ */
+static const uint8_t ADC_INIT[][2] = {
+	{0x01, 0x3A}, {0x00, 0x80}, {0xF9, 0x00}, {0x04, 0x02}, {0x04, 0x01}, /* reset */
+	{0xF9, 0x01}, {0x00, 0x1E}, {0x01, 0x00},
+	{0x02, 0x80},                                     /* MCLK from BCLK, clocks not inverted */
+	{0x03, 0x20}, {0x0D, 0x00}, {0x04, 0x03}, {0x05, 0x00}, /* 64 fs: OSR 32, x8 */
+	{0x09, 0xE0}, {0x0A, 0xA0},
+	{0x0B, 0x10}, {0x0C, 0x00},                       /* I2S, 32-bit words, no TDM */
+	{0x0E, 0xBF}, {0x0F, 0x80}, {0x14, 0x0C}, {0x15, 0x0C}, /* 0 dB digital volume */
+	{0x18, 0x26}, {0x17, 0x02}, {0x19, 0x77}, {0x1A, 0xF4}, /* analog, for AVDD 3.3 V */
+	{0x1B, 0x66}, {0x1C, 0x44}, {0x1D, 0x3C}, {0x1E, 0x00}, {0x1F, 0x0C},
+	{0x00, 0x80}, {0x01, 0x3A}, {0x16, 0x00},         /* slave, clocks on, analog up */
+	{0x20, 0x10}, {0x21, 0x10},                       /* PGA on, 0 dB */
+};
+
+static uint8_t adc_find(void) {
+	uint8_t v;
+	if (hifi_i2c_read(ES7243_ADDR, 0x00, &v) == ESP_OK) return ES7243_ADDR;
+	if (hifi_i2c_read(ES7243_ADDR_ALT, 0x00, &v) == ESP_OK) return ES7243_ADDR_ALT;
+	return 0;
+}
+
+bool hifi_bsp_line_start(void) {
+	uint8_t a = adc_find();
+	if (!a) {
+		ESP_LOGE(TAG, "line-in ADC: neither 0x%02x nor 0x%02x answers", ES7243_ADDR, ES7243_ADDR_ALT);
+		return false;
+	}
+	esp_err_t err = ESP_OK;
+	for (int i = 0; i < sizeof(ADC_INIT) / sizeof(ADC_INIT[0]); i++) err |= hifi_i2c_write(a, ADC_INIT[i][0], ADC_INIT[i][1]);
+	/* the PGA's reset, as Everest's driver ends its set-up */
+	vTaskDelay(pdMS_TO_TICKS(100));
+	err |= hifi_i2c_write(a, 0x16, 0x03);
+	vTaskDelay(pdMS_TO_TICKS(100));
+	err |= hifi_i2c_write(a, 0x16, 0x00);
+	if (err != ESP_OK) {
+		ESP_LOGE(TAG, "line-in ADC at 0x%02x didn't take its set-up", a);
+		return false;
+	}
+	adc_addr = a;
+	ESP_LOGI(TAG, "line-in ADC at 0x%02x: I2S slave, 32-bit words, MCLK from BCLK", a);
+	return true;
+}
+
+int hifi_bsp_line_read(int16_t *buf, int frames, bool invert, uint32_t wait_ms) {
+	static int32_t raw[2 * 128];
+	if (frames > 128) frames = 128;
+	size_t got = 0;
+	/* squeezelite opened I2S0 full duplex (di=36 in DAC_CONFIG) */
+	if (i2s_read(CONFIG_I2S_NUM, raw, frames * 8, &got, pdMS_TO_TICKS(wait_ms)) != ESP_OK) return 0;
+	int n = got / 8;
+	hifi_line_to_s16(raw, buf, n, invert);
+	return n;
+}
+
+/* ------------------------------------------------------------------ Ultra's front board */
+
+#ifdef CONFIG_HIFI_ULTRA
+static esp_err_t front_write(uint8_t reg, uint8_t v) {
+	uint8_t b[2] = {reg, v};
+	return i2c_master_write_to_device(I2C_PORT, FRONT_ADDR, b, 2, pdMS_TO_TICKS(20));
+}
+
+/*
+ * Before squeezelite sets up the LCD (the patch calls this at the top of
+ * display_init, once the I2C bus is up): the panel's reset low for 10 ms,
+ * then 120 ms for it to come out (ST7789: before Sleep Out). Its driver
+ * sends no software reset, and an ESP32 restart doesn't reset the front
+ * board's expander, so without this a panel left mid-command by a crash
+ * would stay that way (review-3 R3-DIGITAL-3, R3-DIGITAL-10).
+ */
+void hifi_display_reset(void) {
+	uint8_t out1 = 0xFF & ~(1 << (FRONT_LCD_RST - 8)); /* the LEDs' cathodes high: off */
+	uint8_t cfg1 = 0xFF & ~(1 << (FRONT_LCD_RST - 8)) & ~(1 << (FRONT_LED_G - 8)) & ~(1 << (FRONT_LED_B - 8));
+	if (front_write(0x03, out1) != ESP_OK) {
+		ESP_LOGW(TAG, "front board: 0x%02x doesn't answer", FRONT_ADDR);
+		return;
+	}
+	front_write(0x07, cfg1);
+	front_write(0x06, 0xFF); /* port 0: the knob and the buttons, inputs */
+	vTaskDelay(pdMS_TO_TICKS(10));
+	front_write(0x03, out1 | 1 << (FRONT_LCD_RST - 8));
+	vTaskDelay(pdMS_TO_TICKS(120));
+}
+
+/* the LED, each colour on or off; red off is an input (blocks.md B8) */
+static void front_led(bool r, bool g, bool b) {
+	uint8_t out1 = 0xF0 | 1 << (FRONT_LCD_RST - 8) | (!g) << (FRONT_LED_G - 8) | (!b) << (FRONT_LED_B - 8);
+	uint8_t cfg1 = 0xF0 | (!r) << (FRONT_LED_R - 8);
+	if (!front || (out1 == front_out1 && cfg1 == front_cfg1)) return;
+	if (hifi_i2c_write(FRONT_ADDR, 0x03, out1) == ESP_OK && hifi_i2c_write(FRONT_ADDR, 0x07, cfg1) == ESP_OK) {
+		front_out1 = out1;
+		front_cfg1 = cfg1;
+	}
+}
+
+static void front_init(void) {
+	uint8_t v;
+	front = hifi_i2c_read(FRONT_ADDR, 0x06, &v) == ESP_OK;
+	if (!front) {
+		ESP_LOGE(TAG, "front board: no TCA9535 at 0x%02x (the FFC?): no buttons or LED", FRONT_ADDR);
+		return;
+	}
+	hifi_i2c_write(FRONT_ADDR, 0x06, 0xFF);
+	front_led(false, false, true); /* blue: starting */
+	ESP_LOGI(TAG, "front board at 0x%02x", FRONT_ADDR);
+}
+
+/* both ports, which clears its INT (the TCA9535 clears it on reading the
+ * port that changed); port 0's pins */
+static bool front_read(uint8_t *p0) {
+	uint8_t p1;
+	return front && hifi_i2c_read(FRONT_ADDR, 0x00, p0) == ESP_OK && hifi_i2c_read(FRONT_ADDR, 0x01, &p1) == ESP_OK;
+}
+#endif
+
+/* ------------------------------------------------------------------ init */
+
+/* Before a software restart (OTA, the API's reboot): the 50 MHz PHY clock
+ * off, since a restart doesn't move EN and the expander would keep it on
+ * GPIO0, the boot strap (firmware requirement C1, review-3 R3-DIGITAL-1).
+ * A brownout or a watchdog reset skips this: the board's EN supervisor
+ * covers those */
+static void phy_clock_off(void) {
+	if (!exp_addr) return;
+	exp_out(hifi_exp_bit(hifi_exp_bit(hifi_exp_bit(out0, EXP_PHY_RST, false), EXP_AMP_A_RST, false), EXP_AMP_B_RST, false));
+}
+
+void hifi_bsp_init(hifi_power_cfg_t *pc, hifi_gov_cfg_t *gc) {
+	exp_lock = xSemaphoreCreateMutex();
+	sub_lock = xSemaphoreCreateMutex();
+	exp_init();
+#ifdef CONFIG_HIFI_ULTRA
+	front_init();
+#endif
+	esp_register_shutdown_handler(phy_clock_off);
+	vTaskDelay(pdMS_TO_TICKS(20)); /* the DAC leaves reset, the PHY's clock starts */
+	dac_init();
+
+	adc1_config_width(ADC_WIDTH_BIT_12);
+	adc1_config_channel_atten(ADC_ISENSE, ADC_ATTEN_DB_6); /* to ~1.75 V: 5 A is 1.25 V */
+	esp_adc_cal_characterize(ADC_UNIT_1, ADC_ATTEN_DB_6, ADC_WIDTH_BIT_12, 1100, &adc_chars);
+
+	char *s = config_alloc_get_str("hifi_zone_b", NULL, "0");
+	zone_b = HIFI_ZONES > 1 && s && !strcmp(s, "1");
+	free(s);
+
+	hifi_power_cfg_core(pc);
+	hifi_gov_cfg_core(gc);
+#if HIFI_SPLIT
+	/* one channel per chip: in the vented box at 30 C room each chip holds
+	 * ~2.0 W at Tj 110 C, which is 9.6 W of sustained output per channel
+	 * into 4 ohm (hwde check_thermal; 14.8 W into 6 ohm): 12 dB-crest music
+	 * at the 77 W clip level */
+	gc->thermal_out_w = 19.0f;
+#endif
+}
+
+/* ------------------------------------------------------------------ power */
+
+void hifi_bsp_power_in(uint32_t now, hifi_bsp_power_t *p) {
+	uint32_t sum = 0;
+	for (int i = 0; i < 8; i++) sum += adc1_get_raw(ADC_ISENSE);
+	/* the ADC reads 0 up to about 0.1 V (0.4 A), where its calibration would
+	 * still give ~0.1 V: call that 0 A rather than a made-up current */
+	p->vbus_i_a = sum / 8 < ISENSE_RAW_FLOOR ? 0.0f
+		    : esp_adc_cal_raw_to_voltage(sum / 8, &adc_chars) / 1000.0f / ISENSE_V_PER_A;
+	p->fault = !(in_pins >> EXP_AMP_FAULT & 1);
+	p->otw = !(in_pins >> EXP_AMP_OTW & 1);
+	p->pvdd_v = NAN; /* no PVDD sense on core */
+
+	p->pd_read = now - last_pd >= 500;
+	if (p->pd_read) {
+		last_pd = now;
+		hifi_i2c_ensure();
+		p->sink_ok = hifi_i2c_read(CH224_I2C_ADDR, CH224_REG_STATUS, &p->pd_status) == ESP_OK &&
+			     hifi_i2c_read(CH224_I2C_ADDR, CH224_REG_CURRENT, &p->pd_current) == ESP_OK;
+		if (!p->sink_ok) p->pd_current = 0;
+		bool pd = p->sink_ok && (p->pd_status & 0x18);
+		if (pd && !pd_was) {
+			t_pd = now;
+			cap_n = -1;
+		}
+		if (!pd) {
+			cap_n = -1;
+			vreq_sent = 0xFF;
+			vreq_v = 0;
+		}
+		pd_was = pd;
+		/* the source's fixed PDOs, once a contract: a charger without 20 V
+		 * (5/9/12/15 V phone chargers) is asked for what it has, so the
+		 * floor and the governor see the real voltage (review-3 R3-POWER-4) */
+		if (pd && cap_n < 0) {
+			uint8_t raw[CH224_SRCCAP_LEN];
+			int k = 0;
+			while (k < CH224_SRCCAP_LEN && hifi_i2c_read(CH224_I2C_ADDR, CH224_REG_SRCCAP + k, &raw[k]) == ESP_OK) k++;
+			cap_n = k == CH224_SRCCAP_LEN ? hifi_pd_srccap_fixed(raw, k, cap_v, cap_i, 7) : 0;
+			ESP_LOGI(TAG, "source lists %d fixed PDOs%s", cap_n, cap_n ? "" : " (unread: assuming 20 V)");
+			for (int j = 0; j < cap_n; j++) ESP_LOGI(TAG, "  %.1f V %.2f A", cap_v[j], cap_i[j]);
+		}
+		/* once a PD contract is in: 28 V when the source offers EPR, else
+		 * the highest fixed PDO up to 20 V */
+		uint8_t code = 0;
+		float v = pd ? hifi_ch224_request(p->pd_status, cap_v, cap_n > 0 ? cap_n : 0, &code) : 0;
+		if (v > 0 && code != vreq_sent && hifi_i2c_write(CH224_I2C_ADDR, CH224_REG_VREQ, code) == ESP_OK) {
+			ESP_LOGI(TAG, "asked the charger for %.0f V", v);
+			vreq_sent = code;
+			vreq_v = v;
+			t_pd = now; /* the contract changes: settle from here */
+		}
+		/* a PD contract in place and settled (the CH224Q's PG also gates
+		 * PVDD in hardware): with EPR offered, only once EPR is in, so the
+		 * 20 -> 28 V step doesn't land on a closed PVDD switch (R3-POWER-5);
+		 * between reads, p keeps the last */
+		p->pg = pd && hifi_ch224_settled(p->pd_status, now - t_pd, 3000);
+		p->vbus_v = p->sink_ok ? hifi_ch224_vbus(p->pd_status, vreq_v) : 5.0f;
+	}
+}
+
+/* The quiet stop (hifi_quiet.h): the Sabre's volume is squeezelite's
+ * digital gain, which hifi_main.c ramps on every board, so there is no codec
+ * level here. The amps go into reset through the I/O expander now if its
+ * lock is free, and on the power task's next step anyway (hifi_main.c holds
+ * them there). */
+void hifi_bsp_quiet_level(float frac) { (void) frac; }
+void hifi_bsp_quiet_mute(bool on) { (void) on; }
+void hifi_bsp_quiet_release(void) {}
+void hifi_bsp_amp_off_now(void) {
+	if (!exp_lock || xPortInIsrContext() || xTaskGetSchedulerState() != taskSCHEDULER_RUNNING) return;
+	if (xSemaphoreTake(exp_lock, pdMS_TO_TICKS(20)) != pdTRUE) return;
+	uint8_t v = hifi_exp_bit(hifi_exp_bit(out0, EXP_AMP_A_RST, false), EXP_AMP_B_RST, false);
+	if (v != out0) exp_out(v);
+	xSemaphoreGive(exp_lock);
+}
+
+void hifi_bsp_power_out(const hifi_power_out_t *o) {
+	bool a = o->amp_on, b = a && (zone_b || HIFI_SPLIT);
+	/* zone B runs off zone A's clock and syncs only when both leave reset
+	 * together (blocks.md): a change of zone B puts both in reset for one
+	 * step first */
+	if (a && amps_a && b != amps_b && !resync) {
+		resync = true;
+		a = b = false;
+	} else {
+		resync = false;
+	}
+	xSemaphoreTake(exp_lock, portMAX_DELAY);
+	uint8_t v = out0;
+	if (!a) v = hifi_exp_bit(hifi_exp_bit(v, EXP_AMP_A_RST, false), EXP_AMP_B_RST, false);
+	if (v != out0) exp_out(v);
+	v = hifi_exp_bit(v, EXP_PVDD_EN, o->pvdd_en);
+	if (v != out0) exp_out(v);
+	if (a) v = hifi_exp_bit(hifi_exp_bit(v, EXP_AMP_A_RST, true), EXP_AMP_B_RST, b);
+	if (v != out0) exp_out(v);
+	xSemaphoreGive(exp_lock);
+	amps_a = a;
+	amps_b = b;
+	/* Plus's split pair is one stereo program across two chips */
+	hifi_main_gov_amps(HIFI_SPLIT ? 1 : 1 + (a && b));
+}
+
+void hifi_bsp_set_zone(bool on) {
+	zone_b = HIFI_ZONES > 1 && on;
+	config_set_value(NVS_TYPE_STR, "hifi_zone_b", zone_b ? "1" : "0");
+}
+
+/* ------------------------------------------------------------------ routing */
+
+/* the sub is digital here, after squeezelite's volume: no boost past 0 dB,
+ * which would clip, and down to -40 dB in 0.5 dB steps */
+void hifi_bsp_channel(hifi_chan_t c) { (void) c; }
+
+float hifi_bsp_sub_db(float db) {
+	if (isnan(db)) db = 0;
+	db = roundf(db * 2) / 2;
+	return db > 0 ? 0 : db < -40 ? -40 : db;
+}
+
+/* DJ direct is the TS5A23157 switch: the line in goes to the amps with no
+ * DAC, no volume and no governor (docs/firmware.md) */
+bool hifi_bsp_route(hifi_input_t in, bool sub_on, float sub_db, const hifi_vol_t *vol, uint32_t now) {
+	/* the governed line in is digital: DJ_DIRECT off, the amps on the DAC */
+	sub_gain = sub_on ? powf(10, hifi_bsp_sub_db(sub_db) / 20) : 0;
+	return !exp_addr || exp_set(EXP_DJ_DIRECT, in == HIFI_INPUT_DJ_DIRECT) == ESP_OK;
+}
+
+/* ------------------------------------------------------------------ the sub DAC */
+
+/*
+ * I2S1 as a slave on I2S0's bit and frame clocks, which squeezelite drives
+ * on GPIO2/4: the PCM5102A's data costs one pin (blocks.md). It starts
+ * once squeezelite's I2S0 has its pins, because setting them up as outputs
+ * turns their inputs off; this turns them back on and routes them in.
+ *
+ * Its DMA matches I2S0's and starts full of silence, and each block waits
+ * for room as I2S0's does: both queues then hold the same block, so the
+ * subs play with the mains (with a shallower queue, which was here before,
+ * the subs ran up to ~100 ms ahead of them). In DJ direct the mains are
+ * analog, so the subs take the ADC's samples through a ~5 ms queue instead.
+ */
+static bool sub_install(bool direct) {
+	i2s_config_t c = {
+		.mode = I2S_MODE_SLAVE | I2S_MODE_TX,
+		.sample_rate = 48000, /* the clocks are I2S0's */
+		.bits_per_sample = LINE_SLOT_BITS,
+		.channel_format = I2S_CHANNEL_FMT_RIGHT_LEFT,
+		.communication_format = I2S_COMM_FORMAT_STAND_I2S,
+		.intr_alloc_flags = ESP_INTR_FLAG_LOWMED, /* level 1 slots may all be taken */
+		.dma_buf_count = direct ? SUB_DIRECT_DMA_COUNT : SUB_DMA_COUNT,
+		.dma_buf_len = direct ? SUB_DIRECT_DMA_LEN : SUB_DMA_LEN,
+		.tx_desc_auto_clear = true,
+	};
+	if (i2s_driver_install(SUB_I2S_NUM, &c, 0, NULL) != ESP_OK) {
+		ESP_LOGE(TAG, "sub DAC: no I2S%d", SUB_I2S_NUM);
+		return false;
+	}
+	i2s_pin_config_t pins = {.mck_io_num = I2S_PIN_NO_CHANGE, .bck_io_num = I2S_PIN_NO_CHANGE,
+				 .ws_io_num = I2S_PIN_NO_CHANGE, .data_out_num = PIN_I2S_DOUT_SUB,
+				 .data_in_num = I2S_PIN_NO_CHANGE};
+	i2s_set_pin(SUB_I2S_NUM, &pins);
+	/* BCK runs 61.9 mm to the ES7243E and on to both DACs with no series
+	 * resistor (review-5's 33R didn't reach the board): at the default ~20 mA
+	 * drive it overshoots to 3.89 V, just under VDD + 0.6. ~10 mA takes it to
+	 * 3.31 V with clean edges; ~5 mA steps through the threshold (the
+	 * i2sbck benches, docs/review-5/dal.md R5-DAL-N1). i2s_set_pin leaves pad
+	 * drive alone, and squeezelite has set I2S0's pins by now (sub_task) */
+	gpio_set_drive_capability(PIN_I2S_BCK, GPIO_DRIVE_CAP_1);
+	gpio_set_drive_capability(PIN_I2S_LRCK, GPIO_DRIVE_CAP_1);
+	gpio_set_drive_capability(PIN_I2S_DOUT_SUB, GPIO_DRIVE_CAP_1);
+	PIN_INPUT_ENABLE(GPIO_PIN_MUX_REG[PIN_I2S_BCK]);
+	PIN_INPUT_ENABLE(GPIO_PIN_MUX_REG[PIN_I2S_LRCK]);
+	/* a TX slave takes its clocks on the TX side's inputs (IDF's i2s_set_pin
+	 * does the same: s_tx_bck_sig, s_tx_ws_sig) */
+	esp_rom_gpio_connect_in_signal(PIN_I2S_BCK, I2S1O_BCK_IN_IDX, false);
+	esp_rom_gpio_connect_in_signal(PIN_I2S_LRCK, I2S1O_WS_IN_IDX, false);
+	/* fill the queue with silence, so it is as deep as I2S0's from the start */
+	static const int32_t zero[2 * 64];
+	size_t w = 0;
+	for (int i = 0; i < c.dma_buf_count * c.dma_buf_len / 64; i++) i2s_write(SUB_I2S_NUM, zero, sizeof(zero), &w, 0);
+	ESP_LOGI(TAG, "sub DAC on I2S%d, data on GPIO%d, %d frames queued%s", SUB_I2S_NUM, PIN_I2S_DOUT_SUB,
+		 c.dma_buf_count * c.dma_buf_len, direct ? " (DJ direct: the ADC's samples)" : "");
+	return true;
+}
+
+static void sub_start(void) {
+	xSemaphoreTake(sub_lock, portMAX_DELAY);
+	sub_ready = sub_install(sub_direct);
+	xSemaphoreGive(sub_lock);
+}
+
+void hifi_bsp_sub_direct(bool on) {
+	xSemaphoreTake(sub_lock, portMAX_DELAY);
+	if (on != sub_direct) {
+		sub_direct = on;
+		if (sub_ready) {
+			i2s_driver_uninstall(SUB_I2S_NUM);
+			sub_ready = sub_install(on);
+		}
+	}
+	xSemaphoreGive(sub_lock);
+}
+
+/* one block to the subs, waiting up to wait_ms for room; skipped while the
+ * driver is being swapped */
+static void sub_send(const void *buf, int bytes_per_frame, uint32_t frames, bool direct, uint32_t wait_ms) {
+	static int32_t out[2 * 128];
+	if (!sub_ready || sub_direct != direct || xSemaphoreTake(sub_lock, 0) != pdTRUE) return;
+	float g = sub_gain;
+	for (uint32_t done = 0; done < frames;) {
+		uint32_t n = frames - done < 128 ? frames - done : 128;
+		hifi_sub_mix((const uint8_t *) buf + done * bytes_per_frame, bytes_per_frame, out, n, g);
+		size_t w = 0;
+		i2s_write(SUB_I2S_NUM, out, n * 8, &w, pdMS_TO_TICKS(wait_ms));
+		if (w < n * 8) break; /* no room in time (no clock?): drop the rest, don't hold the caller */
+		done += n;
+	}
+	xSemaphoreGive(sub_lock);
+}
+
+/* The sum of the mains to both sub outputs, from squeezelite's output
+ * thread, which waits for I2S0 right after this anyway */
+void hifi_bsp_audio(const uint8_t *buf, uint32_t frames, int bytes_per_frame) {
+	sub_send(buf, bytes_per_frame, frames, false, 60);
+}
+
+/* DJ direct: the ADC's samples (inverted, C5) to the subs */
+void hifi_bsp_sub_write(const int16_t *buf, int frames) {
+	sub_send(buf, 4, frames, true, 20);
+}
+
+/* ------------------------------------------------------------------ controls */
+
+static void IRAM_ATTR exp_isr(void *arg) {
+	BaseType_t woke = pdFALSE;
+	if (ctrl_task) vTaskNotifyGiveFromISR(ctrl_task, &woke);
+	if (woke) portYIELD_FROM_ISR();
+}
+
+static bool net_up(void) {
+	static const char *ifs[] = {"WIFI_STA_DEF", "ETH_DEF"};
+	for (int i = 0; i < 2; i++) {
+		esp_netif_ip_info_t ip = {0};
+		esp_netif_t *n = esp_netif_get_handle_from_ifkey(ifs[i]);
+		if (n && esp_netif_get_ip_info(n, &ip) == ESP_OK && ip.ip.addr) return true;
+	}
+	return false;
+}
+
+#ifdef CONFIG_HIFI_ULTRA
+/* Ultra's front board, left to right after the knob: knob push play/pause
+ * (hold: standby), BTN1 input (hold: mute), BTN2 previous, BTN3 next. The
+ * front's ENC_SW and BTN1-3 (its P02-P05) stand in for bits 12-15 of the
+ * core's pins, where Plus has its own buttons and TAP_SEL */
+#define FRONT_BITS 12
+static const int PRESS[HIFI_EXP_BUTTONS] = {HIFI_IR_TOGGLE, HIFI_IR_INPUT, HIFI_IR_PREV, HIFI_IR_NEXT};
+static const int HOLD[HIFI_EXP_BUTTONS] = {HIFI_IR_POWER, HIFI_IR_MUTE, -1, -1};
+#else
+/* Plus: knob push play/pause (hold: power), source (hold: mute), next
+ * (hold: previous) */
+static const int PRESS[HIFI_EXP_BUTTONS] = {HIFI_IR_TOGGLE, HIFI_IR_INPUT, HIFI_IR_NEXT, -1};
+static const int HOLD[HIFI_EXP_BUTTONS] = {HIFI_IR_POWER, HIFI_IR_MUTE, HIFI_IR_PREV, -1};
+#endif
+
+static void controls(void *arg) {
+	/* the decoder counts + when its enc_b changes first; Alps' EC11E turns clockwise
+	 * with A leading (catalogue output waveform), so A goes in as enc_b (R5-UF-1) */
+	hifi_exp_cfg_t cfg = {.enc_a = EXP_ENC_B, .enc_b = EXP_ENC_A, .edges_per_detent = 4,
+#ifdef CONFIG_HIFI_ULTRA
+			      .buttons = {FRONT_BITS, FRONT_BITS + 1, FRONT_BITS + 2, FRONT_BITS + 3},
+#else
+			      .buttons = {EXP_ENC_SW, EXP_BTN_1, EXP_BTN_2, -1},
+#endif
+	};
+	hifi_exp_t e;
+	hifi_exp_init(&e, &cfg);
+	hifi_exp_event_t ev[4];
+	uint32_t tick = 0, touched = 0;
+	for (;;) {
+		ulTaskNotifyTake(pdTRUE, pdMS_TO_TICKS(10)); /* INT, or 10 ms */
+		uint16_t pins;
+		if (!exp_read(&pins)) continue;
+		in_pins = pins;
+		uint32_t now = (uint32_t) (esp_timer_get_time() / 1000);
+#ifdef CONFIG_HIFI_ULTRA
+		/* the front board's too, every time: reading it clears its INT,
+		 * which shares GPIO39 with the core's (review-3 R3-DIGITAL-3) */
+		uint8_t f;
+		bool fr = front_read(&f);
+		if (fr) front_in = f;
+		uint16_t fb = fr ? (f >> FRONT_ENC_SW) & 0xF : 0xF; /* ENC_SW, BTN1-3 */
+		pins = (uint16_t) ((pins & ~(0xFu << FRONT_BITS)) | fb << FRONT_BITS);
+#endif
+		int n = hifi_exp_input(&e, pins, now, ev, 4);
+		if (n) touched = now;
+		for (int i = 0; i < n; i++) {
+			if (ev[i].kind == HIFI_EXP_KNOB) hifi_main_knob(ev[i].steps);
+			else if (ev[i].kind == HIFI_EXP_PRESS && PRESS[ev[i].button] >= 0) hifi_main_action(PRESS[ev[i].button]);
+			else if (ev[i].kind == HIFI_EXP_LONG && HOLD[ev[i].button] >= 0) hifi_main_action(HOLD[ev[i].button]);
+		}
+		/* the LED: on, slow blink with no network (setup), fast with the amps
+		 * latched off by faults */
+		if (++tick % 25 == 0) {
+			bool latched = hifi_main_amp_latched(), net = net_up();
+			uint32_t phase = now / (latched ? 125 : 500);
+			bool led = latched || !net ? phase & 1 : true;
+			/* the API's LED test: the LED on; the front LED red, green,
+			 * blue, white, a second each */
+			uint32_t until = led_test_until;
+			if (until && (int32_t) (now - until) >= 0) led_test_until = until = 0;
+			exp_set(EXP_LED, until || led);
+#ifdef CONFIG_HIFI_ULTRA
+			/* the front LED: red blinking with the amps latched off, blue
+			 * blinking with no network (setup), green when ready. The
+			 * backlight stays on while something plays, for a minute
+			 * after a touch and for the first minute after boot, unless
+			 * the API has set it on or off */
+			int c = now / 1000 % 4;
+			if (until) front_led(c == 0 || c == 3, c == 1 || c == 3, c == 2 || c == 3);
+			else if (latched) front_led(phase & 1, false, false);
+			else if (!net) front_led(false, false, phase & 1);
+			else front_led(false, true, false);
+			bool bl = hifi_main_audio_active() || now - touched < FRONT_DIM_MS || now < FRONT_DIM_MS;
+			exp_set(EXP_LCD_BL, bl_mode == BL_ON || (bl_mode == BL_AUTO && bl));
+#endif
+		}
+	}
+}
+
+/* squeezelite has put I2S0's bit clock on its pin (the GPIO matrix says) */
+static bool i2s0_on_pins(void) {
+	uint32_t sel = REG_READ(GPIO_FUNC0_OUT_SEL_CFG_REG + 4 * PIN_I2S_BCK) & GPIO_FUNC0_OUT_SEL_M;
+	return sel == I2S0O_BCK_OUT_IDX;
+}
+
+static void sub_task(void *arg) {
+	/* after squeezelite sets up I2S0's pins, which turns their inputs off */
+	while (!i2s0_on_pins()) vTaskDelay(pdMS_TO_TICKS(500));
+	vTaskDelay(pdMS_TO_TICKS(500));
+	sub_start();
+	vTaskDelete(NULL);
+}
+
+void hifi_bsp_start(void) {
+	if (exp_addr) {
+		xTaskCreate(controls, "hifi_ctrl", 3072, NULL, ESP_TASK_PRIO_MIN + 3, &ctrl_task);
+		gpio_config_t in = {.pin_bit_mask = BIT64(PIN_EXP_INT), .mode = GPIO_MODE_INPUT, .intr_type = GPIO_INTR_NEGEDGE};
+		gpio_config(&in);
+		gpio_isr_handler_add(PIN_EXP_INT, exp_isr, NULL); /* squeezelite installed the ISR service */
+	}
+	xTaskCreatePinnedToCore(sub_task, "hifi_sub", 3072, NULL, ESP_TASK_PRIO_MIN + 1, NULL, 1);
+}
+
+/* ------------------------------------------------------------------ info */
+
+void hifi_bsp_info(hifi_info_t *i) {
+	i->psram_mb = heap_caps_get_total_size(MALLOC_CAP_SPIRAM) ? 8 : 0; /* WROVER-E N8R8 */
+	i->caps = (hifi_caps_t) {
+		.dj_direct = true, .line = true, .eq_min_db = -12, .eq_max_db = 12,
+		.sub_count = 2, .sub_crossover = false, .sub_per_sub = false, .sub_max_db = 0,
+		.zones = HIFI_ZONES, .eth = true, .pdo_v_max = 28,
+	};
+}
+
+int hifi_bsp_set_led(const char *mode) {
+	if (!strcmp(mode, "test")) led_test_until = ((uint32_t) (esp_timer_get_time() / 1000) + LED_TEST_MS) | 1;
+	else if (!strcmp(mode, "auto")) led_test_until = 0;
+	else return -1;
+	return 0;
+}
+
+#ifdef CONFIG_HIFI_ULTRA
+int hifi_bsp_set_backlight(const char *mode) {
+	if (!strcmp(mode, "auto")) bl_mode = BL_AUTO;
+	else if (!strcmp(mode, "on")) bl_mode = BL_ON;
+	else if (!strcmp(mode, "off")) bl_mode = BL_OFF;
+	else return -1;
+	return 0;
+}
+#endif
+
+void hifi_bsp_snapshot(hifi_snapshot_t *s) {
+	s->pvdd_v = s->amp_temp_c = NAN; /* no PVDD or temperature sensing on core */
+	s->exp_present = exp_addr;
+	s->exp_in = in_pins;
+#ifdef CONFIG_HIFI_ULTRA
+	s->front_present = front;
+	s->front_in = front_in;
+	s->backlight = bl_mode == BL_ON ? "on" : bl_mode == BL_OFF ? "off" : "auto";
+#endif
+	s->zones = HIFI_ZONES;
+	s->zone_b_on = zone_b;
+	s->eth_present = true;
+	esp_netif_ip_info_t ip = {0};
+	esp_netif_t *eth = esp_netif_get_handle_from_ifkey("ETH_DEF");
+	s->eth_up = eth && esp_netif_get_ip_info(eth, &ip) == ESP_OK && ip.ip.addr;
+	if (s->eth_up && !s->ip[0]) {
+		snprintf(s->ip, sizeof(s->ip), IPSTR, IP2STR(&ip.ip));
+		s->net_mode = "sta";
+	}
+}
+
+void hifi_bsp_selftest(hifi_selftest_t *t) {
+	uint8_t v = 0;
+	hifi_selftest_add(t, "expander_i2c", exp_addr, exp_addr ? "0x%02x acks" : "none of 0x20, 0x74-0x77 answers", exp_addr);
+	bool dac = hifi_i2c_read(ES9018_ADDR, 0x01, &v) == ESP_OK;
+	hifi_selftest_add(t, "dac_i2c", dac && (v & 0xC0) == DAC_R1_LEN_32,
+			  dac ? "0x%02x acks, reg 1 = 0x%02x" : "0x%02x doesn't answer", ES9018_ADDR, v);
+	uint8_t a = adc_find();
+	hifi_selftest_add(t, "adc_i2c", a, a ? "0x%02x acks%s" : "neither 0x%02x nor 0x14 answers", a ? a : ES7243_ADDR,
+			  adc_addr ? ", set up" : "");
+#ifdef CONFIG_HIFI_ULTRA
+	hifi_selftest_add(t, "front_i2c", front, front ? "0x%02x acks" : "0x%02x doesn't answer (the FFC?)", FRONT_ADDR);
+#endif
+	bool otw = !(in_pins >> EXP_AMP_OTW & 1);
+	hifi_selftest_add(t, "amp_otw", !otw, otw ? "OTW_CLIP low: too hot or clipping" : "OTW_CLIP high");
+}
+
+bool hifi_bsp_parts_ok(void) {
+	uint8_t v;
+	return exp_addr && hifi_i2c_read(CH224_I2C_ADDR, CH224_REG_STATUS, &v) == ESP_OK &&
+	       hifi_i2c_read(ES9018_ADDR, 0x01, &v) == ESP_OK;
+}

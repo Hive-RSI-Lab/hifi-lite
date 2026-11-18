@@ -1,0 +1,224 @@
+# Receiver firmware
+
+The firmware for the receiver's ESP32-WROVER-E. It is
+[squeezelite-esp32](https://github.com/sle118/squeezelite-esp32) (Spotify
+Connect, AirPlay, Bluetooth, Lyrion/LMS, buttons, IR, OTA, Wi-Fi setup) with
+our own component added: power sequencing and the power governor, test
+signals, the test API, and the web app. Why it is built this way, and what
+each part does, is in [`docs/firmware.md`](../docs/firmware.md); the API is
+[`docs/test-api.md`](../docs/test-api.md).
+
+| Path | What |
+|---|---|
+| `upstream.lock` | the squeezelite-esp32 commit we build on, and the ESP-IDF it needs (v4.4.8) |
+| `patches/` | our changes to upstream: one patch, a few dozen lines of hooks (below) |
+| `components/hifi/core/` | the logic, in plain C: PD contract, power sequencer, governor, tones, test API, console parser, the knob and buttons, the update manifest |
+| `components/hifi/esp/` | the board code on ESP-IDF: tasks, HTTP, mDNS, console, Wi-Fi scan and updates; `board_lite.c` or `board_core.c` (`hifi_bsp.h`) for each board's pins and parts |
+| `board/lite-main/` | the build configuration for Lite (`HIFI_LITE`) |
+| `board/core/`, `board/ultra/` | Plus (`HIFI_PLUS`) and Ultra (`HIFI_ULTRA`), both on the core board |
+| `test/` | host unit tests for `core/` |
+| `tools/fetch.sh`, `tools/build.sh` | get upstream, patch it, build |
+
+## Test it on a PC (no board, no ESP-IDF)
+
+```sh
+make -C firmware/test
+```
+
+gcc with AddressSanitizer and UBSan. It runs the power sequencer through
+power-up, brown-out, faults and idle; the governor against a 65 W charger;
+every tone's level and timing; and every API call and console command
+against a mock board.
+
+## Build it
+
+You need ESP-IDF **v4.4.8** (squeezelite-esp32's CI uses the same). Then:
+
+```sh
+firmware/tools/build.sh            # builds into ~/fw-build/squeezelite-esp32
+HIFI_BOARD=core firmware/tools/build.sh ~/fw-build/plus     # Plus
+HIFI_BOARD=ultra firmware/tools/build.sh ~/fw-build/ultra   # Ultra
+```
+
+`HIFI_BOARD` names the folder under `board/` (default `lite-main`); give
+each board its own build folder, since a build keeps its `sdkconfig`.
+
+It runs `fetch.sh` (clone upstream at the pinned commit with its submodules,
+apply `patches/`, copy `components/hifi` and the board's defaults in, and
+build the web app from `app/` if it is there), then `idf.py reconfigure` and
+`ninja -j4` at nice 19. The Hive's signing key and a built-in relay come
+from the environment, never from git (docs/remote.md):
+`HIFI_HIVE_PUBKEY=<hex>` (comma-separate two while rotating), and optionally
+`HIFI_RELAY_URL`, `HIFI_RELAY_USER`, `HIFI_RELAY_PASS`. Without
+`HIFI_HIVE_PUBKEY` the board takes no command from the relay.
+
+With the hive-fw module: `eval "$(fw env firmware)"` (it reads `fw.json`)
+and then `firmware/tools/build.sh`. The outputs are `build/recovery.bin` (the factory
+app), `build/squeezelite.bin` (the main app, for either OTA slot), the bootloader and
+the partition table.
+
+**Installing ESP-IDF v4.4.8 on a machine whose Python is new** (the Hive's is
+3.15, which v4.4's `install.sh` can't use):
+
+```sh
+git clone -b v4.4.8 --recursive --depth 1 --shallow-submodules \
+    https://github.com/espressif/esp-idf ~/esp/esp-idf-v4.4.8
+export IDF_TOOLS_PATH=~/esp/tools
+python3 ~/esp/esp-idf-v4.4.8/tools/idf_tools.py install xtensa-esp32-elf esp32ulp-elf cmake ninja
+uv venv --seed --python 3.10 ~/esp/tools/python_env/idf4.4_py3.10_env
+~/esp/tools/python_env/idf4.4_py3.10_env/bin/pip install -r <(grep -v windows-curses ~/esp/esp-idf-v4.4.8/requirements.txt | grep -v gdbgui)
+~/esp/tools/python_env/idf4.4_py3.10_env/bin/pip install --no-deps gdbgui==0.13.2.0   # export.sh checks it's there
+~/esp/tools/python_env/idf4.4_py3.10_env/bin/pip install "setuptools<70" "protobuf>=3.20,<4" "grpcio-tools>=1.48,<1.49"   # cspot's nanopb generator
+```
+
+**Spotify Connect needs a Spotify app key.** cspot fetches a Web API token
+with a Spotify developer app's client id and secret, and a track only starts
+once it has one; without them a phone connects, sets the volume, and then
+nothing plays (seen on the first Lite, 2026-11-16). Create a free app at
+developer.spotify.com (Dashboard, Create app, Web API), then give `build.sh`
+the pair as `SPOTIFY_CLIENT_ID` / `SPOTIFY_CLIENT_SECRET`, either in the
+environment or as files of those names in `HIFI_SECRETS_DIR` (default
+`~/.config/hifi-lite/secrets`). It prints only whether the key is set. An image built
+with the key holds it, so keep such images to your own boards.
+
+`build.sh` finds that install by itself. The Hive's `hive-fw` module is
+making a shared copy; when it lands, set `IDF_PATH` and `build.sh` uses it.
+
+**Checked again with the relay, OTA and capture (2026-10-28, task
+261029-014757):** the full build with `fw` (ESP-IDF v4.4.8), our component,
+esp-mqtt and libsodium linked; `squeezelite.bin` 2.77 MB of its 3.06 MB slot,
+`recovery.bin` 1.52 MB of 1.75 MB (`build.sh` checks both).
+
+**What was checked before (2026-10-28):** the full build, both images, on
+this machine with ESP-IDF v4.4.8: `squeezelite.bin` 2.69 MB in its 4 MB
+slot, `recovery.bin` 1.38 MB in its 2 MB slot; the hooks link
+(`target_hifi`, `hifi_dsp_process`, `hifi_http_register`, `hifi_sink_start`
+in `squeezelite.elf`). QEMU needs `CONFIG_ESP32_REV_MIN_0`; the board's config
+keeps rev 1, which the WROVER-E's rev-3 chip meets.
+
+**Checked on 2026-11-02, none of it on hardware:**
+- `fw check-all hifi-lite|hifi-plus|hifi-ultra --from firmware`: ESP-IDF v4.4.8
+  build, host tests and a QEMU boot of ota_0 that answers its HTTP checks. These
+  images have the placeholder page, since check-all copies only `firmware/`.
+- `tools/build.sh` for each `HIFI_BOARD`, with the web app. Compiled, not booted:
+  `squeezelite.bin` of its 3.06 MB slot: lite-main 2.82 MB, core and ultra 2.83 MB.
+  `recovery.bin` of 1.75 MB: lite-main 1.57 MB, core and ultra 1.59 MB.
+
+**Checked again (2026-10-29),** with volume, now playing and the remote:
+- Both images build: `squeezelite.bin` 2.74 MB, `recovery.bin` 1.42 MB.
+- The new hooks link as strong symbols in `squeezelite.elf`
+  (`hifi_volume_hook`, `hifi_output_gain`, `hifi_display_*`,
+  `hifi_ir_hook`, `hifi_button_hook`).
+- Still no boot.
+
+**Plus and Ultra (2026-10-29, task 261029-205022):** with ESP-IDF v4.4.8
+from `fw setup`, Lite and Plus both build: Lite's `squeezelite.bin` 2.82
+MB of 3.06 MB, `recovery.bin` 1.57 MB of 1.75 MB; Plus's 2.82 MB and 1.58
+MB; Ultra's the same. In QEMU (hive-fw's `fw qemu`, Ethernet over
+open_eth, Wi-Fi off): Lite passes fw's own hifi-lite proof (boot and 6
+API calls); Plus boots to `hifi: hifi-plus on core` and answers 13 API
+calls as expected (`info`, `state` with `eth` true, `volume`, `zone` 404,
+`update/check` 404, `sub`, `input`, `selftest`). QEMU has no I2C parts and
+no I2S, so the expander, the Sabre and the sub DAC don't start there. Not
+booted on a core board (there is none yet).
+
+**Checked again (2026-10-29, task 261029-134314),** with #41's relay, OTA
+and capture merged onto main's volume, IR and now playing: both images
+build with ESP-IDF v4.4.8, `squeezelite.bin` 2.81 MB of its 3.06 MB slot
+(92%), `recovery.bin` 1.56 MB of 1.75 MB (89%); `hifi_volume_hook`,
+`hifi_ir_learn`, `hifi_remote_status` and `hifi_ota_status` all link. Still
+no boot.
+
+**Line in, DJ direct's subs and guard, Ultra's front board (2026-10-30,
+task 261030-215602):** Lite, Plus and Ultra all build with ESP-IDF v4.4.8
+(`fw setup`): Lite's `squeezelite.bin` 2.82 MB and `recovery.bin` 1.57 MB,
+Plus's and Ultra's 2.83 MB and 1.59 MB, of 3.06 / 1.75 MB. Main hadn't
+built since f8e719b: `hifi_net_ip` called `esp_netif_get_default_netif`,
+which v4.4 doesn't have; it now looks at the station, then Ethernet. Not
+booted: QEMU has no I2S or I2C parts, so the ADC, the sub DAC and the
+front board need a board.
+
+`export.sh` refuses to run when the tools the steps above skip (gdb,
+openocd, the S2/S3/RISC-V compilers) are missing. To build without
+installing them, put on `PATH` by hand:
+- the venv's `bin`;
+- `$IDF_PATH/tools`;
+- `xtensa-esp32-elf`, `esp32ulp-elf`, `cmake` and `ninja` from
+  `$IDF_TOOLS_PATH/tools/*/*/…/bin`.
+
+Then run `idf.py reconfigure` and `ninja -C build`.
+
+## Flash it
+
+Over the board's USB-C (the CH340C console; DTR/RTS do the boot-mode dance):
+
+```sh
+cd ~/fw-build/squeezelite-esp32 && idf.py -p /dev/ttyUSB0 flash monitor
+```
+
+That writes the bootloader, partition table, recovery and the main app, and
+an otadata that boots the main app in `ota_0` (marked valid, so no trial
+boot). IDF's own otadata is blank, which boots recovery; `build.sh` replaces it
+with `tools/otadata.py`'s. Recovery stays the fallback: the `recovery` console
+command, a rollback, or squeezelite's crash counter. Later
+updates go over the network (`docs/test-api.md`, "squeezelite-esp32's own
+endpoints").
+
+## What the patch changes in upstream
+
+`patches/0001-hifi-receiver-hooks.patch`, against `upstream.lock`'s commit:
+
+- **`main/Kconfig.projbuild`:** a `HIFI_LITE` board choice carrying
+  lite-main's codec (`dac_config` with MCLK on GPIO0), the ES8388 register
+  set (upstream's, with the speaker output capped at −3 dB), the three
+  buttons, IR on GPIO14, the LED on GPIO22 and the `hifi-lite` target and
+  hostname. `HIFI_PLUS` and `HIFI_ULTRA` carry the core board's I2S
+  (`model=I2S`, no codec I2C), its system I2C on GPIO13/14, the LAN8720
+  (`eth_config`), IR on GPIO35 and the `hifi-plus`/`hifi-ultra` names.
+- **`components/targets`:** registers `target_hifi`, so our component starts
+  at boot.
+- **`components/squeezelite/equalizer.c`:** calls `hifi_dsp_process` (the
+  power governor) on every output block, after the equalizer and loudness,
+  so it measures and limits exactly what reaches I2S.
+- **`components/squeezelite/decode_external.c`:** a test-signal source beside
+  Bluetooth/AirPlay/Spotify (`hifi_sink_*`).
+- **`components/wifi-manager`:** `/` goes to the web app and squeezelite's
+  page to `/squeezelite/`; room for 48 URI handlers; calls
+  `hifi_http_register`.
+- **`main/esp_app_main.c`:** the hostname defaults to `hifi-lite` without a
+  MAC suffix.
+- **`components/squeezelite/output_embedded.c`:**
+  - `set_volume` (every source's volume) calls `hifi_volume_hook` first,
+    for the receiver's own volume, maximum and mute.
+  - `hifi_output_gain` lets our component set the gain itself.
+- **`components/display/display.c`:** `displayer_control`,
+  `displayer_metadata` and `displayer_timer` call `hifi_display_*` before
+  their "no display" return. That is how AirPlay's, Bluetooth's and
+  Spotify's now-playing reach the API.
+- **`components/services/audio_controls.c`:**
+  - `ir_handler` calls `hifi_ir_hook`, for learned remote codes.
+  - The button handler calls `hifi_button_hook`, so vol+/vol− work when
+    nothing streams.
+
+Every hook is a weak symbol, so the patched tree still builds without our
+component. To move to a newer upstream: change `upstream.lock`, run
+`fetch.sh`, fix what doesn't apply, and regenerate the patch with
+`git -C ~/fw-build/squeezelite-esp32 -c core.fileMode=false diff -- . ':!sdkconfig' ':!sdkconfig.defaults' > firmware/patches/0001-hifi-receiver-hooks.patch` (the board's sdkconfig files are copied in, not patched).
+
+`patches/0003-console-read-whole-line.patch` is a fix, not a hook: upstream's
+`stdin_read` in `components/platform_console/platform_console.c` returned at
+most the bytes of one UART event, and linenoise reads one byte at a time, so a
+whole line sent at once (as `serialtab` and the API client do) lost all but its
+first byte or two until the next event. It now reads whatever the UART driver
+has buffered. The regenerate command above diffs the whole tree, so drop this
+file's hunk from 0001 when you regenerate.
+
+`patches/0011-wifi-events-from-the-start.patch` is a hook in
+`components/wifi-manager/network_manager_handlers.c`. Right after network_manager
+creates the default event loop, and before Wi-Fi or Ethernet can start, it calls
+`hifi_net_loop_ready`. That lets `diag net` count the boot's first connect and
+`diag sys` record when the first address came. Before this, the handlers went on
+from the relay's tick, after the board had already joined. The tick still registers
+them as a fallback. `test/upstream/test_up_source.py` checks where the call sits.
+Like 0003, drop this file's hunk from 0001 when you regenerate.
+

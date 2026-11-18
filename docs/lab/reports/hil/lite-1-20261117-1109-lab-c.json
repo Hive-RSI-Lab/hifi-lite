@@ -1,0 +1,79 @@
+{
+ "dev": "lite-1",
+ "plan": "tools/hil-lab.json",
+ "t": "2026-11-17T06:09:25",
+ "stopped": false,
+ "exit": 0,
+ "passed": 2,
+ "failed": 0,
+ "skipped": 0,
+ "summary": "2/2",
+ "results": [
+  {
+   "suite": "ping_start",
+   "name": "ping_start",
+   "line": "api lab \"{\\\"op\\\":\\\"start\\\",\\\"exp\\\":\\\"espnow\\\",\\\"role\\\":\\\"ping\\\",\\\"peer\\\":\\\"lite-4\\\",\\\"rate_hz\\\":20,\\\"count\\\":100,\\\"max_s\\\":30}\"",
+   "pass": true,
+   "why": "",
+   "secs": 0.5,
+   "answer": {
+    "name": "espnow",
+    "help": "ESP-NOW link beside Wi-Fi: role echo|ping|flood, peer, rate_hz, len, count, rate, ps, window",
+    "running": true,
+    "runs": 2,
+    "elapsed_s": 0.0,
+    "left_s": 30.0,
+    "result": {
+     "role": "ping",
+     "peer": "aa:bb:cc:dd:73:e0",
+     "self": "aa:bb:cc:dd:74:2c",
+     "channel": 6,
+     "ps": "min",
+     "rate": "1m",
+     "len": 64,
+     "rate_hz": 20,
+     "queue_full": 0,
+     "other": 0,
+     "no_mem": 0,
+     "heap": {
+      "start": 13935,
+      "after_init": 13935,
+      "min": 13935
+     },
+     "tx": {
+      "session": 3892468846,
+      "sent": 1,
+      "send_fail": 0,
+      "acked": 0,
+      "nacked": 0,
+      "seconds": 0.0,
+      "kbps": 0.0
+     }
+    }
+   }
+  },
+  {
+   "suite": "after",
+   "name": "no_restart_heap_held",
+   "pass": true,
+   "why": "",
+   "answer": {
+    "before": {
+     "uptime": 1356,
+     "boots": 15,
+     "resets": "restart,restart,restart,restart,restart,restart,restart,restart",
+     "heap_free": 15675,
+     "heap_min": 12775
+    },
+    "after": {
+     "uptime": 1357,
+     "boots": 15,
+     "resets": "restart,restart,restart,restart,restart,restart,restart,restart",
+     "heap_free": 15675,
+     "heap_min": 12775
+    },
+    "heap_min_floor": null
+   }
+  }
+ ]
+}

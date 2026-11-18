@@ -1,0 +1,123 @@
+{
+  "script": "gate",
+  "gate": "dfm",
+  "phase": "P9",
+  "tool": "dfm",
+  "input": "kicad/lite-main.kicad_pcb",
+  "input_digest": "sexpr_no_uuid:eef16d9e94f6c77b4a3491f553f2fe708a4db2194787217bf61653d96ce35ca6",
+  "status": "pass",
+  "criteria": {
+    "fail_severities": [
+      "error"
+    ],
+    "max_count": 0
+  },
+  "counts": {
+    "total": 1,
+    "by_severity": {
+      "warning": 1
+    },
+    "by_source": {
+      "check.dfm": 1
+    }
+  },
+  "failing_count": 0,
+  "failing": [],
+  "warnings_count": 1,
+  "warnings": [
+    {
+      "check": "dfm",
+      "severity": "warning",
+      "pos": [
+        56.865,
+        89.313
+      ],
+      "layer": "F.Silkscreen",
+      "net": null,
+      "refs": [],
+      "msg": "263 silk strokes below JLC minimum width 0.15 mm (narrowest 0.0600 mm) on F.Silkscreen",
+      "source": "check.dfm",
+      "items": [
+        {
+          "msg": "263 silk strokes below JLC minimum width 0.15 mm (narrowest 0.0600 mm) on F.Silkscreen",
+          "pos": [
+            56.865,
+            89.313
+          ]
+        }
+      ],
+      "kind": "dfm_silk_width",
+      "width_mm": 0.06,
+      "min_mm": 0.15,
+      "count": 263
+    }
+  ],
+  "coverage": {
+    "strict": false,
+    "required": [
+      "copper",
+      "copper_to_edge",
+      "zone_fill",
+      "drill",
+      "hole_to_edge",
+      "silk",
+      "polarity",
+      "placement",
+      "placement_visual",
+      "bom",
+      "release",
+      "castellation",
+      "netlist",
+      "teardrop"
+    ],
+    "ran": [
+      "copper",
+      "copper_to_edge",
+      "zone_fill",
+      "drill",
+      "hole_to_edge",
+      "silk",
+      "polarity",
+      "placement",
+      "bom",
+      "release",
+      "castellation",
+      "netlist",
+      "teardrop"
+    ],
+    "passed": [
+      "copper",
+      "copper_to_edge",
+      "zone_fill",
+      "drill",
+      "hole_to_edge",
+      "silk",
+      "polarity",
+      "placement",
+      "bom",
+      "release",
+      "castellation",
+      "netlist",
+      "teardrop"
+    ],
+    "failed": [],
+    "waived": [],
+    "not_applicable": {},
+    "skipped_error": {
+      "placement_visual": "no cpl_visual.json - the fab step's image pass has not run"
+    }
+  },
+  "record_result": {
+    "ok": true,
+    "recorded": true,
+    "workspace": ".",
+    "gate": "dfm",
+    "status": "pass",
+    "attempts": 14,
+    "inputs": {
+      "pcb": "sexpr_no_uuid:eef16d9e94f6c77b4a3491f553f2fe708a4db2194787217bf61653d96ce35ca6",
+      "sch": "sexpr_no_uuid:3f7dc1a2332b1f9ab5201d8875d79d4a110ecb583f1ea8b07ed5d49bba443a34",
+      "parts": null
+    }
+  }
+}
