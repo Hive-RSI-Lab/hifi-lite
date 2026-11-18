@@ -11,7 +11,9 @@ from a web app on your phone, three buttons or any IR remote.
 
 The board, its firmware, its web app, its 3D-printed case and its test bench
 were designed by AI agents built on Claude, under the direction of one
-person. Every file the agents produced is here: the KiCad project, the
+person. The agents ran on [Hive](https://hivelab.ca/), where agents start
+and resume one another through shared project threads on a message board.
+Every file the agents produced is here: the KiCad project, the
 scripts that generated the schematic, the simulations, the checks and
 reviews, the firmware, the case in code, and the reports from the five
 boards that were built. This page is the five-minute version.
@@ -25,8 +27,11 @@ and record what came out, over the network, with nobody at the bench. That
 gave a self-test on all five boards and frequency response, distortion,
 noise and crosstalk on three. It also caught a fault a one-board demo would
 have hidden: the first self-test after a flash failed, and every later run
-passed. The agents traced it to four start-up races in the firmware, fixed
-them, and then got 25 passes in 25 flash-then-test runs on two boards.
+passed. The agents traced it to four start-up races in the firmware and
+fixed them. On each of two boards, the fixed image was flashed and then
+self-tested 25 times across 12 restarts, and all 25 passed on both. The old
+image, flashed again on one of them as a control, still failed its first
+self-test, twice.
 
 | | |
 |---|---|
@@ -51,7 +56,7 @@ several problems first, among them an RCA jack against a speaker post in a
 [Who did what](docs/who-did-what.md) separates their part from the agents',
 with a timed trace of the first bring-up.
 [How the agents worked](docs/agentic_flow.md) has the timeline, the 445
-agent runs and what they cost.
+recorded board-family engineering runs and what they cost.
 
 ## What is shown, and where it stops
 
@@ -59,7 +64,7 @@ agent runs and what they cost.
 |---|---|---|
 | All five boards pass their self-test | [Self-test reports](docs/lab/reports/README.md) | The self-test checks the 20 V USB-C contract, the supply rails, the codec, the amplifier's fault line, free memory, and a −20 dB tone round trip on each channel within ±3 dB, with crosstalk. It does not measure output power or distortion. |
 | Audio was characterised on three boards | [Audio measurements](DESIGN.md#audio-measurements) | Lites 2, 3 and 4. The figures are for the whole chain: DAC, amplifier, divider and a 16-bit ADC. The divider scale comes from resistor values and was not calibrated against a meter, and the ADC's noise dominates the THD+N figures, so they are not the amplifier's own. Lites 1 and 5 were not measured. |
-| The first-flash self-test fault is fixed | [Loopback fix](DESIGN.md#audio-measurements) | 25 of 25 flash-then-test runs on Lites 2 and 3, not repeated on the other three. |
+| The first-flash self-test fault is fixed | [Loopback fix](DESIGN.md#audio-measurements), [test record](docs/lab/hifi-lite-tests.md) | 25 of 25 self-tests on Lite 2 and 25 of 25 on Lite 3. Each board had one flash of the fixed image (Lite 3 over Wi-Fi), a self-test, then 12 restarts with two self-tests after each. Control: the old image on Lite 3 failed its first self-test after a flash twice, so the fault follows the image. The restarts were software reboots through the board's API, not power cuts. Lites 1, 4 and 5 were not run. |
 | The Wi-Fi reconnect leak is fixed | [Soak report](docs/lab/reports/README.md), [30-reconnect run](docs/lab/reports/hil/lite-5-20261117-wifidrop-result.json) | A 7.7-hour soak showed a 736 B step in free memory at a Wi-Fi drop, about 730 B lost per reconnect. After the fix, 30 forced reconnects on Lite 5 netted −112 B, which is noise. The long soak with the fix has not been run. |
 | The soft-start limits inrush | [Decision trail](docs/decision-trail-soft-start.md) | Simulated only: 0.36–0.43 A peak across component tolerance. Nobody has scoped it on a built board. The boards switch the rail on correctly. |
 | Power output | [Power, plainly](#power-plainly) | 38.7 W per channel is calculated, not measured. 9 W per channel sustained is the firmware's modelled default. Continuous output at a stated THD+N, in the closed case, is still to be measured. |

@@ -6,7 +6,9 @@ firmware and the web app, the 3D-printed case, the bring-up and testing, and
 what we would do differently.
 
 The Lite was designed by AI agents built on Claude, working as a team under
-the direction of one person. One group of agents designed the board in late
+the direction of one person. They ran on [Hive](https://hivelab.ca/), where
+agents start and resume one another through shared project threads on a
+message board. One group of agents designed the board in late
 October 2026; a second group took it over on 31 October and carried it
 through the pre-order reviews, ordering, firmware, bring-up and the test
 lab. The agents wrote the schematic as code, placed and routed the board,
@@ -90,7 +92,7 @@ Dates are 2026 and come from commit history, pull requests and the project's wor
 | Nov 16 | First power-up, on Lite 1 over laptop USB. Firmware fixes for an empty `ota_data`, an I2C start-up race, console line loss and low heap (PR #185). First Wi-Fi join. First sound on a 20 V PD charger: a 440 Hz tone, left/right, a sweep and a tune. All five boards brought up. First enclosure printed in PLA. Loose button plungers failed and were replaced by spring tongues in the lid ("Lid buttons work great"). Lid labels added (PR #186). |
 | Nov 16–17 | Further firmware faults found and fixed: rename not saved, Bluetooth pairing panic (timer pool), a keyless test build locking Lite 2 out of Wi-Fi updates, Spotify takeover and skip lag, Bluetooth visibility, next/previous freeze. |
 | Nov 17 | All five boards became lab boards. 230 commits that day. Security review (PR #190); fuzzing (PRs #187, #201); QEMU fault scenarios (PR #191); self-test reports for all five boards; `hifi_relay` stack raised (PR #192). Lite 3 soak from 03:11, ended at 7.7 h by a USB-C plug shift; reconnect leak found and fixed. Audio loopback measurements on Lites 2–4 (PR #219). Hardware-in-the-loop 37/37 on Lite 5. Screwless snap box v1 printed and did not latch; v2 committed (e66f2d7). Next-spin hold-up and connector advice written. |
-| Nov 18 | First nightly hardware-in-the-loop run (71/74; the 3 failures were fixed in PR #250). App first draw 470 → 296 ms (PR #246). Update download 39 → 76 KB/s (PR #254). User-path tests 45/45 (PR #247). First-boot loopback failure fixed (PRs #253, #257, #259; then 25/25). App power graphs (PR #248). Lite 1 boot heap cut from 46,287 to 39,643 B. Main branch synced (PR #260). |
+| Nov 18 | First nightly hardware-in-the-loop run (71/74; the 3 failures were fixed in PR #250). App first draw 470 → 296 ms (PR #246). Update download 39 → 76 KB/s (PR #254). User-path tests 45/45 (PR #247). First-boot loopback failure fixed (PRs #253, #257, #259; then 25/25 on each of two boards). App power graphs (PR #248). Lite 1 boot heap cut from 46,287 to 39,643 B. Main branch synced (PR #260). |
 
 ## 2. Hardware
 
@@ -1498,7 +1500,7 @@ A review of the analysis code found that noise figures posted before the fix wer
 - the capture ring buffer is flushed;
 - the first 100 ms of capture are dropped.
 
-After the fix, 25 of 25 flash-then-test runs passed on Lites 2 and 3.
+After the fix, Lite 2 and Lite 3 each passed 25 of 25 self-tests. Each board had one flash of the fixed image (Lite 3 over Wi-Fi), a self-test, then 12 restarts with two self-tests after each. Every driven channel read 0 dB, the other channel stayed at or below −33 dB, and crosstalk was −49 to −62 dB. As a control, the old image on Lite 3 still failed its first self-test after a flash, twice, so the fault follows the image. The restarts were software reboots through the board's API, not power cuts, and Lites 1, 4 and 5 were not run.
 
 #### Soak test
 

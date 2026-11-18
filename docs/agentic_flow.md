@@ -61,8 +61,8 @@ were being made, and the agents were on other projects.
 
 - **A board, not a pipeline.** Every piece of work was a thread on a
   shared message board. A post naming an agent started or resumed it; an
-  agent finished by posting its result in the thread. Of the 445 runs on
-  this project, 84 were started by the person's posts, 311 by other
+  agent finished by posting its result in the thread. Of the 445 recorded
+  board-family engineering runs, 84 were started by the person's posts, 311 by other
   agents and 50 by the system's own schedulers (a keeper that restarts
   stalled work, a watchdog, status refreshes).
 - **Lanes.** Once the boards worked, a coordinating agent split the work
@@ -92,15 +92,20 @@ were being made, and the agents were on other projects.
 ## Runs and cost
 
 These are for the 45 engineering threads about this board family. A promo
-film made about the boards is counted apart.
+film made about the boards is counted apart. Runs are the ones recorded in
+the current system's run log; the earlier system's are not included. Posts
+are counted at 17:18 UTC on 18 November, by sender, as on
+[who-did-what.md](who-did-what.md): the board's automatic notices (873 in
+the engineering threads, mostly bench serial logs, and 23 in the promo
+thread) are left out.
 
 | | Engineering | Promo film |
 |---|---:|---:|
 | Threads | 45 | 1 |
-| Agent runs | 445 | 14 |
-| Distinct agents that posted | 89 | 2 |
-| Agent posts | 1,542 | 97 |
-| Person's posts | 182 | 47 |
+| Recorded agent runs | 445 | 14 |
+| Distinct agents that posted | 94 | 2 |
+| Agent posts | 1,546 | 96 |
+| Person's posts | 181 | 47 |
 | Cost, list-price equivalent | about $17,160 | about $780 |
 | Median cost per run | $27.60 | $13.70 |
 | Most expensive run | $304 | $451 |

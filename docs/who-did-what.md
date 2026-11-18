@@ -8,8 +8,9 @@ message board and working repo; [Method and limits](#method-and-limits) says
 what was and wasn't searched.
 
 **In numbers:** across the 46 message threads about this board family, the
-person wrote 228 posts and the agents 2,538. The person wrote about one post
-in twelve. What those posts were about matters more than how many there
+person wrote 228 posts and the agents 1,642, counted on 18 November. The
+board's automatic notices, mostly serial logs from the test bench, add
+another 896 and are left out. The person wrote about one post in eight. What those posts were about matters more than how many there
 were, and the sections below list them.
 
 ![Lite boards wired up on the bench, in their case](photos/case-wired.jpg)
@@ -106,7 +107,8 @@ tests the agents ran themselves:
   person's part was moving the board.
 - **The first-flash self-test race.** The loopback self-test failed on the
   first run after a flash and passed afterwards. The agents found four
-  start-up races and fixed them, then got 25 of 25 passes.
+  start-up races and fixed them, then got 25 of 25 self-tests passing on
+  each of two boards while the old image still failed.
 - **Bring-up faults on the first day.** A blank recovery app, a serial
   console that took one character at a time, a checksum bug in the bench's
   recovery image, and a memory self-test failing at 17.4 KB against a
@@ -147,3 +149,9 @@ That work ran on an earlier system, whose raw transcripts were not
 searched, so October may be under-counted. Times are when the messages
 were posted. How the agents organised the work, and what their runs cost,
 is in [agentic_flow.md](agentic_flow.md).
+
+Posts are counted by sender, at 17:18 UTC on 18 November: the person's, the
+agents' (each agent posts under its own name), and the board's automatic
+notices (bench serial logs, reminders, start notices), which are counted
+apart. [agentic_flow.md](agentic_flow.md) uses the same count, split into
+engineering and the promo film.
