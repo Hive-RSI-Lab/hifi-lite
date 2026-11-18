@@ -7,20 +7,62 @@ Connect, AirPlay, Lyrion (LMS) and Bluetooth, takes a DJ deck or any line source
 on RCA, drives a subwoofer from an RCA sub out, and is set up and controlled
 from a web app on your phone, three buttons or any IR remote.
 
-![HiFi Lite board, 3D render](docs/images/board-iso.png)
+![A built HiFi Lite board](docs/photos/board.jpg)
 
 The board, its firmware, its web app, its 3D-printed case and its test bench
-were designed by a team of AI agents built on Claude, under the direction of
-one person. Every file the agents produced to do it is here: the KiCad
-project, the scripts that generated the schematic, the simulations, the
-checks and reviews, the firmware patches, the case in code, and the bring-up
-reports from the five boards that were built.
-**[DESIGN.md](DESIGN.md)** is the whole story, step by step.
+were designed by AI agents built on Claude, under the direction of one
+person. Every file the agents produced is here: the KiCad project, the
+scripts that generated the schematic, the simulations, the checks and
+reviews, the firmware, the case in code, and the reports from the five
+boards that were built. This page is the five-minute version.
+**[DESIGN.md](DESIGN.md)** is the full record.
+
+**One decision, followed through.** The person asked for a board that could
+check itself. The agents answered with a resistor divider on each speaker
+output, feeding it back into the codec's spare ADC: about $0.04 a board.
+Those loopback taps let the agents play a signal through the real amplifier
+and record what came out, over the network, with nobody at the bench. That
+gave a self-test on all five boards and frequency response, distortion,
+noise and crosstalk on three. It also caught a fault a one-board demo would
+have hidden: the first self-test after a flash failed, and every later run
+passed. The agents traced it to four start-up races in the firmware, fixed
+them, and then got 25 passes in 25 flash-then-test runs on two boards.
 
 | | |
 |---|---|
-| ![enclosure](docs/images/enclosure-iso.png) | ![web app](docs/app-screens/play.png) |
-| Snap-fit 3D-printed case, no screws | The web app, served by the board itself |
+| ![the case, rear panel](docs/photos/case-rear.jpg) | ![the board, connector side](docs/photos/board-connectors.jpg) |
+| The snap-fit 3D-printed case, no screws | Speaker terminals, USB-C, line in and sub out |
+| ![web app](docs/app-screens/play.png) | ![HiFi Lite board, 3D render](docs/images/board-iso.png) |
+| The web app, served by the board itself | The KiCad 3D render it was built from |
+
+## How the agents worked
+
+| Pattern | What happened on this board | Record |
+|---|---|---|
+| **Fresh-context review** | The electrical rule check passed, but every pin was typed as passive, so it could not see much. A review agent with none of the design history found the amplifier rail's soft-start capacitor on the wrong node, with an estimated 20 to 40 A of inrush at turn-on. A second independent review simulated the first fix and found it still too fast. After the second fix, before the order, it simulates at about 0.41 A. | [Decision trail](docs/decision-trail-soft-start.md), [review](hardware/reports/review-schematic-response.md) |
+| **Revisiting an upstream decision** | The first USB-C PD controller chosen, a CH224Q, came in a 0.4 mm-pitch package that could not be fanned out under the USB-C connector on two layers. The agent routing the board went back to the part choice and swapped it for the CH224A, which has the same die, price and stock in a 1.0 mm-pitch package. The record is a snag note; the failed routing attempt was not kept. | [Snag #25](hardware/HWDE-SNAGS.md) |
+| **Improving the tools** | 20 of 21 imported footprints had courtyards that didn't cover their own pads. *On this board:* repaired by a local script. *In the shared tool:* the same day, a courtyard check and an automatic repair landed in the agents' PCB tooling. That was separate work, not triggered by this board. *On a later project:* not verified. A second case: the person spotted an RCA jack clashing with a speaker post in a render of the bigger board, and the agents added a 3D body-clash check to the shared tooling, which then caught that clash by itself. | [Snag #9](hardware/HWDE-SNAGS.md), [fix_courtyards.py](hardware/lib/fix_courtyards.py), [check_courtyard](https://github.com/Hive-RSI-Lab/hive-pcb-flow/blob/main/scripts/check_courtyard.py), [check_body_clash](https://github.com/Hive-RSI-Lab/hive-pcb-flow/blob/main/scripts/check_body_clash.py) |
+| **Designing for remote measurement** | The loopback taps above, plus a remote bench that flashes, tests and reads boards from anywhere. Five boards became a lab the agents ran around the clock, and lanes for security, tests and features shared them. | [Audio measurements](DESIGN.md#audio-measurements), [remote bench](docs/remote.md) |
+
+The person set the goals, made the owner's calls (all parts on the top
+side, the order, its cost), did everything that needed hands, and spotted
+several problems first, among them an RCA jack against a speaker post in a
+3D render that every automated check had passed.
+[Who did what](docs/who-did-what.md) separates their part from the agents',
+with a timed trace of the first bring-up.
+[How the agents worked](docs/agentic_flow.md) has the timeline, the 445
+agent runs and what they cost.
+
+## What is shown, and where it stops
+
+| Claim | Evidence | Where it stops |
+|---|---|---|
+| All five boards pass their self-test | [Self-test reports](docs/lab/reports/README.md) | The self-test checks the 20 V USB-C contract, the supply rails, the codec, the amplifier's fault line, free memory, and a −20 dB tone round trip on each channel within ±3 dB, with crosstalk. It does not measure output power or distortion. |
+| Audio was characterised on three boards | [Audio measurements](DESIGN.md#audio-measurements) | Lites 2, 3 and 4. The figures are for the whole chain: DAC, amplifier, divider and a 16-bit ADC. The divider scale comes from resistor values and was not calibrated against a meter, and the ADC's noise dominates the THD+N figures, so they are not the amplifier's own. Lites 1 and 5 were not measured. |
+| The first-flash self-test fault is fixed | [Loopback fix](DESIGN.md#audio-measurements) | 25 of 25 flash-then-test runs on Lites 2 and 3, not repeated on the other three. |
+| The Wi-Fi reconnect leak is fixed | [Soak report](docs/lab/reports/README.md), [30-reconnect run](docs/lab/reports/hil/lite-5-20261117-wifidrop-result.json) | A 7.7-hour soak showed a 736 B step in free memory at a Wi-Fi drop, about 730 B lost per reconnect. After the fix, 30 forced reconnects on Lite 5 netted −112 B, which is noise. The long soak with the fix has not been run. |
+| The soft-start limits inrush | [Decision trail](docs/decision-trail-soft-start.md) | Simulated only: 0.36–0.43 A peak across component tolerance. Nobody has scoped it on a built board. The boards switch the rail on correctly. |
+| Power output | [Power, plainly](#power-plainly) | 38.7 W per channel is calculated, not measured. 9 W per channel sustained is the firmware's modelled default. Continuous output at a stated THD+N, in the closed case, is still to be measured. |
 
 ## What it is
 
@@ -28,7 +70,7 @@ reports from the five boards that were built.
 |---|---|
 | **MCU** | ESP32-WROVER-E (8 MB flash, 8 MB PSRAM): Wi-Fi and Bluetooth Classic |
 | **Codec** | Everest ES8388: DAC for the amp and the sub out, ADC for the line in |
-| **Amplifier** | TI TPA3118D2 class-D, 2 × 38.7 W into 4 Ω at 20 V (1 % THD, from the design review's calculation) |
+| **Amplifier** | TI TPA3118D2 class-D, bridge-tied, into 4–8 Ω speakers. What it delivers on a 65 W charger is set by the firmware: see [Power, plainly](#power-plainly) |
 | **Power** | USB-C PD sink (WCH CH224A) asking for 20 V; runs on a 65 W or larger charger, with a power governor that keeps the amp inside the charger's contract |
 | **Sources** | Spotify Connect, AirPlay, Lyrion/LMS, Bluetooth A2DP, RCA line in (DJ direct mode) |
 | **Outputs** | Four 4 mm banana sockets for the speakers, RCA sub out (L/R) |
@@ -36,6 +78,24 @@ reports from the five boards that were built.
 | **Board** | 118 × 90 mm, 2 layers, 1.6 mm FR-4, 154 parts all on the top side, assembled by JLCPCB |
 | **Cost** | about $14.54 a board in parts, assembly and PCB at 100 units ([docs/bom-estimate.csv](docs/bom-estimate.csv)) |
 | **Firmware** | [squeezelite-esp32](https://github.com/sle118/squeezelite-esp32) plus our own component: power sequencing, the governor, test signals, the test API and the web app |
+
+### Power, plainly
+
+The amplifier chip can do more than a laptop charger can feed, so the
+firmware decides what you get:
+
+| | Per channel, 4 Ω | Where it comes from |
+|---|---|---|
+| Chip limit at 1 % THD, unlimited 20 V supply | 38.7 W (43 W on the product page) | Calculated in design review; the 43 W is scaled from a 12 V bench test of another TPA3118 board. Not measured on the Lite. |
+| Short bursts on a 65 W charger | about 24 W (49 W total) | The governor keeps input under 90 % of the charger's contract, averaged over 50 ms |
+| Sustained, by default | 9 W | The governor's heat model, averaged over 30 s, keeps the amp chip below its shutdown temperature in the case |
+| Sustained, maximum setting | 15 W | Set in the app; above 9 W the amp may trip on heat, and the firmware backs off |
+
+Music averages about an eighth of its peaks, so normal listening sits under
+both limits. Not yet measured: both channels driven into 4 Ω with burst
+power, sustained power, THD+N and the temperature inside the closed case,
+reported together. That is the first measurement on the
+[open list](DESIGN.md#open-questions).
 
 Five boards were built and brought up; all five pass the self-test. The
 measurements are in [docs/lab/reports](docs/lab/reports/README.md).

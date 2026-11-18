@@ -14,7 +14,10 @@ ran the simulations and checks, reviewed each other's work, wrote and tested
 the firmware, generated the case from the board file and ran the bench over
 a remote connection. The person set the goals, approved the order, paid for
 it, and did the hands-on steps: unboxing, plugging in, listening, and saying
-when something sounded wrong.
+when something sounded wrong. [docs/who-did-what.md](docs/who-did-what.md)
+separates the person's part from the agents', and
+[docs/agentic_flow.md](docs/agentic_flow.md) shows how the agents organised
+the work, with a timeline and what their runs cost.
 
 Nothing here is cleaned up after the fact. Where a check missed something,
 or a board misbehaved on the bench, the chapter says so and says what was
@@ -118,7 +121,7 @@ The features left out of the Lite were cut because of cost, not because they wer
 
 #### Power budget
 
-The amplifier rail runs directly from the 20 V PD contract. The product page states 43 W per channel peak into 4 Ω at 20 V. That figure was calibrated against a 12 V TPA3118 board on the bench, which measured 10.9 W into 6 Ω; the 20 V figure scales from that measurement, it is not a direct one. The continuous rating is set by heat, not by the supply: a later review found the board can hold about 9 W per channel for 30 s before the amplifier reaches its thermal limit (see Simulations). Firmware enforces this with a power governor.
+The amplifier rail runs directly from the 20 V PD contract. The product page states 43 W per channel peak into 4 Ω at 20 V. That figure was calibrated against a 12 V TPA3118 board on the bench, which measured 10.9 W into 6 Ω; the 20 V figure scales from that measurement, it is not a direct one. The continuous rating is set by heat, not by the supply: a later review found the board can hold about 9 W per channel for 30 s before the amplifier reaches its thermal limit (see Simulations). Firmware enforces this with a power governor. A design review calculated 38.7 W per channel into 4 Ω at 1 % THD from an unlimited 20 V supply; that is not measured either. On a 65 W charger the governor allows about 49 W in total for short bursts and 9 W per channel sustained by default (up to 15 W per channel in the app).
 
 A charger at 5 V only (no PD) powers only the ESP32 side, so the board can still be set up and updated. The amplifier stays off.
 
@@ -211,7 +214,7 @@ The pulled library needed repair before it could be trusted.
 
 ERC passed with 0 errors and 0 warnings, but this result means little. Every pin in the pulled EasyEDA symbols is typed as passive, so KiCad's electrical rules check cannot find driver conflicts or unconnected inputs. The netlist audit also passed. The real check was a fresh-context schematic review by a review agent, recorded in `hardware/reports/review-schematic-response.md`. It found one error and 14 warnings.
 
-The error was in the PVDD soft start. The first design put the soft-start capacitor from Q1's gate to its source. With 690 µF of bulk capacitance downstream, that gives an inrush of 20 to 40 A at turn-on. The fix was a Miller capacitor (gate to drain), which slows the drain voltage ramp directly and limits inrush to about 0.41 A.
+The error was in the PVDD soft start. The first design put the soft-start capacitor from Q1's gate to its source, which does nothing to the drain slew. The reviewer's hand estimate was 20 to 40 A of inrush into the 440 µF of bulk capacitance then fitted. The first fix was a Miller capacitor (gate to drain), estimated at about 1.6 A. The second review simulated that fix and found it still at the edge of Q1's safe operating area (2.49 A, 43 W). It also found that the Miller capacitor turned Q1 on at every fast VBUS edge with the firmware off. R6 went to 220 kΩ and a gate-source hold-off capacitor C19 was added, which brings the simulated inrush to about 0.41 A. The whole sequence is in [docs/decision-trail-soft-start.md](docs/decision-trail-soft-start.md).
 
 Of the 14 warnings, 9 were fixed or mitigated and 5 were accepted with reasons. Among them: a series resistor on the amplifier's SDZ (shutdown) line, the input TVS rating, the VBUS capacitance limit, the bleeder resistor R16 (22 kΩ), the power-good AND gate, the LP5907's output capacitor, ripple on the bulk capacitors, the LED colour (red), moving the IR receiver to GPIO14, and the CH224 pull-ups on 0 Ω links.
 
@@ -300,7 +303,7 @@ The circuit simulations are in `hardware/sims/`; the board-level reports are in 
 
 #### PVDD turn-on
 
-The soft-start simulation of Q1 with the Miller capacitor gives:
+The soft-start simulation of Q1 in its final form (Miller capacitor C2, hold-off capacitor C19, R6 at 220 kΩ) gives:
 
 | Quantity | Result |
 |---|---|
@@ -1593,6 +1596,7 @@ What the sources did not settle, collected from each chapter.
 ### Hardware
 
 - The order date and quantity behind Lite 1..5 are not in the sources read.
+- Output power has not been measured on the Lite: both channels into 4 Ω, burst and sustained power, THD+N at those levels, and the temperature inside the closed case, on a 65 W charger. Every power figure in this document is calculated or scaled.
 - U8's real thermal resistance and temperature at 1/8 power have not been found in a measurement; the waiver depends on it.
 - The PVDD spike measurement against the 27 V bench gate has not been found.
 - Charger results for the VBUS attach capacitance (13–16 µF against 10 µF) have not been found.
