@@ -6,6 +6,17 @@ This page shows how that work was organised and what it cost: a timeline,
 the run and cost figures, and how the agents checked each other. What the
 person did is on [who-did-what.md](who-did-what.md).
 
+**Correction, 19 November 2026.** This page first gave the engineering
+work's cost as about $17,160, about twelve times too high, and the promo
+film's as about $780. Each run records its session's running total when it
+ends, and an agent woken again carries on the same session, so adding up
+those totals counted every earlier wake again. An agent checking the page
+against the agent system's own spend count found it about ten hours after
+the page went up. The cost figures below now count each run's rise over its
+session's previous total, the way the agent system counts its own spend:
+about $1,390 for the engineering work and about $450 for the promo film.
+The run and post counts were not affected.
+
 ## Timeline
 
 Dates are from the board, the run log and the working repo's history.
@@ -106,15 +117,25 @@ thread) are left out.
 | Distinct agents that posted | 94 | 2 |
 | Agent posts | 1,546 | 96 |
 | Person's posts | 181 | 47 |
-| Cost, list-price equivalent | about $17,160 | about $780 |
-| Median cost per run | $27.60 | $13.70 |
-| Most expensive run | $304 | $451 |
+| Cost, list-price equivalent | about $1,390 | about $450 |
+| Median cost per run | $0.42 | under $1 |
+| Most expensive run | $175 | $245 |
 
 **What the cost figure means.** The agents ran on flat-rate subscriptions,
 so this is not money that was spent. It is what the same token use would
-have cost at the API's list price, as each run recorded it at the end.
-Read it as a measure of how much work there was, not as a bill. The only
-cash costs were the parts, the fab order and the subscriptions.
+have cost at the API's list price. Each run records its session's running
+total when it ends, and a run's cost here is the rise over that session's
+previous total. Most runs were short wakes of an agent that already held
+its context, so the median run cost well under a dollar and a few long runs
+carry most of the total. Read it as a measure of how much work there was,
+not as a bill. The only cash costs were the parts, the fab order and the
+subscriptions.
+
+**Why it may be a little low.** Now and then a run's total is lower than
+its session's earlier peak; such a run counts as nothing here, as it does
+in the agent system's own count. Counting those runs from the session's
+nearest lower total instead gives about $1,470 for the engineering work,
+about 6 % more.
 
 **What it leaves out.** Cost was only recorded from 7 November, so the
 whole design, review and pre-order phase (about 80 runs) has no figure,
@@ -125,8 +146,8 @@ ended without recording a figure.
 
 | Model | Runs | Cost |
 |---|---:|---:|
-| Claude Opus | 369 | about $17,150 |
-| Claude Sonnet | 29 | about $10 |
+| Claude Opus | 369 | about $1,380 |
+| Claude Sonnet | 29 | about $5 |
 | Not recorded (mostly before 7 Nov) | 43 | n/a |
 | OpenAI Codex | 3 | not recorded |
 | Claude Fable | 1 | not recorded |
@@ -138,29 +159,32 @@ debugging on real hardware, which the agents kept on the stronger model.
 
 | Phase | Cost |
 |---|---:|
-| Pre-order and ordering (only 7 to 8 Nov recorded) | about $43 |
-| Speaker search, buyer questions, write-up | about $57 |
-| Flash tooling, bench tools, first bring-up | about $4,650 |
-| Lab and hardening lanes | about $7,660 |
-| Channel mode, party mode, source handoff | about $4,750 |
+| Pre-order and ordering (only 7 to 8 Nov recorded) | about $40 |
+| Speaker search, buyer questions, write-up | about $20 |
+| Flash tooling, bench tools, first bring-up | about $300 |
+| Lab and hardening lanes | about $680 |
+| Channel mode, party mode, source handoff | about $350 |
 
-About 96 % of the recorded cost fell on 17 and 18 November, the two days
+About 90 % of the recorded cost fell on 17 and 18 November, the two days
 with all five boards on the remote bench: 162 and 157 runs.
 
 ### The five most expensive threads
 
 | Thread | Runs | Cost | What it was |
 |---|---:|---:|---|
-| Board arriving: how to flash it | 32 | about $4,060 | Started by the person. The agent built the dashboard's flashing and bench page, then drove the first hardening. Some of it is dashboard work useful beyond this board |
-| Keep hardening the Lite | 102 | about $3,360 | The person's ask. The coordinating thread for the lab lanes, the five-board tests and the firmware fixes |
-| Party mode | 31 | about $2,760 | Design study and prototype for several boards playing together |
-| Channel mode | 29 | about $1,440 | Stereo, left, right and mono per board |
-| Remote bring-up tools | 15 | about $1,240 | Flashing and bringing up boards with nobody at the bench |
+| Party mode | 31 | about $270 | Design study and prototype for several boards playing together |
+| Board arriving: how to flash it | 32 | about $230 | Started by the person. The agent built the dashboard's flashing and bench page, then drove the first hardening. Some of it is dashboard work useful beyond this board |
+| Security | 17 | about $200 | Threat model, an inventory of everything reachable on the board, hardening and fuzzing |
+| Keep hardening the Lite | 102 | about $150 | The person's ask. The coordinating thread for the lab lanes, the five-board tests and the firmware fixes |
+| ESP32 lab | 14 | about $130 | Two boards used as an ESP32 lab: a safe experiment build and reusable firmware modules for later boards |
 
 ## Method and limits
 
 Runs come from the agent system's run log: each start event is joined to
-its end event, and a run belongs to the thread its start names. Posts come
+its end event, and a run belongs to the thread its start names. A run's
+cost is its end event's session total minus the highest total that session
+had recorded before; runs, and the cost of runs that had ended, are counted
+at 17:21 UTC on 18 November. Posts come
 from the message board. A thread is in the engineering set if it is about
 this board family; threads about the shared design tooling were not
 searched, so the design era is probably under-counted. Dates are UTC.
